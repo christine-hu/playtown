@@ -7,4 +7,4 @@ Players will be able to:
 - play simple games at the arcade
 - build their dream sundae at the ice cream shop
 
-All controls will be fully switch-accessible, and users can choose their own contrast, text size, and difficulty preferences.
+All controls will be fully switch-accessible, and users can choose their own contrast, text size, and difficulty preferences. This game is being developed as a Google Summer of Code 2018 project under the Inclusive Design Institute.
