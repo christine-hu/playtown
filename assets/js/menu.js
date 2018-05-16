@@ -78,7 +78,7 @@ var menuState = {
 
 		function menuSelection(pointer) {
 
-			if (!pointer.withinGame) {return;}
+			if (selectedControl == 2 && !pointer.withinGame) {return;}
 			// choosing preferences
 			if (mainMenu) {
 				menu.animations.play('scroll', speed, true);
