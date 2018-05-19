@@ -72,7 +72,7 @@ var startState = {
         keyboard.animations.play('buttons', 5, true);
 
         mouse = game.add.sprite(750, 360, 'mouse');
-        mouse.animations.add('click', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
+        mouse.animations.add('click', [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]);
         mouse.animations.play('click', 5, true);
 
         button = game.add.sprite(0, 0, 'transparent');
