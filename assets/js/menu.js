@@ -31,10 +31,6 @@ var menuState = {
 		// back button
 		var backButtonSprite;
 		var backButtonAnim;
-
-		// scroll speed (FPS)
-		var speed = .5;
-
 		
 		// text style, to be passed onto other states (text size)
 		var textColor = '#000000';
@@ -116,15 +112,18 @@ var menuState = {
 			// stops mouseIn & mouseOut events 
 			if (selectedControl == 2 && !pointer.withinGame) {return;}
 
-			// choosing preference screens
+			// choosing screens
 			if (mainMenu) {
-				if (mainAnim.frame == 1 || mainAnim.frame == 5) {
+				if (mainAnim.frame == 0) {
+					game.state.start('character', true, false, control, pStyle);
+				}
+				else if (mainAnim.frame == 1) {
 					textMenu = true;
 					mainMenu = false;
-				} else if (mainAnim.frame == 2 || mainAnim.frame == 6) {
+				} else if (mainAnim.frame == 2) {
 					colorMenu = true;
 					mainMenu = false;
-				} else if (mainAnim.frame == 3 || mainAnim.frame == 7) {
+				} else if (mainAnim.frame == 3) {
 					speedMenu = true;
 					mainMenu = false;
 				}
@@ -251,6 +250,7 @@ var menuState = {
 			        backButtonSprite.loadTexture('backButtonBW', 0);
 			        colorAnim.play(speed, true);
 			        backButtonAnim.play(speed, true);
+			        color = 'bw';
 	    		}
 	    		if (colorAnim.frame == 1) {
 	    			game.stage.backgroundColor= '#000000';
@@ -282,6 +282,7 @@ var menuState = {
     				backButtonSprite.loadTexture('backButtonWB', 0);
     				backButtonAnim.play(speed, true);
 			        colorAnim.play(speed, true);
+			        color = 'wb';
 	    		}
 	    		if (colorAnim.frame == 2) {
 	    			game.stage.backgroundColor = "#5fdcfa";
@@ -304,6 +305,7 @@ var menuState = {
 	    			backButtonSprite.loadTexture('backButtonColor', 0);
 	    			backButtonAnim.play(speed, true);
 	    			colorAnim.play(speed, true);
+	    			color = 'color';
 	    		}
 	    		if (backButtonAnim.frame == 1) {
     				colorMenuSprite.visible = false;
@@ -374,6 +376,10 @@ var menuState = {
 
 		}
 
+	}, 
+
+	shutdown: function() {
+		size = p1.fontSize;
 	}
 
 }

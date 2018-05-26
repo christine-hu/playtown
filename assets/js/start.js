@@ -221,7 +221,7 @@ var startState = {
     			p1.setText('Great! Your control is the mouse. Click the mouse to continue.', true);
     			mouse.x = 400;
     			mouse.y = 400;
-    			mouse.animations.add('click', [0, 1, 2, 3, 14]);
+    			mouse.animations.add('click', [0, 0, 0, 0, 1]);
     			mouse.animations.play('click', 5, true);
     		} 
     		if (spacePressed) {

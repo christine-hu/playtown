@@ -33,6 +33,24 @@ var preloadState = {
       game.load.spritesheet('backButtonBW', 'assets/img/bw/backButtonBW.png', 150, 83);
       game.load.spritesheet('backButtonWB', 'assets/img/wb/backButtonWB.png', 150, 83);
 
+      // character images 
+      game.load.spritesheet('characterMenu', 'assets/img/characterMenu.png', 305, 434);
+      game.load.spritesheet('skinMenu', 'assets/img/skinMenu.png', 305, 434);
+      game.load.spritesheet('hairMenu1', 'assets/img/hairMenu1.png', 305, 501);
+      game.load.spritesheet('hairMenu2', 'assets/img/hairMenu2.png', 305, 566);
+      game.load.spritesheet('hairMenu3', 'assets/img/hairMenu3.png', 305, 499);
+      game.load.spritesheet('eyeMenu', 'assets/img/eyeMenu.png', 305, 434);
+      game.load.spritesheet('mouthMenu', 'assets/img/mouthMenu.png', 305, 434);
+      game.load.spritesheet('accessoryMenu', 'assets/img/accessoryMenu.png', 305, 434);
+      game.load.spritesheet('doneButton', 'assets/img/doneButton.png', 150, 82);
+      game.load.image('characterBackground', 'assets/img/characterBackground.png', 480, 492);
+      game.load.spritesheet('skin', 'assets/img/skin.png', 202, 265);
+      game.load.spritesheet('eyes', 'assets/img/eyes.png', 140, 46);
+      game.load.image('nose', 'assets/img/nose.png', 32, 15);
+      game.load.spritesheet('mouth', 'assets/img/mouth.png', 88, 60);
+      game.load.spritesheet('hair', 'assets/img/hair.png', 423, 439);
+      game.load.spritesheet('accessories', 'assets/img/accessories.png', 216, 308);
+
 	},
 
 	create: function() {
