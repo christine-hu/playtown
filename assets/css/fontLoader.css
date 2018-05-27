@@ -1,6 +1,11 @@
 @font-face {
-	font-family: "cornerstone";
+	font-family: "Jua";
 	font-style: normal;
-	font-weight: 400;
-	src: url("../fonts/cornerstone.ttf");
+	src: url("../fonts/Jua.ttf");
+}
+
+@font-face {
+	font-family: "Londrina Solid";
+	font-style: normal;
+	src: url("../fonts/LondrinaSolid-Regular.ttf");
 }
