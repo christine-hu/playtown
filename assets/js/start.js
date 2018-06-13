@@ -26,33 +26,8 @@ var startState = {
         var returnPressed = false; // was the return key selected?
         var reset = false; // resets selection
         var controlSelected = false; // has the control been selected?
-        
 
-   
-        game.stage.backgroundColor = "#5fdcfa";
-
-        WebFontConfig = {
-
-            active: function() { game.time.events.add(Phaser.Timer.SECOND, createText, this); },
-
-            google: {
-                families: [pFont, titleFont]
-            }
-
-        };
-
-        titleStyle = { font: titleFont, fill: "#f191b0", fontSize: '120px'};
-        titleText = game.add.text(game.world.centerX, 110, "PLAYTOWN!", titleStyle);
-        titleText.setShadow(3, 3, '#555555', 3);
-        titleText.addColor('#ffae68', 1);
-        titleText.addColor('#faff77', 2);
-        titleText.addColor('#f191b0', 3);
-        titleText.addColor('#ffae68', 4);
-        titleText.addColor('#faff77', 5);
-        titleText.addColor('#f191b0', 6);
-        titleText.addColor('#ffae68', 7);
-        titleText.addColor('#faff77', 8);
-        titleText.anchor.set(0.5);
+        game.add.sprite(159, 50, 'title');
 
         pStyle = { 
         	font: pFont, 
@@ -67,11 +42,11 @@ var startState = {
         p1 = game.add.text(0, 0, "Select a control:", pStyle);
         p1.setTextBounds(100, 220, 700, 200);
 
-        keyboard = game.add.sprite(30, 330, 'keyboard');
-        keyboard.animations.add('buttons', [5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 10, 11, 12, 13, 14]);
+        keyboard = game.add.sprite(-30, 300, 'keyboard');
+        keyboard.animations.add('buttons', [0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]);
         keyboard.animations.play('buttons', 5, true);
 
-        mouse = game.add.sprite(750, 360, 'mouse');
+        mouse = game.add.sprite(695, 300, 'mouse');
         mouse.animations.add('click', [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]);
         mouse.animations.play('click', 5, true);
 
@@ -82,7 +57,7 @@ var startState = {
         spaceBar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
 
- 		
+ 		// shows yes/no popup for keyboard keys 
         game.input.keyboard.onUpCallback = function() {
         	var key = game.input.keyboard.lastKey;
             if (key == enter) {
@@ -101,7 +76,7 @@ var startState = {
 		        	}
 	        	}
 	        	if (!selectMode && !returnPressed && !controlSelected)	{
-	                selection = game.add.sprite(570, 290, 'selection');
+	                selection = game.add.sprite(550, 290, 'selection');
 	                selection.animations.add('click', [1, 0]);
 	                keyboard.animations.stop(true, '0');
 	                mouse.animations.stop(true, '0');
@@ -133,7 +108,7 @@ var startState = {
 	        	}
 
 	        	if (!selectMode && !spacePressed && !controlSelected) {
-	            	selection = game.add.sprite(300, 390, 'selection');
+	            	selection = game.add.sprite(280, 380, 'selection');
 	                selection.animations.add('click', [1, 0]);
 	                keyboard.animations.stop(true, '0');
 	                mouse.animations.stop(true, '0');
@@ -149,6 +124,7 @@ var startState = {
 
         button.events.onInputUp.add(showSelection, game);
 
+        // shows yes/no popup for mouse 
         function showSelection() {
         	if (controlSelected && selectedControl == 2) {
         			selectedControl = 2; 
@@ -166,7 +142,7 @@ var startState = {
 	        	}
 	        }
 	        if (!selectMode && !mousePressed && !controlSelected) {
-	        	selection = game.add.sprite(720, 220, 'selection');
+	        	selection = game.add.sprite(700, 180, 'selection');
 	            selection.animations.add('click', [1, 0]);
 	            keyboard.animations.stop(true, '0');
 	            mouse.animations.stop(true, '0');
@@ -178,26 +154,6 @@ var startState = {
 	        	resetSelection();
 	        }
 	        
-    	}
-
-    	// shows the yes & no popup
-    	function addSelectionMenu() {
-    		var x;
-    		var y;
-    		if (mousePressed) {
-    			x = 720;
-    			y = 220;
-    			mousePressed = true;
-    		} else if (key == spaceBar) {
-    			x = 300;
-    			y = 390;
-    			spacePressed = true;
-    		} else if (key == returnKey) {
-    			x = 570;
-    			y = 290;
-    			returnPressed = true;
-    		}
-
     	}
  
  		// resets selected control 
@@ -219,8 +175,8 @@ var startState = {
     			selectedControl = 2;
     			keyboard.destroy();
     			p1.setText('Great! Your control is the mouse. Click the mouse to continue.', true);
-    			mouse.x = 400;
-    			mouse.y = 400;
+    			mouse.x = 360;
+    			mouse.y = 350;
     			mouse.animations.add('click', [0, 0, 0, 0, 1]);
     			mouse.animations.play('click', 5, true);
     		} 
@@ -229,17 +185,17 @@ var startState = {
     			mouse.destroy();
 		        keyboard.destroy();
 		    	p1.setText('Great! Your control is the space bar. Press the space bar to continue.', true);
-		    	spaceBarSprite = game.add.sprite(150, 450, 'spaceBar');
-		    	spaceBarSprite.animations.add('press', [0, 1, 2, 3, 4]);
+		    	spaceBarSprite = game.add.sprite(25, 430, 'spaceBar');
+		    	spaceBarSprite.animations.add('press', [0, 0, 0, 0, 1]);
 		    	spaceBarSprite.animations.play('press', 5, true);
     		}
     		if (returnPressed) {
     			selectedControl = 0;
     			mouse.destroy();
 		        keyboard.destroy();
-		    	p1.setText('Great! Your control is the return key. Press the return key to continue.', true);
+		    	p1.setText('Great! Your control is the return key. Press the enter/return key to continue.', true);
 		        returnKey = game.add.sprite(300, 400, 'return');
-        		returnKey.animations.add('press', [1, 1, 1, 1, 0]);
+        		returnKey.animations.add('press', [0, 0, 0, 0, 1]);
         		returnKey.animations.play('press', 5, true);
     		}
     		controlSelected = true;

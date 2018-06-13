@@ -52,44 +52,33 @@ var menuState = {
 
 	
 		// title text
-		titleStyle = { font: 'Londrina Solid', fill: "#f191b0", fontSize: '120px'};
-        titleText = game.add.text(game.world.centerX, 110, "PLAYTOWN!", titleStyle);
-        titleText.setShadow(3, 3, '#555555', 3);
-	        titleText.addColor('#ffae68', 1);
-	        titleText.addColor('#faff77', 2);
-	        titleText.addColor('#f191b0', 3);
-	        titleText.addColor('#ffae68', 4);
-	        titleText.addColor('#faff77', 5);
-	        titleText.addColor('#f191b0', 6);
-	        titleText.addColor('#ffae68', 7);
-	        titleText.addColor('#faff77', 8);    	
-        titleText.anchor.set(0.5);
+		game.add.sprite(159, 50, 'title');
 
         // menu 
-		mainMenuSprite = game.add.sprite(100, 220, 'mainMenuColor');
+		mainMenuSprite = game.add.sprite(86, 300, 'mainMenu');
 	    mainMenuSprite.animations.add('scroll');
 	    mainAnim = mainMenuSprite.animations.play('scroll', speed, true);
 
 	    // text menu (invisible)
-	    textMenuSprite = game.add.sprite(100, 330, 'textMenuColor');
+	    textMenuSprite = game.add.sprite(86, 320, 'textMenu');
 	    textMenuSprite.visible = false; 
 		textMenuSprite.animations.add('scroll');
 		textAnim = textMenuSprite.animations.getAnimation('scroll');
 
 		// color menu (invisible)
-		colorMenuSprite = game.add.sprite(100, 330, 'colorMenuColor');
+		colorMenuSprite = game.add.sprite(86, 320, 'colorMenu');
 		colorMenuSprite.visible = false;
 		colorMenuSprite.animations.add('scroll');
 	    colorAnim = colorMenuSprite.animations.getAnimation('scroll');
 
 		// speed menu (invisible)
-		speedMenuSprite = game.add.sprite(100, 330, 'speedMenuColor');
+		speedMenuSprite = game.add.sprite(86, 320, 'speedMenu');
 		speedMenuSprite.visible = false;
 		speedMenuSprite.animations.add('scroll');
 	    speedAnim = speedMenuSprite.animations.getAnimation('scroll');
 
 		// back button (invisible)
-		backButtonSprite = game.add.sprite(700, 570, 'backButtonColor');
+		backButtonSprite = game.add.sprite(688, 562, 'backButton');
 		backButtonSprite.visible = false;
 		backButtonSprite.animations.add('press', [0, 0, 0, 1]);
 		backButtonAnim = backButtonSprite.animations.getAnimation('press');
@@ -115,27 +104,24 @@ var menuState = {
 			// choosing screens
 			if (mainMenu) {
 				if (mainAnim.frame == 0) {
-					game.state.start('character', true, false, control, pStyle);
+					game.state.start('map', true, false, control, pStyle);
 				}
 				else if (mainAnim.frame == 1) {
 					textMenu = true;
 					mainMenu = false;
 				} else if (mainAnim.frame == 2) {
-					colorMenu = true;
-					mainMenu = false;
-				} else if (mainAnim.frame == 3) {
 					speedMenu = true;
 					mainMenu = false;
-				}
+				} 
 			}
 
 			// displaying preference screens
 			if (textMenu) {
 				textSelectionScreen();
 			}
-			if (colorMenu) {
-				colorSelectionScreen();
-			}
+			// if (colorMenu) {
+			// 	colorSelectionScreen();
+			// }
 			if (speedMenu) {
 				speedSelectionScreen();
 			}
@@ -214,116 +200,95 @@ var menuState = {
     		}
 		}
 
-		// color preference screen
-		function colorSelectionScreen() {
-			// add animation once
-			if (!colorSelect) {
-				p1.setText("Select a color scheme:", true);
-				p1.visible = true;
-	        	mainMenuSprite.visible = false;
-	        	colorMenuSprite.visible = true;
-	    		colorAnim.play(speed, true);
-	    		backButtonSprite.visible = true;
-	    		backButtonAnim.play(speed, true);
-	    	}
+		// // color preference screen
+		// function colorSelectionScreen() {
+		// 	// add animation once
+		// 	if (!colorSelect) {
+		// 		p1.setText("Select a text color:", true);
+		// 		p1.visible = true;
+	 //        	mainMenuSprite.visible = false;
+	 //        	colorMenuSprite.visible = true;
+	 //    		colorAnim.play(speed, true);
+	 //    		backButtonSprite.visible = true;
+	 //    		backButtonAnim.play(speed, true);
+	 //    	}
 
-	    	if (colorSelect) {
-	    		if (colorAnim.frame == 0) {
-	    			game.stage.backgroundColor= '#ffffff';
+	 //    	if (colorSelect) {
+	 //    		if (colorAnim.frame == 0) {
+	 //    			game.stage.backgroundColor= '#ffffff';
 
-					titleText.fill = '#000000';
-		        	titleText.addColor('#000000', 1);
-			        titleText.addColor('#000000', 2);
-			        titleText.addColor('#000000', 3);
-			        titleText.addColor('#000000', 4);
-			        titleText.addColor('#000000', 5);
-			        titleText.addColor('#000000', 6);
-			        titleText.addColor('#000000', 7);
-			        titleText.addColor('#000000', 8);
-			        titleText.setShadow(3, 3, '#dddddd', 3);
-			        textColor = '#000000';
-			        p1.fill = '#000000';
-			        mainMenuSprite.loadTexture('mainMenuBW', 0);
-			        textMenuSprite.loadTexture('textMenuBW', 0);
-    				speedMenuSprite.loadTexture('speedMenuBW', 0);
-			        colorMenuSprite.loadTexture('colorMenuBW', 0);
-			        backButtonSprite.loadTexture('backButtonBW', 0);
-			        colorAnim.play(speed, true);
-			        backButtonAnim.play(speed, true);
-			        color = 'bw';
-	    		}
-	    		if (colorAnim.frame == 1) {
-	    			game.stage.backgroundColor= '#000000';
-					titleText.fill = "#ffffff";
-		        	titleText.addColor('#ffffff', 1);
-			        titleText.addColor('#ffffff', 2);
-			        titleText.addColor('#ffffff', 3);
-			        titleText.addColor('#ffffff', 4);
-			        titleText.addColor('#ffffff', 5);
-			        titleText.addColor('#ffffff', 6);
-			        titleText.addColor('#ffffff', 7);
-			        titleText.addColor('#ffffff', 8);
-			        titleText.setShadow(3, 3, '#333333', 3);
-			        textColor = '#ffffff';
-			        pStyle = { 
-			        	font: 'Jua', 
-			        	fill: textColor, 
-			        	fontSize: textSize, 
-			        	wordWrap: true, 
-			        	wordWrapWidth: 700, 
-			        	boundsAlignH: 'center', 
-			        	boundsAlignV: 'top'
-			        };
-    				p1.setStyle(pStyle, true);
-    				mainMenuSprite.loadTexture('mainMenuWB', 0);
-    				textMenuSprite.loadTexture('textMenuWB', 0);
-    				speedMenuSprite.loadTexture('speedMenuWB', 0);
-    				colorMenuSprite.loadTexture('colorMenuWB', 0);
-    				backButtonSprite.loadTexture('backButtonWB', 0);
-    				backButtonAnim.play(speed, true);
-			        colorAnim.play(speed, true);
-			        color = 'wb';
-	    		}
-	    		if (colorAnim.frame == 2) {
-	    			game.stage.backgroundColor = "#5fdcfa";
-	    			titleText.fill = "#f191b0";
-		        	titleText.addColor('#ffae68', 1);
-			        titleText.addColor('#faff77', 2);
-			        titleText.addColor('#f191b0', 3);
-			        titleText.addColor('#ffae68', 4);
-			        titleText.addColor('#faff77', 5);
-			        titleText.addColor('#f191b0', 6);
-			        titleText.addColor('#ffae68', 7);
-			        titleText.addColor('#faff77', 8);
-			        titleText.setShadow(3, 3, '#555555', 3);
-			        textColor = '#000000';
-	    			p1.fill = '#000000';
-	    			mainMenuSprite.loadTexture('mainMenuColor', 0);
-	    			textMenuSprite.loadTexture('textMenuColor', 0);
-    				speedMenuSprite.loadTexture('speedMenuColor', 0);
-	    			colorMenuSprite.loadTexture('colorMenuColor', 0);
-	    			backButtonSprite.loadTexture('backButtonColor', 0);
-	    			backButtonAnim.play(speed, true);
-	    			colorAnim.play(speed, true);
-	    			color = 'color';
-	    		}
-	    		if (backButtonAnim.frame == 1) {
-    				colorMenuSprite.visible = false;
-    				backButtonSprite.visible = false;
-    				p1.visible = false;
-    				mainMenuSprite.visible = true;
-    				mainAnim.play(speed, true);
-    				colorSelect = false;
-    				colorMenu = false;
-    				mainMenu = true;
-    			}
+		// 			titleText.fill = '#000000';
+		//         	titleText.addColor('#000000', 1);
+		// 	        titleText.addColor('#000000', 2);
+		// 	        titleText.addColor('#000000', 3);
+		// 	        titleText.addColor('#000000', 4);
+		// 	        titleText.addColor('#000000', 5);
+		// 	        titleText.addColor('#000000', 6);
+		// 	        titleText.addColor('#000000', 7);
+		// 	        titleText.addColor('#000000', 8);
+		// 	        titleText.setShadow(3, 3, '#dddddd', 3);
+		// 	        textColor = '#000000';
+		// 	        p1.fill = '#000000';
+		// 	        color = 'bw';
+	 //    		}
+	 //    		if (colorAnim.frame == 1) {
+	 //    			game.stage.backgroundColor= '#000000';
+		// 			titleText.fill = "#ffffff";
+		//         	titleText.addColor('#ffffff', 1);
+		// 	        titleText.addColor('#ffffff', 2);
+		// 	        titleText.addColor('#ffffff', 3);
+		// 	        titleText.addColor('#ffffff', 4);
+		// 	        titleText.addColor('#ffffff', 5);
+		// 	        titleText.addColor('#ffffff', 6);
+		// 	        titleText.addColor('#ffffff', 7);
+		// 	        titleText.addColor('#ffffff', 8);
+		// 	        titleText.setShadow(3, 3, '#333333', 3);
+		// 	        textColor = '#ffffff';
+		// 	        pStyle = { 
+		// 	        	font: 'Jua', 
+		// 	        	fill: textColor, 
+		// 	        	fontSize: textSize, 
+		// 	        	wordWrap: true, 
+		// 	        	wordWrapWidth: 700, 
+		// 	        	boundsAlignH: 'center', 
+		// 	        	boundsAlignV: 'top'
+		// 	        };
+  //   				p1.setStyle(pStyle, true);
+		// 	        color = 'wb';
+	 //    		}
+	 //    		if (colorAnim.frame == 2) {
+	 //    			game.stage.backgroundColor = "#6ec7ff";
+	 //    			titleText.fill = "#f191b0";
+		//         	titleText.addColor('#ffae68', 1);
+		// 	        titleText.addColor('#faff77', 2);
+		// 	        titleText.addColor('#f191b0', 3);
+		// 	        titleText.addColor('#ffae68', 4);
+		// 	        titleText.addColor('#faff77', 5);
+		// 	        titleText.addColor('#f191b0', 6);
+		// 	        titleText.addColor('#ffae68', 7);
+		// 	        titleText.addColor('#faff77', 8);
+		// 	        titleText.setShadow(3, 3, '#555555', 3);
+		// 	        textColor = '#000000';
+	 //    			p1.fill = '#000000';
+	 //    			color = 'color';
+	 //    		}
+	 //    		if (backButtonAnim.frame == 1) {
+  //   				colorMenuSprite.visible = false;
+  //   				backButtonSprite.visible = false;
+  //   				p1.visible = false;
+  //   				mainMenuSprite.visible = true;
+  //   				mainAnim.play(speed, true);
+  //   				colorSelect = false;
+  //   				colorMenu = false;
+  //   				mainMenu = true;
+  //   			}
 
-	    	}
+	 //    	}
 
-	    	if (backButtonAnim.frame != 1) {
-    			colorSelect = true;
-    		}
-		}
+	 //    	if (backButtonAnim.frame != 1) {
+  //   			colorSelect = true;
+  //   		}
+		// }
 
 		// speed preference screen 
 		function speedSelectionScreen() {

@@ -10,7 +10,7 @@ var characterState = {
 		var mouth;
 		var accessory; 
 
-		// menus
+		// menus + their booleans
 		var characterMenuSprite;
 		var characterMenuAnim;
 		var characterMenu = true;
@@ -25,14 +25,20 @@ var characterState = {
 		var eyeMenu = false;
 		var eyeSelect = false;
 
-		var noseMenuSprite;
-		var noseMenuAnim;
-		var noseMenu = false;
-
 		var mouthMenuSprite;
 		var mouthMenuAnim;
 		var mouthMenu = false;
 		var mouthSelect = false;
+
+		var accessoryMenuSprite;
+		var accessoryMenuAnim;
+		var accessoryMenu = false;
+		var accessorySelect = false;
+
+		var hairColorMenuSprite; 
+		var hairColorMenuAnim;
+		var hairColorMenu = false;
+		var hairColorSelect = false;
 
 
 		// hair variables 		
@@ -52,12 +58,10 @@ var characterState = {
 		var page2 = false;
 		var page3 = false;
 
-
-		var accessoryMenuSprite;
-		var accessoryMenuAnim;
-		var accessoryMenu = false;
-		var accessorySelect = false;
-
+		var hairStyle = 8;
+		var hairColor = 'hair';
+		
+		// done button
 		var doneButtonSprite;
 		var doneButtonAnim;
 
@@ -72,67 +76,78 @@ var characterState = {
 
 
 		// setting up the main menu 
+		game.stage.backgroundColor = '#faff77';
+
 		p1 = game.add.text(0, 0, "Design a character!", pStyle);
 		p1.boundsAlignV = 'middle';
-        p1.setTextBounds(100, 40, 700, 70);
+        p1.setTextBounds(100, 35, 700, 65);
 
-        characterMenuSprite = game.add.sprite(40, 155, 'characterMenu');
+        characterMenuSprite = game.add.sprite(45, 155, 'characterMenu');
         characterMenuSprite.animations.add('scroll', [0, 1, 2, 3, 4, 5, 6]);
         characterMenuAnim = characterMenuSprite.animations.play('scroll', speed, true);
 
-        skinMenuSprite = game.add.sprite(40, 155, 'skinMenu');
+        // pre-loading other menus
+        skinMenuSprite = game.add.sprite(45, 155, 'skinMenu');
         skinMenuSprite.visible = false;
         skinMenuSprite.animations.add('scroll', [0, 1, 2, 3, 4, 5, 6]);
         skinMenuAnim = skinMenuSprite.animations.getAnimation('scroll');
 
-        hairMenu1 = game.add.sprite(40, 155, 'hairMenu1');
+        hairMenu1 = game.add.sprite(45, 155, 'hairMenu1');
         hairMenu1.visible = false;
         hairMenu1.animations.add('scroll', [0, 1, 2, 3, 4, 5, 6, 7]);
         hairMenuAnim = hairMenu1.animations.getAnimation('scroll');
 
-        hairMenu2 = game.add.sprite(40, 91, 'hairMenu2');
+        hairMenu2 = game.add.sprite(45, 85, 'hairMenu2');
         hairMenu2.visible = false;
         hairMenu2.animations.add('scroll', [7, 0, 1, 2, 3, 4, 5, 6, 8]);
         hairMenuAnim2 = hairMenu2.animations.getAnimation('scroll');
         
-        hairMenu3 = game.add.sprite(40, 91, 'hairMenu3');
+        hairMenu3 = game.add.sprite(45, 85, 'hairMenu3');
         hairMenu3.visible = false;
-        hairMenu3.animations.add('scroll', [5, 0, 1, 2, 3, 4, 6]);
+        hairMenu3.animations.add('scroll', [6, 0, 1, 2, 3, 4, 5, 7]);
         hairMenuAnim3 = hairMenu3.animations.getAnimation('scroll');
 
-        eyeMenuSprite = game.add.sprite(40, 155, 'eyeMenu');
+        eyeMenuSprite = game.add.sprite(45, 158, 'eyeMenu');
         eyeMenuSprite.visible = false;
         eyeMenuSprite.animations.add('scroll', [0, 1, 2, 3, 4, 5, 6, 7]);
         eyeMenuAnim = eyeMenuSprite.animations.getAnimation('scroll');
 
-        mouthMenuSprite = game.add.sprite(40, 155, 'mouthMenu');
+        mouthMenuSprite = game.add.sprite(45, 158, 'mouthMenu');
         mouthMenuSprite.visible = false;
         mouthMenuSprite.animations.add('scroll');
         mouthMenuAnim = mouthMenuSprite.animations.getAnimation('scroll');
 
-        accessoryMenuSprite = game.add.sprite(40, 155, 'accessoryMenu');
+        accessoryMenuSprite = game.add.sprite(45, 158, 'accessoryMenu');
         accessoryMenuSprite.visible = false;
         accessoryMenuSprite.animations.add('scroll', [0, 1, 2, 3, 4, 5, 6, 7]);
         accessoryMenuAnim = accessoryMenuSprite.animations.getAnimation('scroll');
 
-        backdrop = game.add.sprite(380, 130, 'characterBackground');
-        skin = game.add.sprite (519, 220, 'skin');
-        eyes = game.add.sprite(550, 330, 'eyes');
-        nose = game.add.sprite(604, 390, 'nose');
-        mouth = game.add.sprite(585, 405, 'mouth');
-        hair = game.add.sprite(408.5, 145, 'hair', 8);
-        accessories = game.add.sprite(508, 130, 'accessories', 6);
+        hairColorMenuSprite = game.add.sprite(45, 155, 'hairColorMenu');
+        hairColorMenuSprite.visible = false;
+        hairColorMenuSprite.animations.add('scroll', [0, 1, 2, 3, 4, 5, 6]);
+        hairColorMenuAnim = hairColorMenuSprite.animations.getAnimation('scroll');
 
-        doneButtonSprite = game.add.sprite(550, 580, 'doneButton');
-        doneButtonSprite.animations.add('press', [0, 0, 0, 0, 0, 0, 1]);
-        doneButtonSprite.animations.add('8', [0, 0, 0, 0, 0, 0, 0, 1]);
-        doneButtonSprite.animations.add('9', [0, 0, 0, 0, 0, 0, 0, 0, 1]);
-        doneButtonAnim = doneButtonSprite.animations.play('press', speed, true);
+        // rendering the avatar
+        backdrop = game.add.sprite(365, 112, 'characterBackground');
+        skin = game.add.sprite (525, 238, 'skin');
+        eyes = game.add.sprite(557, 348, 'eyes');
+        nose = game.add.sprite(610, 408, 'nose');
+        mouth = game.add.sprite(591, 423, 'mouth');
+        hair = game.add.sprite(414, 163, hairColor, hairStyle);
+        accessories = game.add.sprite(514, 148, 'accessories', 6);
 
-		
+        // setting up done/back buttons 
+        doneButtonSprite = game.add.sprite(720, 560, 'doneButton');
+        doneButtonSprite.animations.add('done', [4, 4, 4, 4, 4, 4, 5]);
+        backAnim7 = doneButtonSprite.animations.add('back7', [6, 6, 6, 6, 6, 6, 7]);
+        backAnim8 = doneButtonSprite.animations.add('back8', [6, 6, 6, 6, 6, 6, 6, 7]);
+        backAnim9 = doneButtonSprite.animations.add('back9', [6, 6, 6, 6, 6, 6, 6, 6, 7]);
+        doneButtonAnim = doneButtonSprite.animations.play('done', speed, true);
+
 		// line that controls EVERYTHING!!!! :o
 		control.onUp.add(menuSelection, this);
 
+		// function that controls everything 
 		function menuSelection(pointer) {
 
 			// stops mouseIn & mouseOut events 
@@ -157,7 +172,12 @@ var characterState = {
 				} else if (characterMenuSprite.frame == 4) {
 					accessoryMenu = true;
 					characterMenu = false;
-				} 
+				} else if (characterMenuSprite.frame == 5) {
+					hairColorMenu = true;
+					characterMenu = false;
+				} else if (characterMenuSprite.frame == 6) {
+					game.state.start('map', true, false, control, pStyle);
+				}
 			}
 
 			// displaying preference screens
@@ -170,8 +190,8 @@ var characterState = {
 			if (eyeMenu) {
 				eyeSelectionScreen();
 			}
-			if (noseMenu) {
-				noseSelectionScreen();
+			if (hairColorMenu) {
+				hairColorSelectionScreen();
 			}
 			if (mouthMenu) {
 				mouthSelectionScreen();
@@ -190,7 +210,7 @@ var characterState = {
 				characterMenuSprite.visible = false;
 				skinMenuSprite.visible = true;
 				skinMenuAnim.play(speed, true);
-				doneButtonAnim.play(speed, true);
+				backAnim7.play(speed, true);
 			}
 
 			if (skinSelect) {
@@ -231,21 +251,21 @@ var characterState = {
 				characterMenuSprite.visible = false;
 				hairMenu1.visible = true;
 				hairMenuAnim.play(speed, true);
-				doneButtonSprite.animations.play('8', speed, true);
+				backAnim8.play(speed, true);
 			}
 			if (hairSelect || hairSelect2 || hairSelect3) {
 				if (hairMenuAnim.frame == 0) {
-					hair.loadTexture('hair', 0);
+					hairStyle = 0; 
 				} else if (hairMenuAnim.frame == 1) {
-					hair.loadTexture('hair', 1);
+					hairStyle = 1; 
 				} else if (hairMenuAnim.frame == 2) {
-					hair.loadTexture('hair', 2);
+					hairStyle = 2; 
 				} else if (hairMenuAnim.frame == 3) {
-					hair.loadTexture('hair', 3);
+					hairStyle = 3; 
 				} else if (hairMenuAnim.frame == 4) {
-					hair.loadTexture('hair', 4);
+					hairStyle = 4; 
 				} else if (hairMenuAnim.frame == 5) {
-					hair.loadTexture('hair', 5);
+					hairStyle = 5; 
 				} else if (hairMenuAnim.frame == 6) {
 					page1 = false; 
 					page2 = true;
@@ -265,7 +285,9 @@ var characterState = {
     				characterMenu = true;
 				}
 			}
-			
+		
+			hair.loadTexture(hairColor, hairStyle);
+		 	
 			if (hairMenuAnim.frame != 7 && page1) {
 				hairSelect = true;
 			}
@@ -279,21 +301,21 @@ var characterState = {
 				hairMenu2.visible = true;
 				doneButtonSprite.animations.currentAnim.stop();
 				hairMenuAnim2.play(speed, true);
-				doneButtonSprite.animations.play('9', speed, true);
+				backAnim9.play(speed, true);
 			}
 			if (page2 && hairSelect2 || hairSelect3 || hairSelect) {
 				if (hairMenuAnim2.frame == 0) {
-					hair.loadTexture('hair', 6);
+					hairStyle = 6; 
 				} else if (hairMenuAnim2.frame == 1) {
-					hair.loadTexture('hair', 7);
+					hairStyle = 7; 
 				} else if (hairMenuAnim2.frame == 2) {
-					hair.loadTexture('hair', 8);
+					hairStyle = 8; 
 				} else if (hairMenuAnim2.frame == 3) {
-					hair.loadTexture('hair', 9);
+					hairStyle = 9; 
 				} else if (hairMenuAnim2.frame == 4) {
-					hair.loadTexture('hair', 10);
+					hairStyle = 10; 
 				} else if (hairMenuAnim2.frame == 5) {
-					hair.loadTexture('hair', 11);
+					hairStyle = 11; 
 				} else if (hairMenuAnim2.frame == 6) {
 					page2 = false;
 					page3 = true;
@@ -321,6 +343,10 @@ var characterState = {
     				return;
 				}
 			}
+			
+			hair.loadTexture(hairColor, hairStyle);
+		 	
+
 			if (page2 && hairMenuAnim2.frame != 8) {
 				hairSelect2 = true;
 			}
@@ -333,27 +359,29 @@ var characterState = {
 				characterMenuSprite.visible = false;
 				hairMenu3.visible = true;
 				doneButtonSprite.animations.currentAnim.stop();
-				doneButtonSprite.animations.play('press', speed, true);
+				backAnim8.play(speed, true);
 				hairMenuAnim3.play(speed, true);
 			}
 			if (hairSelect3) {
 				if (hairMenuAnim3.frame == 0) {
-					hair.loadTexture('hair', 12);
+					hairStyle = 12; 
 				} else if (hairMenuAnim3.frame == 1) {
-					hair.loadTexture('hair', 13);
+					hairStyle = 13; 
 				} else if (hairMenuAnim3.frame == 2) {
-					hair.loadTexture('hair', 14);
+					hairStyle = 14; 
 				} else if (hairMenuAnim3.frame == 3) {
-					hair.loadTexture('hair', 15);
+					hairStyle = 15; 
 				} else if (hairMenuAnim3.frame == 4) {
-					hair.loadTexture('hair', 16);
+					hairStyle = 16;
 				} else if (hairMenuAnim3.frame == 5) {
+					hairStyle = 17;
+				} else if (hairMenuAnim3.frame == 6) {
 					page3 = false;
 					page2 = true;
 					hairSelect3 = false;
 					hairMenu3.visible = false;
 					hairSelectSecondPage();
-				} else if (hairMenuAnim3.frame == 6) {
+				} else if (hairMenuAnim3.frame == 7) {
 					p1.setText('Design a character!', true);
 					hairMenu3.visible = false;
     				characterMenuSprite.visible = true;
@@ -367,7 +395,11 @@ var characterState = {
     				characterMenu = true;
 				}
 			}
-			if (page3 && hairMenuAnim3.frame != 6) {
+
+			hair.loadTexture(hairColor, hairStyle);
+			
+
+			if (page3 && hairMenuAnim3.frame != 7) {
 				hairSelect3 = true;
 			}
 		}
@@ -378,7 +410,7 @@ var characterState = {
 				characterMenuSprite.visible = false;
 				eyeMenuSprite.visible = true;
 				eyeMenuAnim.play(speed, true);	
-				doneButtonSprite.animations.play('8', speed, true);
+				backAnim8.play(speed, true);
 			}
 
 			if (eyeSelect) {
@@ -389,9 +421,9 @@ var characterState = {
 				} else if (eyeMenuAnim.frame == 2) {
 					eyes.loadTexture('eyes', 2);
 				} else if (eyeMenuAnim.frame == 3) {
-					eyes.loadTexture('eyes', 3);
-				} else if (eyeMenuAnim.frame == 4) {
 					eyes.loadTexture('eyes', 4);
+				} else if (eyeMenuAnim.frame == 4) {
+					eyes.loadTexture('eyes', 3);
 				} else if (eyeMenuAnim.frame == 5) {
 					eyes.loadTexture('eyes', 5);
 				} else if (eyeMenuAnim.frame == 6) {
@@ -414,7 +446,46 @@ var characterState = {
 			}
 		}
 
-		function noseSelectionScreen() {
+		function hairColorSelectionScreen() {
+			if (!hairColorSelect) {
+				p1.setText('Select a hair color:', true);
+				characterMenuSprite.visible = false;
+				hairColorMenuSprite.visible = true;
+				hairColorMenuAnim.play(speed, true);	
+				backAnim7.play(speed, true);
+			}
+
+			if (hairColorSelect) {
+				if (hairColorMenuAnim.frame == 0) {
+					hairColor = 'hair';
+				} else if (hairColorMenuAnim.frame == 1) {
+					hairColor = 'hairBrown';
+				} else if (hairColorMenuAnim.frame == 2) {
+					hairColor = 'hairBlonde';
+				} else if (hairColorMenuAnim.frame == 3) {
+					hairColor = 'hairOrange';
+				} else if (hairColorMenuAnim.frame == 4) {
+					hairColor = 'hairPink';
+				} else if (hairColorMenuAnim.frame == 5) {
+					hairColor = 'hairBlue';
+				} else if (hairColorMenuAnim.frame == 6) {
+					p1.setText('Design a character!', true);
+					hairColorMenuSprite.visible = false;
+    				characterMenuSprite.visible = true;
+    				characterMenuSprite.animations.currentAnim.restart();
+    				doneButtonSprite.animations.currentAnim.stop();
+    				doneButtonAnim.restart();
+    				hairColorSelect = false;
+    				hairColorMenu = false;
+    				characterMenu = true;
+				}
+			}
+
+			hair.loadTexture(hairColor, hairStyle);
+
+			if (hairColorMenuAnim.frame != 6) {
+				hairColorSelect = true;
+			}
 			
 		}
 
@@ -424,7 +495,7 @@ var characterState = {
 				characterMenuSprite.visible = false;
 				mouthMenuSprite.visible = true;
 				mouthMenuAnim.play(speed, true);	
-				doneButtonSprite.animations.play('9', speed, true);
+				backAnim9.play(speed, true);
 			}
 
 			if (mouthSelect) {
@@ -469,7 +540,7 @@ var characterState = {
 				characterMenuSprite.visible = false;
 				accessoryMenuSprite.visible = true;
 				accessoryMenuAnim.play(speed, true);	
-				doneButtonSprite.animations.play('8', speed, true);
+				backAnim8.play(speed, true);
 			}
 
 			if (accessorySelect) {
