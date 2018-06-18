@@ -19,10 +19,10 @@ On the technical side, the game is being built with:
 # Running Locally
 To run the game locally,
 
-- Clone or download this repository
+1. Clone or download this repository
 
-- Set up a local testing server ([tutorial here](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server)). 
+2. Set up a local testing server ([tutorial here](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server)). 
 
-- Access to the server by going to the URL `localhost:8000` via your web browser. 
+3. Access to the server by going to the URL `localhost:8000` via your web browser. 
 
-- Navigate to the repository via the local server. If the game does not begin automatically, click on the `index.html` file.
+4. Navigate to the repository via the local server. If the game does not begin automatically, click on the `index.html` file.
