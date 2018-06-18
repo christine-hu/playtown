@@ -24,4 +24,4 @@ On the technical side, the game is being built with:
 
 - Access to the server by going to the URL `localhost:8000` via your web browser. 
 
-- Navigate to the repository. If the game does not begin automatically, click on the `index.html` file.
+- Navigate to the repository via the local server. If the game does not begin automatically, click on the `index.html` file.
