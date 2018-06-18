@@ -13,8 +13,8 @@ All controls are fully switch-accessible, and users can also adjust text size an
 
 On the technical side, the game is being built with:
 
--HTML, JavaScript, & CSS (Using the Phaser game engine)
--Assembly, InkScape, & TexturePacker (Sprite creation)
+- HTML, JavaScript, & CSS (Using the Phaser game engine)
+- Assembly, InkScape, & TexturePacker (Sprite creation)
 
 # Running Locally
 
