@@ -17,6 +17,7 @@ On the technical side, the game is being built with:
 - Assembly, InkScape, & TexturePacker (Sprite creation)
 
 # Running Locally
+To run the game locally,
 
 - Clone or download this repository
 
