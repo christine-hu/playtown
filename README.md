@@ -2,11 +2,26 @@
 
 # Playtown!
 
-“Playtown!” is a web game for kids to discover and personalize their own world. Users start by customizing their own character, choosing from different hairstyles, skin colors, and clothing items. The character can then explore the town map, which has three locations: a transportation workshop, an arcade, and an ice cream shop.
+“Playtown!” is a web game for kids to discover and personalize their own world. The game begins with a town map, and users can complete different activities at different locations. Players will be able to: 
+- create a robot,
+- customize an avatar,
+- build an ice cream sundae, and
+- design a house!
 
-Players will be able to:
-- design a vehicle of choice at the transportation workshop (including sailboats or rocket ships!)
-- play simple games at the arcade
-- build their dream sundae at the ice cream shop
+All controls are switch-accessible, with users also being able to adjust text size and scroll speed. Design-wise, Playtown aims to follow the [Inclusive Design Guide](https://guide.inclusivedesign.ca/index.html) and the [Game Accessibility Guidelines](http://gameaccessibilityguidelines.com/full-list/).
 
-All controls will be fully switch-accessible, and users can choose their own contrast, text size, and difficulty preferences. 
+
+On the technical side, the game is being built with:
+- HTML, JavaScript, & CSS (Using the Phaser game engine)
+- Assembly, InkScape, & TexturePacker (Sprite creation)
+
+# Running Locally
+To run the game locally, complete the following steps: 
+
+1. Clone the repository: `git clone https://github.com/christine-hu/playtown.git` 
+
+2. Set up a local testing server: `python -m SimpleHTTPServer`
+
+3. Go to `localhost:8000` via your web browser 
+
+4. Navigate to the repository via the local server. If the game does not begin automatically, click on the `index.html` file.
