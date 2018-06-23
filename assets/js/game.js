@@ -1,5 +1,5 @@
 // global variables, default settings
-var speed = .5; 
+var speed = 2; 
 var size = '45px';
 var color = 'color';
 
@@ -11,6 +11,7 @@ game.state.add('menu', menuState);
 game.state.add('character', characterState);
 game.state.add('icecream', iceCreamState);
 game.state.add('robot', robotState);
+game.state.add('house', houseState);
 game.state.add('map', mapState);
 
 

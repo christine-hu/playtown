@@ -341,7 +341,7 @@ var robotState = {
 				} else if (faceMenuAnim.frame == 5) {
 					face.loadTexture('face', 5);
 				} else if (faceMenuAnim.frame == 6) {
-					p1.setText('Make some ice cream!', true);
+					p1.setText('Build a robot!', true);
 					faceMenuSprite.visible = false;
     				robotMenuSprite.visible = true;
     				robotMenuSprite.animations.currentAnim.restart();

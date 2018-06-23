@@ -32,8 +32,7 @@ var mapState = {
 			} else if (mapSprite.frame == 2) {
 				game.state.start('character', true, false, control, pStyle);
 			} else if (mapSprite.frame == 3) {
-				mouthMenu = true;
-				characterMenu = false;
+				game.state.start('house', true, false, control, pStyle);
 			} 
 		
 		}
