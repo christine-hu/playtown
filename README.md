@@ -8,7 +8,7 @@
 - build an ice cream sundae, and
 - design a house!
 
-All controls are switch-accessible, with users also being able to adjust text size and scroll speed. Design-wise, Playtown aims to follow the [Inclusive Design Guide](https://guide.inclusivedesign.ca/index.html) and the [Game Accessibility Guidelines](http://gameaccessibilityguidelines.com/full-list/).
+All controls are switch-accessible, and users can also adjust text size and scroll speed. Design-wise, Playtown aims to follow the [Inclusive Design Guide](https://guide.inclusivedesign.ca/index.html) and the [Game Accessibility Guidelines](http://gameaccessibilityguidelines.com/full-list/).
 
 
 On the technical side, the game is being built with:
