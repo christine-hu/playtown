@@ -51,7 +51,7 @@ var houseState = {
 		var foliageSelect = false;
 
 
-		game.stage.backgroundColor = '#ffae68';
+		game.stage.backgroundColor = '#a0e07d';
 
 		// setting up the main menu 
 		p1 = game.add.text(0, 0, "Design a house!", pStyle);
@@ -63,8 +63,8 @@ var houseState = {
         backdrop = game.add.sprite(365, 112, 'houseBackground');
         sky = game.add.sprite(0, 0, 'sky', 0);
         ground = game.add.sprite(0, 0, 'ground', 0);
-        outline = game.add.sprite(0, 0, 'outline', 0);
         foliage = game.add.sprite(0, 0, 'foliage', 0);
+        outline = game.add.sprite(405, 153, 'outline', 0);
         texture = game.add.sprite(0, 0, 'texture', 0);
         windows = game.add.sprite(0, 0, 'windows', 0);
         roof = game.add.sprite(0, 0, 'roof', 0);
@@ -105,8 +105,8 @@ var houseState = {
         foliageMenuAnim = foliageMenuSprite.animations.getAnimation('scroll');
 
         doneButtonSprite = game.add.sprite(720, 560, 'doneButton');
-        doneButtonSprite.animations.add('done', [8, 8, 8, 8, 8, 8, 9]);
-        doneButtonSprite.animations.add('back', [10, 10, 10, 10, 10, 10, 11]);
+        doneButtonSprite.animations.add('done', [12, 12, 12, 12, 12, 12, 13]);
+        doneButtonSprite.animations.add('back', [14, 14, 14, 14, 14, 14, 15]);
         doneButtonAnim = doneButtonSprite.animations.play('done', speed, true);
         backButtonAnim = doneButtonSprite.animations.getAnimation('back');
 
@@ -125,19 +125,19 @@ var houseState = {
 					houseMenu = false;
 				}
 				else if (houseMenuSprite.frame == 1) {
-					windowsMenu = true;
+					roofMenu = true;
 					houseMenu = false;
 				} else if (houseMenuSprite.frame == 2) {
-					roofMenu = true;
+					windowsMenu = true;
 					houseMenu = false;
 				} else if (houseMenuSprite.frame == 3) {
 					skyMenu = true;
 					houseMenu = false;
 				} else if (houseMenuSprite.frame == 4) {
-					foliageMenu = true;
+					groundMenu = true;
 					houseMenu = false;
 				} else if (houseMenuSprite.frame == 5) {
-					groundMenu = true;
+					foliageMenu = true;
 					houseMenu = false;
 				} else if (houseMenuSprite.frame == 6) {
 					game.state.start('map', true, false, control, pStyle);

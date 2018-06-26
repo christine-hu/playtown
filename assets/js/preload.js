@@ -92,6 +92,11 @@ var preloadState = {
       game.load.spritesheet('blue','assets/img/robot/blue.png', 291, 281);
       game.load.spritesheet('brown','assets/img/robot/brown.png', 291, 281);
 
+      // house images
+      game.load.image('houseBackground','assets/img/house/houseBackground.png', 521, 534);
+      game.load.image('outline','assets/img/house/outline.png', 521, 534);
+      game.load.spritesheet('houseMenu','assets/img/house/houseMenu.png', 328, 454);
+
 
 	},
 
