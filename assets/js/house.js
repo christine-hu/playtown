@@ -65,7 +65,7 @@ var houseState = {
         ground = game.add.sprite(410, 490, 'ground', 6);
         foliage = game.add.sprite(0, 0, 'foliage', 0);
         outline = game.add.sprite(405, 153, 'outline', 0);
-        texture = game.add.sprite(0, 0, 'texture', 0);
+        texture = game.add.sprite(495, 285, 'texture', 6);
         windows = game.add.sprite(0, 0, 'windows', 0);
         roof = game.add.sprite(0, 0, 'roof', 0);
 
