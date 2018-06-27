@@ -99,10 +99,12 @@ var preloadState = {
       game.load.spritesheet('groundMenu','assets/img/house/groundMenu.png', 328, 454);
       game.load.spritesheet('textureMenu','assets/img/house/textureMenu.png', 328, 454);
       game.load.spritesheet('skyMenu','assets/img/house/skyMenu.png', 328, 454);
+      game.load.spritesheet('roofMenu','assets/img/house/roofMenu.png', 328, 454);
 
       game.load.spritesheet('ground','assets/img/house/ground.png', 432, 108);
       game.load.spritesheet('texture','assets/img/house/texture.png', 258, 258);
       game.load.spritesheet('sky','assets/img/house/sky.png', 432, 335);
+      game.load.spritesheet('roof','assets/img/house/roof.png', 255, 118);
 
 
 	},
