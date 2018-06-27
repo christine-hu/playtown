@@ -61,7 +61,7 @@ var houseState = {
         // displaying house 
         // DIMENSIONS NEED TO BE UPDATED ONCE GRAPHICS ARE FINISHED
         backdrop = game.add.sprite(365, 112, 'houseBackground');
-        sky = game.add.sprite(0, 0, 'sky', 0);
+        sky = game.add.sprite(410, 155, 'sky', 6);
         ground = game.add.sprite(410, 490, 'ground', 6);
         foliage = game.add.sprite(0, 0, 'foliage', 0);
         outline = game.add.sprite(405, 153, 'outline', 0);

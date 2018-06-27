@@ -98,9 +98,11 @@ var preloadState = {
       game.load.spritesheet('houseMenu','assets/img/house/houseMenu.png', 328, 454);
       game.load.spritesheet('groundMenu','assets/img/house/groundMenu.png', 328, 454);
       game.load.spritesheet('textureMenu','assets/img/house/textureMenu.png', 328, 454);
+      game.load.spritesheet('skyMenu','assets/img/house/skyMenu.png', 328, 454);
 
       game.load.spritesheet('ground','assets/img/house/ground.png', 432, 108);
       game.load.spritesheet('texture','assets/img/house/texture.png', 258, 258);
+      game.load.spritesheet('sky','assets/img/house/sky.png', 432, 335);
 
 
 	},
