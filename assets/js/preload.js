@@ -101,12 +101,14 @@ var preloadState = {
       game.load.spritesheet('skyMenu','assets/img/house/skyMenu.png', 328, 454);
       game.load.spritesheet('roofMenu','assets/img/house/roofMenu.png', 328, 454);
       game.load.spritesheet('foliageMenu','assets/img/house/foliageMenu.png', 328, 454);
+      game.load.spritesheet('windowsMenu','assets/img/house/windowsMenu.png', 328, 454);
 
       game.load.spritesheet('ground','assets/img/house/ground.png', 432, 108);
       game.load.spritesheet('texture','assets/img/house/texture.png', 258, 258);
       game.load.spritesheet('sky','assets/img/house/sky.png', 432, 335);
       game.load.spritesheet('roof','assets/img/house/roof.png', 255, 118);
       game.load.spritesheet('foliage','assets/img/house/foliage.png', 434, 222);
+      game.load.spritesheet('windows','assets/img/house/windows.png', 155, 56);
 
 
 	},

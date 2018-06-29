@@ -66,7 +66,7 @@ var houseState = {
         foliage = game.add.sprite(407, 272, 'foliage', 5);
         outline = game.add.sprite(405, 153, 'outline', 0);
         texture = game.add.sprite(495, 285, 'texture', 6);
-        windows = game.add.sprite(0, 0, 'windows', 0);
+        windows = game.add.sprite(545, 370, 'windows', 6);
         roof = game.add.sprite(496, 245, 'roof', 6);
 
 
@@ -312,7 +312,7 @@ var houseState = {
 				} else if (skyMenuAnim.frame == 5) {
 					sky.loadTexture('sky', 5);
 				} else if (skyMenuAnim.frame == 6) {
-					p1.setText('Build a robot!', true);
+					p1.setText('Design a house!', true);
 					skyMenuSprite.visible = false;
     				houseMenuSprite.visible = true;
     				houseMenuSprite.animations.currentAnim.restart();
