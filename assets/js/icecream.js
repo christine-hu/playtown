@@ -13,7 +13,7 @@ var iceCreamState = {
 		var mainScreen = new menuScreen(game.add.sprite(45, 155, 'iceCreamMenu'));
 			mainScreen.sprite.visible = true;
 			mainScreen.anim.play(speed, true);
-			mainScreen.isTrue = true;
+			mainScreen.display = true;
 
 		var flavorScreen = new menuScreen(game.add.sprite(45, 155, 'flavorMenu'), 'Select a flavor!', 'flavor');
 
@@ -52,7 +52,7 @@ var iceCreamState = {
 
 		// initializing done button
 		var doneButtonSprite;
-		var doneButtonAnim;
+		var doneAnim;
 
         doneButtonSprite = game.add.sprite(720, 560, 'doneButton');
         doneButtonSprite.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
@@ -68,49 +68,43 @@ var iceCreamState = {
 			if (control === game.input && !pointer.withinGame) { return; }
 
 			// choosing screens
-			if (mainScreen.isTrue === true) {
+			if (mainScreen.isDisplayed()) {
 				if (mainScreen.sprite.frame === 0) {
-					coneScreen.isTrue = true;
-					mainScreen.isTrue = false;
-				}
-				else if (mainScreen.sprite.frame === 1) {
-					flavorScreen.isTrue = true;
-					mainScreen.isTrue = false;
+					coneScreen.display = true;
+				} else if (mainScreen.sprite.frame === 1) {
+					flavorScreen.display = true;
 				} else if (mainScreen.sprite.frame === 2) {
-					syrupScreen.isTrue = true;
-					mainScreen.isTrue = false;
+					syrupScreen.display = true;
 				} else if (mainScreen.sprite.frame === 3) {
-					sprinklesScreen.isTrue = true;
-					mainScreen.isTrue = false;
+					sprinklesScreen.display = true;
 				} else if (mainScreen.sprite.frame === 4) {
-					fruitScreen.isTrue = true;
-					mainScreen.isTrue = false;
+					fruitScreen.display = true;
 				} else if (mainScreen.sprite.frame === 5) {
-					cookieScreen.isTrue = true;
-					mainScreen.isTrue = false;
+					cookieScreen.display = true;
 				} else if (mainScreen.sprite.frame === 6) {
 					game.state.start('map', true, false, control, pStyle);
 				}
+				mainScreen.display = false;
 			}
 
 			// displaying preference screens
-			if (coneScreen.isTrue === true) {
-				displayScreen(coneScreen, mainScreen, backAnim, doneAnim);
+			if (coneScreen.isDisplayed()) {
+				displayScreen(coneScreen, mainScreen, backAnim, doneAnim, 'Make some ice cream!');
 			}
-			if (flavorScreen.isTrue === true ) {
-				displayScreen(flavorScreen, mainScreen, backAnim, doneAnim);
+			if (flavorScreen.isDisplayed() ) {
+				displayScreen(flavorScreen, mainScreen, backAnim, doneAnim,'Make some ice cream!');
 			}
-			if (syrupScreen.isTrue === true) {
-				displayScreen(syrupScreen, mainScreen, backAnim, doneAnim);
+			if (syrupScreen.isDisplayed()) {
+				displayScreen(syrupScreen, mainScreen, backAnim, doneAnim, 'Make some ice cream!');
 			}
-			if (sprinklesScreen.isTrue === true) {
-				displayScreen(sprinklesScreen, mainScreen, backAnim, doneAnim);
+			if (sprinklesScreen.isDisplayed()) {
+				displayScreen(sprinklesScreen, mainScreen, backAnim, doneAnim, 'Make some ice cream!');
 			}
-			if (fruitScreen.isTrue === true) {
-				displayScreen(fruitScreen, mainScreen, backAnim, doneAnim);
+			if (fruitScreen.isDisplayed()) {
+				displayScreen(fruitScreen, mainScreen, backAnim, doneAnim,'Make some ice cream!');
 			}
-			if (cookieScreen.isTrue === true) {
-				displayScreen(cookieScreen, mainScreen, backAnim, doneAnim);
+			if (cookieScreen.isDisplayed()) {
+				displayScreen(cookieScreen, mainScreen, backAnim, doneAnim, 'Make some ice cream!');
 			}
 
 		}

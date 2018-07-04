@@ -7,7 +7,7 @@ function menuScreen(sprite, text, texture) {
 	this.sprite = sprite;
 	this.sprite.visible = false;
 	this.anim = this.sprite.animations.add('scroll', [0, 1, 2, 3, 4, 5, 6]);
-	this.isTrue = false;
+	this.display = false;
 	this.selectMode = false;
 	this.text = text;
 	this.texture = texture;
@@ -16,9 +16,12 @@ function menuScreen(sprite, text, texture) {
 			this.current.loadTexture(this.texture, this.anim.frame);
 		}
 	}
+	this.isDisplayed = function() {
+		return this.display;
+	}
 }
 
-function displayScreen(screen, mainScreen, backAnim, doneAnim) {
+function displayScreen(screen, mainScreen, backAnim, doneAnim, text) {
 	if (screen.selectMode === false) {
 		p1.setText(screen.text, true);
 		mainScreen.sprite.visible = false;
@@ -31,14 +34,14 @@ function displayScreen(screen, mainScreen, backAnim, doneAnim) {
 		screen.displaySelection();
 
 		if (screen.anim.frame === 6) {
-			p1.setText('Make some ice cream!', true);
+			p1.setText(text, true);
 			screen.sprite.visible = false;
 			mainScreen.sprite.visible = true;
 			mainScreen.anim.restart();
 			doneAnim.restart();
 			screen.selectMode = false;
-			screen.isTrue = false;
-			mainScreen.isTrue = true;
+			screen.display = false;
+			mainScreen.display = true;
 		}
 	}
 	
