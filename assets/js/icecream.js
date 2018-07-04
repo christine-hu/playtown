@@ -4,50 +4,25 @@ var iceCreamState = {
 		// components of ice cream
 		var cone;
 
-		var flavorScreen = new Object();
-			flavorScreen.sprite = game.add.sprite(45, 155, 'flavorMenu');
-			flavorScreen.sprite.visible = false;
-			flavorScreen.anim = flavorScreen.sprite.animations.add('scroll', [0, 1, 2, 3, 4, 5, 6]);
-			flavorScreen.isTrue = false;
-			flavorScreen.selectMode = false;
-			flavorScreen.text = 'Select a flavor!';
-			flavorScreen.texture = 'flavor';
+		function menuScreen(sprite, text, texture){
+			this.sprite = sprite;
+			this.sprite.visible = false;
+			this.anim = this.sprite.animations.add('scroll', [0, 1, 2, 3, 4, 5, 6]);
+			this.isTrue = false;
+			this.selectMode = false;
+			this.text = text;
+			this.texture = texture;
+		}
 		
-		var syrupScreen = new Object();
-			syrupScreen.sprite = game.add.sprite(45, 155, 'syrupMenu');
-			syrupScreen.sprite.visible = false;
-			syrupScreen.anim = syrupScreen.sprite.animations.add('scroll', [0, 1, 2, 3, 4, 5, 6])
-			syrupScreen.isTrue = false;
-			syrupScreen.selectMode = false;
-			syrupScreen.text = 'Select a syrup!';
-			syrupScreen.texture = 'syrup';
+		var flavorScreen = new menuScreen(game.add.sprite(45, 155, 'flavorMenu'), 'Select a flavor!', 'flavor');
+		
+		var syrupScreen = new menuScreen(game.add.sprite(45, 155, 'syrupMenu'), 'Select a syrup!', 'syrup');
 
-		var sprinklesScreen = new Object();
-			sprinklesScreen.sprite = game.add.sprite(45, 155, 'sprinklesMenu');
-			sprinklesScreen.sprite.visible = false;
-			sprinklesScreen.anim = sprinklesScreen.sprite.animations.add('scroll', [0, 1, 2, 3, 4, 5, 6])
-			sprinklesScreen.isTrue = false;
-			sprinklesScreen.selectMode = false;
-			sprinklesScreen.text = 'Select a topping!';
-			sprinklesScreen.texture = 'sprinkles';
+		var sprinklesScreen = new menuScreen(game.add.sprite(45, 155, 'sprinklesMenu'), 'Select a topping!', 'sprinkles');
 
-		var fruitScreen = new Object();
-			fruitScreen.sprite = game.add.sprite(45, 155, 'fruitMenu');
-			fruitScreen.sprite.visible = false;
-			fruitScreen.anim = fruitScreen.sprite.animations.add('scroll', [0, 1, 2, 3, 4, 5, 6])
-			fruitScreen.isTrue = false;
-			fruitScreen.selectMode = false;
-			fruitScreen.text = 'Select a fruit topping!';
-			fruitScreen.texture = 'fruit';
+		var fruitScreen = new menuScreen(game.add.sprite(45, 155, 'fruitMenu'), 'Select a fruit topping!', 'fruit');
 
-		var cookieScreen = new Object();
-			cookieScreen.sprite = game.add.sprite(45, 155, 'cookieMenu');
-			cookieScreen.sprite.visible = false;
-			cookieScreen.anim = cookieScreen.sprite.animations.add('scroll', [0, 1, 2, 3, 4, 5, 6])
-			cookieScreen.isTrue = false;
-			cookieScreen.selectMode = false;
-			cookieScreen.text = 'Select a cookie!';
-			cookieScreen.texture = 'cookie';
+		var cookieScreen = new menuScreen(game.add.sprite(45, 155, 'cookieMenu'), 'Select another topping!', 'cookie');
 
 		// done button
 		var doneButtonSprite;
@@ -84,7 +59,6 @@ var iceCreamState = {
         syrupScreen.current = game.add.sprite(545, 220, 'syrup', 5);
         sprinklesScreen.current = game.add.sprite(545, 220, 'sprinkles', 5);
         fruitScreen.current = game.add.sprite(593, 180, 'fruit', 5);
-
 
         iceCreamMenuSprite = game.add.sprite(45, 155, 'iceCreamMenu');
         iceCreamMenuSprite.animations.add('scroll', [0, 1, 2, 3, 4, 5, 6]);
@@ -140,25 +114,25 @@ var iceCreamState = {
 				coneSelectionScreen();
 			}
 			if (flavorScreen.isTrue === true ) {
-				newSelectionScreen(flavorScreen);
+				displayScreen(flavorScreen);
 			}
 			if (syrupScreen.isTrue === true) {
-				newSelectionScreen(syrupScreen);
+				displayScreen(syrupScreen);
 			}
 			if (sprinklesScreen.isTrue === true) {
-				newSelectionScreen(sprinklesScreen);
+				displayScreen(sprinklesScreen);
 			}
 			if (fruitScreen.isTrue === true) {
-				newSelectionScreen(fruitScreen);
+				displayScreen(fruitScreen);
 			}
 			if (cookieScreen.isTrue === true) {
-				newSelectionScreen(cookieScreen);
+				displayScreen(cookieScreen);
 			}
 			
 
 		}
 
-		function newSelectionScreen(screen) {
+		function displayScreen(screen) {
 
 			if (screen.selectMode === false) {
 				p1.setText(screen.text, true);
@@ -183,7 +157,7 @@ var iceCreamState = {
 				}
 			}
 			
-			if (screen.anim.frame != 6) {
+			if (screen.anim.frame !== 6) {
 				screen.selectMode = true;
 			}
 
@@ -248,7 +222,7 @@ var iceCreamState = {
 				}
 			}
 			
-			if (coneMenuAnim.frame != 6) {
+			if (coneMenuAnim.frame !== 6) {
 				coneSelect = true;
 			}
 		}
