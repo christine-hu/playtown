@@ -1,6 +1,21 @@
 var iceCreamState = {
 
 	create: function() {
+		var backdrop; 
+
+		// menu screens
+		var mainScreen;
+		var flavorScreen;
+		var syrupScreen;
+		var sprinklesScreen;
+		var fruitScreen;
+		var cookieScreen;
+		var coneScreen;
+
+		// done button 
+		var doneButtonSprite;
+		var doneAnim;
+		var backAnim;
 
 		// setting up the state
 		game.stage.backgroundColor = '#ff8bb1';
@@ -10,22 +25,22 @@ var iceCreamState = {
         p1.setTextBounds(100, 40, 700, 70);
 		
 		// initializing menu screens 
-		var mainScreen = new menuScreen(game.add.sprite(45, 155, 'iceCreamMenu'));
+		mainScreen = new menuScreen(game.add.sprite(45, 155, 'iceCreamMenu'));
 			mainScreen.sprite.visible = true;
 			mainScreen.anim.play(speed, true);
 			mainScreen.display = true;
 
-		var flavorScreen = new menuScreen(game.add.sprite(45, 155, 'flavorMenu'), 'Select a flavor!', 'flavor');
+		flavorScreen = new menuScreen(game.add.sprite(45, 155, 'flavorMenu'), 'Select a flavor!', 'flavor');
 
-		var syrupScreen = new menuScreen(game.add.sprite(45, 155, 'syrupMenu'), 'Select a syrup!', 'syrup');
+		syrupScreen = new menuScreen(game.add.sprite(45, 155, 'syrupMenu'), 'Select a syrup!', 'syrup');
 
-		var sprinklesScreen = new menuScreen(game.add.sprite(45, 155, 'sprinklesMenu'), 'Select a topping!', 'sprinkles');
+		sprinklesScreen = new menuScreen(game.add.sprite(45, 155, 'sprinklesMenu'), 'Select a topping!', 'sprinkles');
 
-		var fruitScreen = new menuScreen(game.add.sprite(45, 155, 'fruitMenu'), 'Select a fruit topping!', 'fruit');
+		fruitScreen = new menuScreen(game.add.sprite(45, 155, 'fruitMenu'), 'Select a fruit topping!', 'fruit');
 
-		var cookieScreen = new menuScreen(game.add.sprite(45, 155, 'cookieMenu'), 'Select another topping!', 'cookie');
+		cookieScreen = new menuScreen(game.add.sprite(45, 155, 'cookieMenu'), 'Select another topping!', 'cookie');
 
-		var coneScreen = new menuScreen(game.add.sprite(45, 155, 'coneMenu'), 'Select a cone!', 'cone');
+		coneScreen = new menuScreen(game.add.sprite(45, 155, 'coneMenu'), 'Select a cone!', 'cone');
 			coneScreen.prevCone = null;
 			coneScreen.displaySelection = function() {
 				if (coneScreen.anim.frame === 0 || coneScreen.anim.frame === 1) {
@@ -42,7 +57,7 @@ var iceCreamState = {
 				coneScreen.prevCone = coneScreen.anim.frame;
 			}
 
-		// initializing ice cream components
+		// displaying ice cream components
         cookieScreen.current = game.add.sprite(630, 170, 'cookie', 5);
         coneScreen.current = game.add.sprite(480, 330, 'cone', 6);
         flavorScreen.current = game.add.sprite(506, 210, 'flavor', 6);
@@ -51,9 +66,6 @@ var iceCreamState = {
         fruitScreen.current = game.add.sprite(593, 180, 'fruit', 5);
 
 		// initializing done button
-		var doneButtonSprite;
-		var doneAnim;
-
         doneButtonSprite = game.add.sprite(720, 560, 'doneButton');
         doneButtonSprite.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
         doneButtonSprite.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);

@@ -2,6 +2,22 @@ var robotState = {
 
 	create: function() {
 
+		var backdrop; 
+
+		// menu screens
+		var mainScreen;
+		var bodyScreen;
+		var faceScreen;
+		var antennaScreen;
+		var armScreen;
+		var legScreen;
+		var designScreen;
+
+		// done button
+		var doneButtonSprite;
+		var doneAnim;
+		var backAnim; 
+
 		// setting up the state
 		game.stage.backgroundColor = '#ffae68';
 		backdrop = game.add.sprite(365, 112, 'robotBackground');
@@ -10,18 +26,18 @@ var robotState = {
         p1.setTextBounds(100, 40, 700, 70);
 
 		// initializing menu screens
-		var mainScreen = new menuScreen(game.add.sprite(45, 155, 'robotMenu'));
+		mainScreen = new menuScreen(game.add.sprite(45, 155, 'robotMenu'));
 			mainScreen.sprite.visible = true;
 			mainScreen.anim.play(speed, true);
 			mainScreen.display = true;
 
-		var bodyScreen = new menuScreen(game.add.sprite(45, 155, 'bodyMenu'), 'Select a body color!', 'body');
+		bodyScreen = new menuScreen(game.add.sprite(45, 155, 'bodyMenu'), 'Select a body color!', 'body');
 
-		var faceScreen = new menuScreen(game.add.sprite(45, 155, 'faceMenu'), 'Select a face!', 'face');
+		faceScreen = new menuScreen(game.add.sprite(45, 155, 'faceMenu'), 'Select a face!', 'face');
 
-		var antennaScreen = new menuScreen(game.add.sprite(45, 155, 'antennaMenu'), 'Select an antenna!', 'antenna');
+		antennaScreen = new menuScreen(game.add.sprite(45, 155, 'antennaMenu'), 'Select an antenna!', 'antenna');
 
-		var armScreen = new menuScreen(game.add.sprite(45, 155, 'armMenu'), 'Select arms!', 'gray');
+		armScreen = new menuScreen(game.add.sprite(45, 155, 'armMenu'), 'Select arms!', 'gray');
 			armScreen.armColor = 'gray';
 			armScreen.armStyle = 6;
 			armScreen.displaySelection = function() {
@@ -31,7 +47,7 @@ var robotState = {
 				} 
 			}
 
-		var legScreen = new menuScreen(game.add.sprite(45, 155, 'legMenu'), 'Select a wheel color!', 'leg');
+		legScreen = new menuScreen(game.add.sprite(45, 155, 'legMenu'), 'Select a wheel color!', 'leg');
 			legScreen.displaySelection = function() {
 				if (legScreen.anim.frame !== 6) {
 					if (legScreen.anim.frame === 0) { armScreen.armColor = 'gray'; armScreen.armStyle = 0; }
@@ -42,14 +58,13 @@ var robotState = {
 					else if (legScreen.anim.frame === 5) { armScreen.armColor = 'brown'; }
 					legScreen.current.loadTexture(legScreen.texture, legScreen.anim.frame);
 					armScreen.current.loadTexture(armScreen.armColor, armScreen.armStyle);
-
 				} 
 			}
 
 
-		var designScreen = new menuScreen(game.add.sprite(45, 155, 'designMenu'), 'Select a design!', 'design');
+		designScreen = new menuScreen(game.add.sprite(45, 155, 'designMenu'), 'Select a design!', 'design');
 
-		// initializing robot components 
+		// displaying robot components 
         armScreen.current = game.add.sprite(482, 206, armScreen.armColor, armScreen.armStyle);
         antennaScreen.current = game.add.sprite(569, 170, 'antenna', 6);
         bodyScreen.current = game.add.sprite(520, 200, 'body', 6);
@@ -57,17 +72,14 @@ var robotState = {
         designScreen.current = game.add.sprite(580, 330, 'design', 6);
         faceScreen.current = game.add.sprite(597, 233, 'face', 6);
 
-        // done button
-		var doneButtonSprite;
-		var doneButtonAnim;
-
+        // initializing done button
 		doneButtonSprite = game.add.sprite(720, 560, 'doneButton');
         doneButtonSprite.animations.add('done', [8, 8, 8, 8, 8, 8, 9]);
         doneButtonSprite.animations.add('back', [10, 10, 10, 10, 10, 10, 11]);
         doneAnim = doneButtonSprite.animations.play('done', speed, true);
         backAnim = doneButtonSprite.animations.getAnimation('back');
 
-        // line that controls EVERYTHING!!!! :o
+        // line that controls all the logic!!!! :o
 		control.onUp.add(menuSelection, this);
 
 		function menuSelection(pointer) {
