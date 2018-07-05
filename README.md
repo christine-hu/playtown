@@ -1,4 +1,4 @@
-*This game is being developed as a Google Summer of Code 2018 project under the Inclusive Design Institute; the final game will not be completed until August 15th. In the meantime, the incomplete game will be hosted at http://christinehu.org/testing/.
+*This game is being developed as a [Google Summer of Code](https://summerofcode.withgoogle.com/) 2018 project under the [Inclusive Design Institute](https://inclusivedesign.ca/); the final game will not be completed until August 15th. In the meantime, the incomplete game will be hosted at http://christinehu.org/testing/.
 
 # Playtown!
 
@@ -12,8 +12,8 @@ All controls are switch-accessible, and users can also adjust text size and scro
 
 
 On the technical side, the game is being built with:
-- HTML, JavaScript, & CSS (Using the Phaser game engine)
-- Assembly, InkScape, & TexturePacker (Sprite creation)
+- HTML, JavaScript, & CSS (Using the [Phaser](http://phaser.io/) game engine)
+- [Assembly](http://assemblyapp.co/), [InkScape](https://inkscape.org/en/), & [TexturePacker](https://www.codeandweb.com/texturepacker) (Sprite creation)
 
 # Running Locally
 To run the game locally, complete the following steps: 
