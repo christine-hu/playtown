@@ -105,7 +105,6 @@ var robotState = {
 					game.state.start('map', true, false, control, pStyle);
 				}
 				mainScreen.display = false;
-				console.log(faceScreen.display);
 			}
 
 			// displaying preference screens

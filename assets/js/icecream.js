@@ -72,7 +72,7 @@ var iceCreamState = {
         doneAnim = doneButtonSprite.animations.play('done', speed, true);
         backAnim = doneButtonSprite.animations.getAnimation('back');
 
-        // line that controls EVERYTHING!!!! :o
+        // line that controls all the logic!!!! :o
 		control.onUp.add(menuSelection, this);
 
 		function menuSelection(pointer) {
