@@ -3,17 +3,53 @@ var speed = 2;
 var size = '45px';
 var color = 'color';
 
-function menuScreen(sprite, text, texture) {
+function menuScreen(sprite, text, texture, mainScreen, backAnim, doneAnim, mainText, num = 6) {
 	this.sprite = sprite;
 	this.sprite.visible = false;
-	this.anim = this.sprite.animations.add('scroll', [0, 1, 2, 3, 4, 5, 6]);
+	this.anim = this.sprite.animations.add('scroll', returnArray(num + 1));
 	this.display = false;
 	this.selectMode = false;
 	this.text = text;
 	this.texture = texture;
+	this.mainScreen = mainScreen;
+	this.numOptions = num;
+	this.doneAnim = doneAnim;
+	this.backAnim = backAnim;
+	this.initialize = function() {
+		if (this.selectMode === false) {
+			p1.setText(this.text, true);
+			this.mainScreen.sprite.visible = false;
+			this.sprite.visible = true;
+			this.anim.play(speed, true);
+			this.backAnim.play(speed, true);
+		}
+	}
+	this.controlLogic = function() {
+		if (this.selectMode === true) {
+			this.displaySelection();
+			if (this.anim.frame === this.numOptions) { 
+				this.returnToMain(); 
+			}
+		}
+	}
 	this.displaySelection = function() {
-		if (this.anim.frame !== 6) {
+		if (this.anim.frame !== this.numOptions) {
 			this.current.loadTexture(this.texture, this.anim.frame);
+		}
+	}
+	this.returnToMain = function() {
+		p1.setText(mainText, true);
+		this.sprite.visible = false;
+		this.mainScreen.sprite.visible = true;
+		this.mainScreen.anim.restart();
+		this.doneAnim.restart();
+		this.selectMode = false;
+		this.display = false;
+		this.mainScreen.display = true;
+	}
+	this.selectModeOn = function() {
+		if (this.anim.frame !== this.numOptions) {
+		this.selectMode = true;
 		}
 	}
 	this.isDisplayed = function() {
@@ -21,33 +57,19 @@ function menuScreen(sprite, text, texture) {
 	}
 }
 
-function displayScreen(screen, mainScreen, backAnim, doneAnim, text) {
-	if (screen.selectMode === false) {
-		p1.setText(screen.text, true);
-		mainScreen.sprite.visible = false;
-		screen.sprite.visible = true;
-		screen.anim.play(speed, true);
-		backAnim.play(speed, true);
-	}
+function displayScreen(screen) {
+	screen.initialize();
+	screen.controlLogic();
+	screen.selectModeOn();
+}
 
-	if (screen.selectMode === true) {
-		screen.displaySelection();
-
-		if (screen.anim.frame === 6) {
-			p1.setText(text, true);
-			screen.sprite.visible = false;
-			mainScreen.sprite.visible = true;
-			mainScreen.anim.restart();
-			doneAnim.restart();
-			screen.selectMode = false;
-			screen.display = false;
-			mainScreen.display = true;
-		}
+function returnArray(n) {
+	var i;
+	var out =[]; 
+	for (i = 0; i < n; i++) {
+		out[i] = i;
 	}
-	
-	if (screen.anim.frame !== 6) {
-		screen.selectMode = true;
-	}
+	return out; 
 }
 
 

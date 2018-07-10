@@ -24,23 +24,30 @@ var houseState = {
 		p1.boundsAlignV = 'middle';
         p1.setTextBounds(100, 40, 700, 70);
 
+         // initializing done button
+        doneButtonSprite = game.add.sprite(720, 560, 'doneButton');
+        doneButtonSprite.animations.add('done', [12, 12, 12, 12, 12, 12, 13]);
+        doneButtonSprite.animations.add('back', [14, 14, 14, 14, 14, 14, 15]);
+        doneAnim = doneButtonSprite.animations.play('done', speed, true);
+        backAnim = doneButtonSprite.animations.getAnimation('back');
+
 		// initializing menu screens
 		mainScreen = new menuScreen(game.add.sprite(45, 155, 'houseMenu'));
 			mainScreen.sprite.visible = true;
 			mainScreen.anim.play(speed, true);
 			mainScreen.display = true;
 
-		textureScreen = new menuScreen(game.add.sprite(45, 155, 'textureMenu'), 'Select a house style!', 'texture');
+		textureScreen = new menuScreen(game.add.sprite(45, 155, 'textureMenu'), 'Select a house style!', 'texture', mainScreen, backAnim, doneAnim, 'Design a house!');
 
-		windowsScreen = new menuScreen(game.add.sprite(45, 155, 'windowsMenu'), 'Select a window!', 'windows');
+		windowsScreen = new menuScreen(game.add.sprite(45, 155, 'windowsMenu'), 'Select a window!', 'windows', mainScreen, backAnim, doneAnim, 'Design a house!');
 
-		roofScreen = new menuScreen(game.add.sprite(45, 155, 'roofMenu'), 'Select a roof!', 'roof');
+		roofScreen = new menuScreen(game.add.sprite(45, 155, 'roofMenu'), 'Select a roof!', 'roof', mainScreen, backAnim, doneAnim, 'Design a house!');
 
-		skyScreen = new menuScreen(game.add.sprite(45, 155, 'skyMenu'), 'Select a sky!', 'sky');
+		skyScreen = new menuScreen(game.add.sprite(45, 155, 'skyMenu'), 'Select a sky!', 'sky', mainScreen, backAnim, doneAnim, 'Design a house!');
 		
-		groundScreen = new menuScreen(game.add.sprite(45, 155, 'groundMenu'), 'Select a ground color!', 'ground');
+		groundScreen = new menuScreen(game.add.sprite(45, 155, 'groundMenu'), 'Select a ground color!', 'ground', mainScreen, backAnim, doneAnim, 'Design a house!');
 
-		foliageScreen = new menuScreen(game.add.sprite(45, 155, 'foliageMenu'), 'Select a background!', 'foliage');
+		foliageScreen = new menuScreen(game.add.sprite(45, 155, 'foliageMenu'), 'Select a background!', 'foliage', mainScreen, backAnim, doneAnim, 'Design a house!');
 
         // displaying house components   
         skyScreen.current = game.add.sprite(410, 155, 'sky', 6);
@@ -50,19 +57,12 @@ var houseState = {
         textureScreen.current = game.add.sprite(495, 285, 'texture', 6);
         windowsScreen.current = game.add.sprite(545, 370, 'windows', 6);
         roofScreen.current = game.add.sprite(496, 245, 'roof', 6);
-
-        // initializing done button
-        doneButtonSprite = game.add.sprite(720, 560, 'doneButton');
-        doneButtonSprite.animations.add('done', [12, 12, 12, 12, 12, 12, 13]);
-        doneButtonSprite.animations.add('back', [14, 14, 14, 14, 14, 14, 15]);
-        doneAnim = doneButtonSprite.animations.play('done', speed, true);
-        backAnim = doneButtonSprite.animations.getAnimation('back');
+        doneButtonSprite.bringToTop();
 
         // line that controls all the logic!!!! :o
 		control.onUp.add(menuSelection, this);
 
 		function menuSelection(pointer) {
-
 			// stops mouseIn & mouseOut events 
 			if (control == game.input && !pointer.withinGame) {return;}
 
@@ -80,27 +80,24 @@ var houseState = {
 
 			// displaying preference screens
 			if (textureScreen.isDisplayed()) {
-				displayScreen(textureScreen, mainScreen, backAnim, doneAnim, 'Design a house!');
+				displayScreen(textureScreen);
 			}
 			if (windowsScreen.isDisplayed()) {
-				displayScreen(windowsScreen, mainScreen, backAnim, doneAnim, 'Design a house!');
+				displayScreen(windowsScreen);
 			}
 			if (roofScreen.isDisplayed()) {
-				displayScreen(roofScreen, mainScreen, backAnim, doneAnim, 'Design a house!');
+				displayScreen(roofScreen);
 			}
 			if (skyScreen.isDisplayed()) {
-				displayScreen(skyScreen, mainScreen, backAnim, doneAnim, 'Design a house!');
+				displayScreen(skyScreen);
 			}
 			if (foliageScreen.isDisplayed()) {
-				displayScreen(foliageScreen, mainScreen, backAnim, doneAnim, 'Design a house!');
+				displayScreen(foliageScreen);
 			}
 			if (groundScreen.isDisplayed()) {
-				displayScreen(groundScreen, mainScreen, backAnim, doneAnim, 'Design a house!');
+				displayScreen(groundScreen);
 			}
-			
-
 		}
 
 	}
-
 }

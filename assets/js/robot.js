@@ -25,19 +25,26 @@ var robotState = {
 		p1.boundsAlignV = 'middle';
         p1.setTextBounds(100, 40, 700, 70);
 
+        // initializing done button
+		doneButtonSprite = game.add.sprite(720, 560, 'doneButton');
+        doneButtonSprite.animations.add('done', [8, 8, 8, 8, 8, 8, 9]);
+        doneButtonSprite.animations.add('back', [10, 10, 10, 10, 10, 10, 11]);
+        doneAnim = doneButtonSprite.animations.play('done', speed, true);
+        backAnim = doneButtonSprite.animations.getAnimation('back');
+
 		// initializing menu screens
 		mainScreen = new menuScreen(game.add.sprite(45, 155, 'robotMenu'));
 			mainScreen.sprite.visible = true;
 			mainScreen.anim.play(speed, true);
 			mainScreen.display = true;
 
-		bodyScreen = new menuScreen(game.add.sprite(45, 155, 'bodyMenu'), 'Select a body color!', 'body');
+		bodyScreen = new menuScreen(game.add.sprite(45, 155, 'bodyMenu'), 'Select a body color!', 'body', mainScreen, backAnim, doneAnim, 'Build a robot!');
 
-		faceScreen = new menuScreen(game.add.sprite(45, 155, 'faceMenu'), 'Select a face!', 'face');
+		faceScreen = new menuScreen(game.add.sprite(45, 155, 'faceMenu'), 'Select a face!', 'face', mainScreen, backAnim, doneAnim, 'Build a robot!');
 
-		antennaScreen = new menuScreen(game.add.sprite(45, 155, 'antennaMenu'), 'Select an antenna!', 'antenna');
+		antennaScreen = new menuScreen(game.add.sprite(45, 155, 'antennaMenu'), 'Select an antenna!', 'antenna', mainScreen, backAnim, doneAnim, 'Build a robot!');
 
-		armScreen = new menuScreen(game.add.sprite(45, 155, 'armMenu'), 'Select arms!', 'gray');
+		armScreen = new menuScreen(game.add.sprite(45, 155, 'armMenu'), 'Select arms!', 'gray', mainScreen, backAnim, doneAnim, 'Build a robot!');
 			armScreen.armColor = 'gray';
 			armScreen.armStyle = 6;
 			armScreen.displaySelection = function() {
@@ -47,7 +54,7 @@ var robotState = {
 				} 
 			}
 
-		legScreen = new menuScreen(game.add.sprite(45, 155, 'legMenu'), 'Select a wheel color!', 'leg');
+		legScreen = new menuScreen(game.add.sprite(45, 155, 'legMenu'), 'Select a wheel color!', 'leg', mainScreen, backAnim, doneAnim, 'Build a robot!');
 			legScreen.displaySelection = function() {
 				if (legScreen.anim.frame !== 6) {
 					if (legScreen.anim.frame === 0) { armScreen.armColor = 'gray'; armScreen.armStyle = 0; }
@@ -62,7 +69,7 @@ var robotState = {
 			}
 
 
-		designScreen = new menuScreen(game.add.sprite(45, 155, 'designMenu'), 'Select a design!', 'design');
+		designScreen = new menuScreen(game.add.sprite(45, 155, 'designMenu'), 'Select a design!', 'design', mainScreen, backAnim, doneAnim, 'Build a robot!');
 
 		// displaying robot components 
         armScreen.current = game.add.sprite(482, 206, armScreen.armColor, armScreen.armStyle);
@@ -71,13 +78,6 @@ var robotState = {
         legScreen.current = game.add.sprite(504, 460, 'leg', 6);
         designScreen.current = game.add.sprite(580, 330, 'design', 6);
         faceScreen.current = game.add.sprite(597, 233, 'face', 6);
-
-        // initializing done button
-		doneButtonSprite = game.add.sprite(720, 560, 'doneButton');
-        doneButtonSprite.animations.add('done', [8, 8, 8, 8, 8, 8, 9]);
-        doneButtonSprite.animations.add('back', [10, 10, 10, 10, 10, 10, 11]);
-        doneAnim = doneButtonSprite.animations.play('done', speed, true);
-        backAnim = doneButtonSprite.animations.getAnimation('back');
 
         // line that controls all the logic!!!! :o
 		control.onUp.add(menuSelection, this);
@@ -109,22 +109,22 @@ var robotState = {
 
 			// displaying preference screens
 			if (bodyScreen.isDisplayed()) {
-				displayScreen(bodyScreen, mainScreen, backAnim, doneAnim, 'Build a robot!');
+				displayScreen(bodyScreen);
 			}
 			if (armScreen.isDisplayed()) {
-				displayScreen(armScreen, mainScreen, backAnim, doneAnim, 'Build a robot!');
+				displayScreen(armScreen);
 			}
 			if (legScreen.isDisplayed()) {
-				displayScreen(legScreen, mainScreen, backAnim, doneAnim, 'Build a robot!');
+				displayScreen(legScreen);
 			}
 			if (faceScreen.isDisplayed()) {
-				displayScreen(faceScreen, mainScreen, backAnim, doneAnim, 'Build a robot!');
+				displayScreen(faceScreen);
 			}
 			if (antennaScreen.isDisplayed()) {
-				displayScreen(antennaScreen, mainScreen, backAnim, doneAnim, 'Build a robot!');
+				displayScreen(antennaScreen);
 			}
 			if (designScreen.isDisplayed()) {
-				displayScreen(designScreen, mainScreen, backAnim, doneAnim, 'Build a robot!');
+				displayScreen(designScreen);
 			}
 		}
 

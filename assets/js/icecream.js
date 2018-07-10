@@ -23,6 +23,13 @@ var iceCreamState = {
 		p1 = game.add.text(0, 0, "Make some ice cream!", pStyle);
 		p1.boundsAlignV = 'middle';
         p1.setTextBounds(100, 40, 700, 70);
+
+        // initializing done button
+		doneButtonSprite = game.add.sprite(720, 560, 'doneButton');
+        doneButtonSprite.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
+        doneButtonSprite.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);
+        doneAnim = doneButtonSprite.animations.play('done', speed, true);
+        backAnim = doneButtonSprite.animations.getAnimation('back');
 		
 		// initializing menu screens 
 		mainScreen = new menuScreen(game.add.sprite(45, 155, 'iceCreamMenu'));
@@ -30,17 +37,17 @@ var iceCreamState = {
 			mainScreen.anim.play(speed, true);
 			mainScreen.display = true;
 
-		flavorScreen = new menuScreen(game.add.sprite(45, 155, 'flavorMenu'), 'Select a flavor!', 'flavor');
+		flavorScreen = new menuScreen(game.add.sprite(45, 155, 'flavorMenu'), 'Select a flavor!', 'flavor', mainScreen, backAnim, doneAnim, 'Make some ice cream!');
 
-		syrupScreen = new menuScreen(game.add.sprite(45, 155, 'syrupMenu'), 'Select a syrup!', 'syrup');
+		syrupScreen = new menuScreen(game.add.sprite(45, 155, 'syrupMenu'), 'Select a syrup!', 'syrup', mainScreen, backAnim, doneAnim, 'Make some ice cream!');
 
-		sprinklesScreen = new menuScreen(game.add.sprite(45, 155, 'sprinklesMenu'), 'Select a topping!', 'sprinkles');
+		sprinklesScreen = new menuScreen(game.add.sprite(45, 155, 'sprinklesMenu'), 'Select a topping!', 'sprinkles', mainScreen, backAnim, doneAnim, 'Make some ice cream!');
 
-		fruitScreen = new menuScreen(game.add.sprite(45, 155, 'fruitMenu'), 'Select a fruit topping!', 'fruit');
+		fruitScreen = new menuScreen(game.add.sprite(45, 155, 'fruitMenu'), 'Select a fruit topping!', 'fruit', mainScreen, backAnim, doneAnim, 'Make some ice cream!');
 
-		cookieScreen = new menuScreen(game.add.sprite(45, 155, 'cookieMenu'), 'Select another topping!', 'cookie');
+		cookieScreen = new menuScreen(game.add.sprite(45, 155, 'cookieMenu'), 'Select another topping!', 'cookie', mainScreen, backAnim, doneAnim, 'Make some ice cream!');
 
-		coneScreen = new menuScreen(game.add.sprite(45, 155, 'coneMenu'), 'Select a cone!', 'cone');
+		coneScreen = new menuScreen(game.add.sprite(45, 155, 'coneMenu'), 'Select a cone!', 'cone', mainScreen, backAnim, doneAnim, 'Make some ice cream!');
 			coneScreen.prevCone = null;
 			coneScreen.displaySelection = function() {
 				if (coneScreen.anim.frame === 0 || coneScreen.anim.frame === 1) {
@@ -65,12 +72,7 @@ var iceCreamState = {
         sprinklesScreen.current = game.add.sprite(545, 220, 'sprinkles', 5);
         fruitScreen.current = game.add.sprite(593, 180, 'fruit', 5);
 
-		// initializing done button
-        doneButtonSprite = game.add.sprite(720, 560, 'doneButton');
-        doneButtonSprite.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
-        doneButtonSprite.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);
-        doneAnim = doneButtonSprite.animations.play('done', speed, true);
-        backAnim = doneButtonSprite.animations.getAnimation('back');
+
 
         // line that controls all the logic!!!! :o
 		control.onUp.add(menuSelection, this);
@@ -101,22 +103,22 @@ var iceCreamState = {
 
 			// displaying preference screens
 			if (coneScreen.isDisplayed()) {
-				displayScreen(coneScreen, mainScreen, backAnim, doneAnim, 'Make some ice cream!');
+				displayScreen(coneScreen);
 			}
 			if (flavorScreen.isDisplayed() ) {
-				displayScreen(flavorScreen, mainScreen, backAnim, doneAnim,'Make some ice cream!');
+				displayScreen(flavorScreen);
 			}
 			if (syrupScreen.isDisplayed()) {
-				displayScreen(syrupScreen, mainScreen, backAnim, doneAnim, 'Make some ice cream!');
+				displayScreen(syrupScreen);
 			}
 			if (sprinklesScreen.isDisplayed()) {
-				displayScreen(sprinklesScreen, mainScreen, backAnim, doneAnim, 'Make some ice cream!');
+				displayScreen(sprinklesScreen);
 			}
 			if (fruitScreen.isDisplayed()) {
-				displayScreen(fruitScreen, mainScreen, backAnim, doneAnim,'Make some ice cream!');
+				displayScreen(fruitScreen);
 			}
 			if (cookieScreen.isDisplayed()) {
-				displayScreen(cookieScreen, mainScreen, backAnim, doneAnim, 'Make some ice cream!');
+				displayScreen(cookieScreen);
 			}
 
 		}
