@@ -42,20 +42,20 @@ var menuState = {
         	wordWrap: true, 
         	wordWrapWidth: 700, 
         	boundsAlignH: 'center', 
-        	boundsAlignV: 'top'
+        	boundsAlignV: 'middle'
         };
 
 
         // text 
         p1 = game.add.text(0, 0, "", pStyle);
-        p1.setTextBounds(100, 220, 700, 200);
+        p1.setTextBounds(100, 185, 700, 165);
 
 	
 		// title text
-		game.add.sprite(159, 50, 'title');
+		game.add.sprite(159, 70, 'title');
 
         // menu 
-		mainMenuSprite = game.add.sprite(86, 300, 'mainMenu');
+		mainMenuSprite = game.add.sprite(86, 320, 'mainMenu');
 	    mainMenuSprite.animations.add('scroll');
 	    mainAnim = mainMenuSprite.animations.play('scroll', speed, true);
 
@@ -66,7 +66,7 @@ var menuState = {
 		textAnim = textMenuSprite.animations.getAnimation('scroll');
 
 		// color menu (invisible)
-		colorMenuSprite = game.add.sprite(86, 320, 'colorMenu');
+		colorMenuSprite = game.add.sprite(86, 300, 'colorMenu');
 		colorMenuSprite.visible = false;
 		colorMenuSprite.animations.add('scroll');
 	    colorAnim = colorMenuSprite.animations.getAnimation('scroll');
@@ -153,7 +153,7 @@ var menuState = {
 			        	wordWrap: true, 
 			        	wordWrapWidth: 700, 
 			        	boundsAlignH: 'center', 
-			        	boundsAlignV: 'top'
+			        	boundsAlignV: 'middle'
 			        };
     				p1.setStyle(pStyle, true);
     			}
@@ -166,7 +166,7 @@ var menuState = {
 			        	wordWrap: true, 
 			        	wordWrapWidth: 700, 
 			        	boundsAlignH: 'center', 
-			        	boundsAlignV: 'top'
+			        	boundsAlignV: 'middle'
 			        };
     				p1.setStyle(pStyle, true);
     			}
@@ -179,7 +179,7 @@ var menuState = {
 			        	wordWrap: true, 
 			        	wordWrapWidth: 700, 
 			        	boundsAlignH: 'center', 
-			        	boundsAlignV: 'top'
+			        	boundsAlignV: 'middle'
 			        };
     				p1.setStyle(pStyle, true);
     			}
@@ -199,96 +199,6 @@ var menuState = {
     			textSelect = true;
     		}
 		}
-
-		// // color preference screen
-		// function colorSelectionScreen() {
-		// 	// add animation once
-		// 	if (!colorSelect) {
-		// 		p1.setText("Select a text color:", true);
-		// 		p1.visible = true;
-	 //        	mainMenuSprite.visible = false;
-	 //        	colorMenuSprite.visible = true;
-	 //    		colorAnim.play(speed, true);
-	 //    		backButtonSprite.visible = true;
-	 //    		backButtonAnim.play(speed, true);
-	 //    	}
-
-	 //    	if (colorSelect) {
-	 //    		if (colorAnim.frame == 0) {
-	 //    			game.stage.backgroundColor= '#ffffff';
-
-		// 			titleText.fill = '#000000';
-		//         	titleText.addColor('#000000', 1);
-		// 	        titleText.addColor('#000000', 2);
-		// 	        titleText.addColor('#000000', 3);
-		// 	        titleText.addColor('#000000', 4);
-		// 	        titleText.addColor('#000000', 5);
-		// 	        titleText.addColor('#000000', 6);
-		// 	        titleText.addColor('#000000', 7);
-		// 	        titleText.addColor('#000000', 8);
-		// 	        titleText.setShadow(3, 3, '#dddddd', 3);
-		// 	        textColor = '#000000';
-		// 	        p1.fill = '#000000';
-		// 	        color = 'bw';
-	 //    		}
-	 //    		if (colorAnim.frame == 1) {
-	 //    			game.stage.backgroundColor= '#000000';
-		// 			titleText.fill = "#ffffff";
-		//         	titleText.addColor('#ffffff', 1);
-		// 	        titleText.addColor('#ffffff', 2);
-		// 	        titleText.addColor('#ffffff', 3);
-		// 	        titleText.addColor('#ffffff', 4);
-		// 	        titleText.addColor('#ffffff', 5);
-		// 	        titleText.addColor('#ffffff', 6);
-		// 	        titleText.addColor('#ffffff', 7);
-		// 	        titleText.addColor('#ffffff', 8);
-		// 	        titleText.setShadow(3, 3, '#333333', 3);
-		// 	        textColor = '#ffffff';
-		// 	        pStyle = { 
-		// 	        	font: 'Jua', 
-		// 	        	fill: textColor, 
-		// 	        	fontSize: textSize, 
-		// 	        	wordWrap: true, 
-		// 	        	wordWrapWidth: 700, 
-		// 	        	boundsAlignH: 'center', 
-		// 	        	boundsAlignV: 'top'
-		// 	        };
-  //   				p1.setStyle(pStyle, true);
-		// 	        color = 'wb';
-	 //    		}
-	 //    		if (colorAnim.frame == 2) {
-	 //    			game.stage.backgroundColor = "#6ec7ff";
-	 //    			titleText.fill = "#f191b0";
-		//         	titleText.addColor('#ffae68', 1);
-		// 	        titleText.addColor('#faff77', 2);
-		// 	        titleText.addColor('#f191b0', 3);
-		// 	        titleText.addColor('#ffae68', 4);
-		// 	        titleText.addColor('#faff77', 5);
-		// 	        titleText.addColor('#f191b0', 6);
-		// 	        titleText.addColor('#ffae68', 7);
-		// 	        titleText.addColor('#faff77', 8);
-		// 	        titleText.setShadow(3, 3, '#555555', 3);
-		// 	        textColor = '#000000';
-	 //    			p1.fill = '#000000';
-	 //    			color = 'color';
-	 //    		}
-	 //    		if (backButtonAnim.frame == 1) {
-  //   				colorMenuSprite.visible = false;
-  //   				backButtonSprite.visible = false;
-  //   				p1.visible = false;
-  //   				mainMenuSprite.visible = true;
-  //   				mainAnim.play(speed, true);
-  //   				colorSelect = false;
-  //   				colorMenu = false;
-  //   				mainMenu = true;
-  //   			}
-
-	 //    	}
-
-	 //    	if (backButtonAnim.frame != 1) {
-  //   			colorSelect = true;
-  //   		}
-		// }
 
 		// speed preference screen 
 		function speedSelectionScreen() {

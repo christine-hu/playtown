@@ -17,10 +17,10 @@ var preloadState = {
 
       // menu images 
       game.load.spritesheet('mainMenu', 'assets/img/mainMenu.png', 735, 221);
-      game.load.spritesheet('textMenu', 'assets/img/textMenu.png', 728, 221);
-      game.load.spritesheet('speedMenu', 'assets/img/speedMenu.png', 728, 221);
+      game.load.spritesheet('textMenu', 'assets/img/textMenu.png', 735, 221);
+      game.load.spritesheet('speedMenu', 'assets/img/speedMenu.png', 735, 221);
       game.load.spritesheet('colorMenu', 'assets/img/colorMenu.png', 728, 221);
-      game.load.spritesheet('backButton', 'assets/img/backButton.png', 175, 96);
+      game.load.spritesheet('backButton', 'assets/img/backButton.png', 152, 83);
 
       // map images
       game.load.spritesheet('map', 'assets/img/map.png', 926, 390);

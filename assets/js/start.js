@@ -27,7 +27,7 @@ var startState = {
         var reset = false; // resets selection
         var controlSelected = false; // has the control been selected?
 
-        game.add.sprite(159, 50, 'title');
+        game.add.sprite(159, 70, 'title');
 
         pStyle = { 
         	font: pFont, 
@@ -40,13 +40,13 @@ var startState = {
         };
 
         p1 = game.add.text(0, 0, "Select a control:", pStyle);
-        p1.setTextBounds(100, 220, 700, 200);
+        p1.setTextBounds(100, 240, 700, 220);
 
-        keyboard = game.add.sprite(-30, 300, 'keyboard');
+        keyboard = game.add.sprite(-30, 320, 'keyboard');
         keyboard.animations.add('buttons', [0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]);
         keyboard.animations.play('buttons', 5, true);
 
-        mouse = game.add.sprite(695, 300, 'mouse');
+        mouse = game.add.sprite(695, 320, 'mouse');
         mouse.animations.add('click', [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]);
         mouse.animations.play('click', 5, true);
 
@@ -76,7 +76,7 @@ var startState = {
 		        	}
 	        	}
 	        	if (!selectMode && !returnPressed && !controlSelected)	{
-	                selection = game.add.sprite(550, 290, 'selection');
+	                selection = game.add.sprite(550, 310, 'selection');
 	                selection.animations.add('click', [1, 0]);
 	                keyboard.animations.stop(true, '0');
 	                mouse.animations.stop(true, '0');
@@ -108,7 +108,7 @@ var startState = {
 	        	}
 
 	        	if (!selectMode && !spacePressed && !controlSelected) {
-	            	selection = game.add.sprite(280, 380, 'selection');
+	            	selection = game.add.sprite(280, 400, 'selection');
 	                selection.animations.add('click', [1, 0]);
 	                keyboard.animations.stop(true, '0');
 	                mouse.animations.stop(true, '0');
@@ -142,7 +142,7 @@ var startState = {
 	        	}
 	        }
 	        if (!selectMode && !mousePressed && !controlSelected) {
-	        	selection = game.add.sprite(700, 180, 'selection');
+	        	selection = game.add.sprite(700, 200, 'selection');
 	            selection.animations.add('click', [1, 0]);
 	            keyboard.animations.stop(true, '0');
 	            mouse.animations.stop(true, '0');
