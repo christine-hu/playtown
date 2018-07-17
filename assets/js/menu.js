@@ -18,19 +18,21 @@ var menuState = {
 		var textMenuSprite;
 		var textAnim;
 
-		// color preference screen
-		var colorSelect = false;
-		var colorMenuSprite;
-		var colorAnim;
-
 		// speed preference screen
 		var speedSelect = false;
 		var speedMenuSprite;
 		var speedAnim;
 
+		// carrots
+		var carrots;
+		var textSelection = 1;
+		var speedSelection;
+
 		// back button
 		var backButtonSprite;
 		var backButtonAnim;
+
+
 		
 		// text style, to be passed onto other states (text size)
 		var textColor = '#000000';
@@ -77,8 +79,12 @@ var menuState = {
 		speedMenuSprite.animations.add('scroll');
 	    speedAnim = speedMenuSprite.animations.getAnimation('scroll');
 
+	    // carrots (invisible)
+	    carrots = game.add.sprite(180, 540, 'carrots', 1);
+	    carrots.visible = false;
+
 		// back button (invisible)
-		backButtonSprite = game.add.sprite(688, 562, 'backButton');
+		backButtonSprite = game.add.sprite(730, 590, 'backButton');
 		backButtonSprite.visible = false;
 		backButtonSprite.animations.add('press', [0, 0, 0, 1]);
 		backButtonAnim = backButtonSprite.animations.getAnimation('press');
@@ -136,6 +142,8 @@ var menuState = {
 				p1.visible = true;
 	        	mainMenuSprite.visible = false;
 	        	textMenuSprite.visible = true;
+	        	carrots.loadTexture('carrots', textSelection);
+	        	carrots.visible = true;
 	    		textAnim.play(speed, true);
 	    		backButtonSprite.visible = true;
 	    		backButtonAnim.play(speed, true);
@@ -146,46 +154,25 @@ var menuState = {
 				// have to use pStyle instead of setting p1.fontSize for immediate update
 				if (textAnim.frame == 0) {
 					textSize = '30px';
-					pStyle = { 
-			        	font: 'Jua', 
-			        	fill: textColor, 
-			        	fontSize: '30px', 
-			        	wordWrap: true, 
-			        	wordWrapWidth: 700, 
-			        	boundsAlignH: 'center', 
-			        	boundsAlignV: 'middle'
-			        };
-    				p1.setStyle(pStyle, true);
+					pStyle.fontSize = '30px';
+			        textSelection = 0;
     			}
-    			if (textAnim.frame == 1) {
+    			else if (textAnim.frame == 1) {
     				textSize = '45px';
-    				pStyle = { 
-			        	font: 'Jua', 
-			        	fill: textColor, 
-			        	fontSize: '45px', 
-			        	wordWrap: true, 
-			        	wordWrapWidth: 700, 
-			        	boundsAlignH: 'center', 
-			        	boundsAlignV: 'middle'
-			        };
-    				p1.setStyle(pStyle, true);
+    				pStyle.fontSize = '45px';
+			        textSelection = 1;
     			}
-    			if (textAnim.frame == 2) {
+    			else if (textAnim.frame == 2) {
     				textSize = '60px';
-    				pStyle = { 
-			        	font: 'Jua', 
-			        	fill: textColor, 
-			        	fontSize: '60px', 
-			        	wordWrap: true, 
-			        	wordWrapWidth: 700, 
-			        	boundsAlignH: 'center', 
-			        	boundsAlignV: 'middle'
-			        };
-    				p1.setStyle(pStyle, true);
+    				pStyle.fontSize = '60px';
+			        textSelection = 2;
     			}
+    			p1.setStyle(pStyle, true);
+    			carrots.loadTexture('carrots', textSelection);
     			if (backButtonAnim.frame == 1) {
     				textMenuSprite.visible = false;
     				backButtonSprite.visible = false;
+    				carrots.visible = false;
     				p1.visible = false;
     				mainMenuSprite.visible = true;
     				mainMenuSprite.animations.currentAnim.restart();
