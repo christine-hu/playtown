@@ -26,7 +26,7 @@ var menuState = {
 		// carrots
 		var carrots;
 		var textSelection = 1;
-		var speedSelection;
+		var speedSelection = 1;
 
 		// back button
 		var backButtonSprite;
@@ -182,7 +182,7 @@ var menuState = {
     			}
 			}
 
-    		if (backButtonAnim.frame != 1 && backButtonAnim.frame != 3) {
+    		if (backButtonAnim.frame != 1) {
     			textSelect = true;
     		}
 		}
@@ -195,6 +195,8 @@ var menuState = {
 				p1.visible = true;
 	        	mainMenuSprite.visible = false;
 	        	speedMenuSprite.visible = true;
+	        	carrots.loadTexture('carrots', speedSelection);
+	        	carrots.visible = true;
 	    		speedAnim.play(speed, true);
 	    		backButtonSprite.visible = true;
 	    		backButtonAnim.play(speed, true);
@@ -207,23 +209,28 @@ var menuState = {
 					backButtonAnim.delay = 5000;
 					mainAnim.delay = 5000;
 					speed = 0.2;
+					speedSelection = 0; 
     			}
     			if (speedAnim.frame == 1) {
     				speedAnim.delay = 2000;
 					backButtonAnim.delay = 2000;
 					mainAnim.delay = 2000;
 					speed = 0.5;
+					speedSelection = 1;
     			}
     			if (speedAnim.frame == 2) {
     				speedAnim.delay = 1000;
 					backButtonAnim.delay = 1000;
 					mainAnim.delay = 1000;
 					speed = 1;
+					speedSelection = 2;
     			}
+    			carrots.loadTexture('carrots', speedSelection);
     			if (backButtonAnim.frame == 1) {
     				speedMenuSprite.visible = false;
     				backButtonSprite.visible = false;
     				p1.visible = false;
+    				carrots.visible = false;
     				mainMenuSprite.visible = true;
     				mainMenuSprite.animations.currentAnim.restart();
     				speedSelect = false;
