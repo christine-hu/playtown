@@ -72,8 +72,6 @@ var iceCreamState = {
         sprinklesScreen.current = game.add.sprite(545, 220, 'sprinkles', 5);
         fruitScreen.current = game.add.sprite(593, 180, 'fruit', 5);
 
-
-
         // line that controls all the logic!!!! :o
 		control.onUp.add(menuSelection, this);
 
@@ -105,7 +103,7 @@ var iceCreamState = {
 			if (coneScreen.isDisplayed()) {
 				displayScreen(coneScreen);
 			}
-			if (flavorScreen.isDisplayed() ) {
+			if (flavorScreen.isDisplayed()) {
 				displayScreen(flavorScreen);
 			}
 			if (syrupScreen.isDisplayed()) {
@@ -120,7 +118,6 @@ var iceCreamState = {
 			if (cookieScreen.isDisplayed()) {
 				displayScreen(cookieScreen);
 			}
-
 		}
 
 	}

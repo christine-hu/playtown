@@ -24,7 +24,8 @@ var preloadState = {
       game.load.spritesheet('carrots', 'assets/img/carrots.png', 550, 33);
 
       // map images
-      game.load.spritesheet('map', 'assets/img/map.png', 926, 390);
+      game.load.image('map', 'assets/img/map.png', 926, 390);
+      game.load.spritesheet('mapCarrots', 'assets/img/mapCarrots.png', 727, 49);
 
       // character images 
       game.load.spritesheet('characterMenu', 'assets/img/character/characterMenu.png', 328, 455);

@@ -31,8 +31,6 @@ var menuState = {
 		// back button
 		var backButtonSprite;
 		var backButtonAnim;
-
-
 		
 		// text style, to be passed onto other states (text size)
 		var textColor = '#000000';
@@ -53,10 +51,10 @@ var menuState = {
         p1.setTextBounds(100, 185, 700, 165);
 
 	
-		// title text
+		// title
 		game.add.sprite(159, 70, 'title');
 
-        // menu 
+        // main menu 
 		mainMenuSprite = game.add.sprite(86, 320, 'mainMenu');
 	    mainMenuSprite.animations.add('scroll');
 	    mainAnim = mainMenuSprite.animations.play('scroll', speed, true);
@@ -66,12 +64,6 @@ var menuState = {
 	    textMenuSprite.visible = false; 
 		textMenuSprite.animations.add('scroll');
 		textAnim = textMenuSprite.animations.getAnimation('scroll');
-
-		// color menu (invisible)
-		colorMenuSprite = game.add.sprite(86, 300, 'colorMenu');
-		colorMenuSprite.visible = false;
-		colorMenuSprite.animations.add('scroll');
-	    colorAnim = colorMenuSprite.animations.getAnimation('scroll');
 
 		// speed menu (invisible)
 		speedMenuSprite = game.add.sprite(86, 320, 'speedMenu');
@@ -114,20 +106,16 @@ var menuState = {
 				}
 				else if (mainAnim.frame == 1) {
 					textMenu = true;
-					mainMenu = false;
 				} else if (mainAnim.frame == 2) {
 					speedMenu = true;
-					mainMenu = false;
 				} 
+				mainMenu = false;
 			}
 
 			// displaying preference screens
 			if (textMenu) {
 				textSelectionScreen();
 			}
-			// if (colorMenu) {
-			// 	colorSelectionScreen();
-			// }
 			if (speedMenu) {
 				speedSelectionScreen();
 			}
