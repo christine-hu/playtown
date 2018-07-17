@@ -9,19 +9,19 @@ var preloadState = {
       // intro images
       game.load.image('title', 'assets/img/title.png', 583, 142);
       game.load.image('transparent', 'assets/img/transparent.png', 900, 700);
-      game.load.spritesheet('keyboard', 'assets/img/keyboard.png', 785, 305);
-      game.load.spritesheet('mouse', 'assets/img/mouse.png', 188, 307);
-      game.load.spritesheet('return', 'assets/img/return.png', 350, 225);
-      game.load.spritesheet('selection', 'assets/img/selection.png', 180, 137);
-      game.load.spritesheet('spaceBar', 'assets/img/spaceBar.png', 850, 150);
+      game.load.spritesheet('keyboard', 'assets/img/intro/keyboard.png', 785, 305);
+      game.load.spritesheet('mouse', 'assets/img/intro/mouse.png', 188, 307);
+      game.load.spritesheet('return', 'assets/img/intro/return.png', 350, 225);
+      game.load.spritesheet('selection', 'assets/img/intro/selection.png', 180, 137);
+      game.load.spritesheet('spaceBar', 'assets/img/intro/spaceBar.png', 850, 150);
 
       // menu images 
-      game.load.spritesheet('mainMenu', 'assets/img/mainMenu.png', 735, 221);
-      game.load.spritesheet('textMenu', 'assets/img/textMenu.png', 735, 221);
-      game.load.spritesheet('speedMenu', 'assets/img/speedMenu.png', 735, 221);
-      game.load.spritesheet('colorMenu', 'assets/img/colorMenu.png', 728, 221);
-      game.load.spritesheet('backButton', 'assets/img/backButton.png', 152, 83);
-      game.load.spritesheet('carrots', 'assets/img/carrots.png', 550, 33);
+      game.load.spritesheet('mainMenu', 'assets/img/menu/mainMenu.png', 735, 221);
+      game.load.spritesheet('textMenu', 'assets/img/menu/textMenu.png', 735, 221);
+      game.load.spritesheet('speedMenu', 'assets/img/menu/speedMenu.png', 735, 221);
+      game.load.spritesheet('colorMenu', 'assets/img/menu/colorMenu.png', 728, 221);
+      game.load.spritesheet('backButton', 'assets/img/menu/backButton.png', 152, 83);
+      game.load.spritesheet('carrots', 'assets/img/menu/carrots.png', 550, 33);
 
       // map images
       game.load.image('map', 'assets/img/map.png', 926, 390);
