@@ -1,4 +1,4 @@
-*This game is being developed as a [Google Summer of Code](https://summerofcode.withgoogle.com/) 2018 project under the [Inclusive Design Institute](https://inclusivedesign.ca/); the final game will not be completed until August 15th. In the meantime, the incomplete game will be hosted at http://christinehu.org/testing/.
+*This game is being developed as a [Google Summer of Code](https://summerofcode.withgoogle.com/) 2018 project under the [Inclusive Design Institute](https://inclusivedesign.ca/); the final game will not be completed until August 15th. In the meantime, the incomplete game will be hosted at https://christine-hu.github.io/playtown/.
 
 # Playtown!
 
@@ -20,8 +20,8 @@ To run the game locally, complete the following steps:
 
 1. Clone the repository: `git clone https://github.com/christine-hu/playtown.git` 
 
-2. Set up a local testing server: `python -m SimpleHTTPServer`
+2. Navigate to the repository, and download the dependencies: `npm install`
 
-3. Go to `localhost:8000` via your web browser 
+3. Set up a local testing server (ex: `python -m SimpleHTTPServer`)
 
-4. Navigate to the repository via the local server. If the game does not begin automatically, click on the `index.html` file.
+4. Go to the server (ex: `localhost:8000`) via your web browser. Tada!
