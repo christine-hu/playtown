@@ -53,6 +53,9 @@ var startState = {
         button = game.add.sprite(0, 0, 'transparent');
         button.inputEnabled = true;
 
+        black = game.add.sprite(0, 0, 'black');
+        black.alpha = 0; 
+
         enter = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
         spaceBar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
@@ -63,7 +66,7 @@ var startState = {
             if (key == enter) {
 	        	if (controlSelected && selectedControl == 0) {
 	        		selectedControl = 0;
-	        		game.state.start('menu', true, false, selectedControl);
+	        		fadeOut = true;
 	        	}
             	if (selectMode && returnPressed) {
             		// yes
@@ -199,9 +202,21 @@ var startState = {
         		returnKey.animations.play('press', 5, true);
     		}
     		controlSelected = true;
+            black.bringToTop();
     	}
 
 	}, 
+
+    update: function() {
+        if (fadeOut) {
+            if (black.alpha < .98) {
+                black.alpha += 0.02;
+            }
+            if (black.alpha >= 0.98) {
+                game.state.start('menu', true, false, selectedControl);
+            }
+        }
+    },
 
 	shutdown: function() {
 		game.input.keyboard.onUpCallback = null;

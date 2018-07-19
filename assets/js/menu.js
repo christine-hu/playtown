@@ -1,6 +1,5 @@
 var menuState = {
 
-
 	create: function() {
 
 		// different screens
@@ -45,11 +44,9 @@ var menuState = {
         	boundsAlignV: 'middle'
         };
 
-
         // text 
         p1 = game.add.text(0, 0, "", pStyle);
         p1.setTextBounds(100, 185, 700, 165);
-
 	
 		// title
 		game.add.sprite(159, 70, 'title');
@@ -80,6 +77,9 @@ var menuState = {
 		backButtonSprite.visible = false;
 		backButtonSprite.animations.add('press', [0, 0, 0, 1]);
 		backButtonAnim = backButtonSprite.animations.getAnimation('press');
+
+		// fade effect image 
+        black = game.add.sprite(0, 0, 'black');
 
 	    // determining which control to listen for 
 	    if (selectedControl == 0) { 
@@ -234,6 +234,12 @@ var menuState = {
 		}
 
 	}, 
+
+	update: function() {
+		if (black.alpha >= 0.02) {
+			black.alpha -= 0.02;
+		}
+	},
 
 	shutdown: function() {
 		size = p1.fontSize;

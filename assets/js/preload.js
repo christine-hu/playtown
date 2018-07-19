@@ -9,6 +9,7 @@ var preloadState = {
       // intro images
       game.load.image('title', 'assets/img/title.png', 583, 142);
       game.load.image('transparent', 'assets/img/transparent.png', 900, 700);
+      game.load.image('black', 'assets/img/black.png', 900, 700);
       game.load.spritesheet('keyboard', 'assets/img/intro/keyboard.png', 785, 305);
       game.load.spritesheet('mouse', 'assets/img/intro/mouse.png', 188, 307);
       game.load.spritesheet('return', 'assets/img/intro/return.png', 350, 225);
@@ -19,7 +20,6 @@ var preloadState = {
       game.load.spritesheet('mainMenu', 'assets/img/menu/mainMenu.png', 735, 221);
       game.load.spritesheet('textMenu', 'assets/img/menu/textMenu.png', 735, 221);
       game.load.spritesheet('speedMenu', 'assets/img/menu/speedMenu.png', 735, 221);
-      game.load.spritesheet('colorMenu', 'assets/img/menu/colorMenu.png', 728, 221);
       game.load.spritesheet('backButton', 'assets/img/menu/backButton.png', 152, 83);
       game.load.spritesheet('carrots', 'assets/img/menu/carrots.png', 550, 33);
 

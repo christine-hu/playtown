@@ -1,0 +1,33 @@
+{
+  "name": "playtown",
+  "version": "1.0.0",
+  "description": "A switch-accessible web game for children! ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/christine-hu/playtown"
+  },
+  "keywords": [
+    "inclusive design",
+    "accessibility",
+    "kids",
+    "game",
+    "javascript",
+    "phaser"
+  ],
+  "author": "Christine Hu",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/christine-hu/playtown/issues"
+  },
+  "homepage": "https://github.com/christine-hu/playtown#readme",
+  "dependencies": {
+    "phaser-ce": "^2.11.0",
+    "phaser-state-transition": "^2.5.1",
+    "typeface-jua": "0.0.58",
+    "typeface-londrina-solid": "0.0.54"
+  }
+}

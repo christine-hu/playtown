@@ -1,7 +1,10 @@
 // global variables, default settings
+
 var speed = 2; 
 var size = '45px';
 var color = 'color';
+var black;
+var fadeOut = false;
 
 function menuScreen(sprite, text, texture, mainScreen, backAnim, doneAnim, mainText, num = 6) {
 	this.sprite = sprite;
