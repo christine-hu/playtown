@@ -57,12 +57,13 @@ var robotState = {
 		legScreen = new menuScreen(game.add.sprite(45, 155, 'legMenu'), 'Select a wheel color!', 'leg', mainScreen, backAnim, doneAnim, 'Build a robot!');
 			legScreen.displaySelection = function() {
 				if (legScreen.anim.frame !== 6) {
-					if (legScreen.anim.frame === 0) { armScreen.armColor = 'gray'; armScreen.armStyle = 0; }
+					if (legScreen.anim.frame === 0) { armScreen.armColor = 'gray'; }
 					else if (legScreen.anim.frame === 1) { armScreen.armColor = 'purple'; }
 					else if (legScreen.anim.frame === 2) { armScreen.armColor = 'red'; }
 					else if (legScreen.anim.frame === 3) { armScreen.armColor = 'blue'; }
 					else if (legScreen.anim.frame === 4) { armScreen.armColor = 'green'; }
 					else if (legScreen.anim.frame === 5) { armScreen.armColor = 'brown'; }
+					if (armScreen.armStyle === 6) { armScreen.armStyle = 0; }
 					legScreen.current.loadTexture(legScreen.texture, legScreen.anim.frame);
 					armScreen.current.loadTexture(armScreen.armColor, armScreen.armStyle);
 				} 
