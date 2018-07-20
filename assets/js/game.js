@@ -1,6 +1,6 @@
 // global variables, default settings
 
-var speed = 2; 
+var speed = .5; 
 var size = '45px';
 var color = 'color';
 var black;
