@@ -31,16 +31,12 @@ var mapState = {
 			// starts each location
 			if (carrots.frame == 0) {
 				nextState = 0; 
-				//game.state.start('icecream', true, false, control, pStyle);
 			} else if (carrots.frame == 1) {
 				nextState = 1; 
-				//game.state.start('robot', true, false, control, pStyle);
 			} else if (carrots.frame == 2) {
 				nextState = 2; 
-				//game.state.start('character', true, false, control, pStyle);
 			} else if (carrots.frame == 3) {
 				nextState = 3;
-				//game.state.start('house', true, false, control, pStyle);
 			} 
 		
 		}
