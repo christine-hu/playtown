@@ -1,6 +1,7 @@
 var houseState = {
 
 	create: function() {
+		nextState = false; 
 		var outline;
 
 		// menu screens 
@@ -59,6 +60,9 @@ var houseState = {
         roofScreen.current = game.add.sprite(496, 245, 'roof', 6);
         doneButtonSprite.bringToTop();
 
+        // fade effect image 
+        black = game.add.sprite(0, 0, 'black');
+
         // line that controls all the logic!!!! :o
 		control.onUp.add(menuSelection, this);
 
@@ -74,7 +78,7 @@ var houseState = {
 				else if (mainScreen.sprite.frame === 3) { skyScreen.display = true; } 
 				else if (mainScreen.sprite.frame === 4) { groundScreen.display = true; } 
 				else if (mainScreen.sprite.frame === 5) { foliageScreen.display = true; } 
-				else if (mainScreen.sprite.frame === 6) { game.state.start('map', true, false, control, pStyle); }
+				else if (mainScreen.sprite.frame === 6) { nextState = true; }
 				mainScreen.display = false;
 			}
 
@@ -99,5 +103,12 @@ var houseState = {
 			}
 		}
 
+	}, 
+
+	update: function() {
+		if (nextState) { fadeOut('map'); }
+		else {
+			fadeIn();
+        }
 	}
 }

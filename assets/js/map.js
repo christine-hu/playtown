@@ -2,7 +2,7 @@ var mapState = {
 
 
 	create: function() {
-		nextState = false; 
+		nextState = 5; 
 		var mapSprite;
 		var carrots;
 		var p1;
@@ -26,16 +26,16 @@ var mapState = {
 
 		function menuSelection(pointer) {
 			// stops mouseIn & mouseOut events 
-			if (control == game.input && !pointer.withinGame) {return;}
+			if (control === game.input && !pointer.withinGame) {return;}
 			
 			// starts each location
-			if (carrots.frame == 0) {
+			if (carrots.frame === 0) {
 				nextState = 0; 
-			} else if (carrots.frame == 1) {
+			} else if (carrots.frame === 1) {
 				nextState = 1; 
-			} else if (carrots.frame == 2) {
+			} else if (carrots.frame === 2) {
 				nextState = 2; 
-			} else if (carrots.frame == 3) {
+			} else if (carrots.frame === 3) {
 				nextState = 3;
 			} 
 		
@@ -44,13 +44,11 @@ var mapState = {
 	}, 
 
 	update: function() {
-		if (nextState === 0) { fadeOut('icecream'); }
-		else if (nextState === 1) { fadeOut('robot'); }
-		else if (nextState === 2) { fadeOut('character'); }
+		if (nextState === 5) { fadeIn(); }
+		else if (nextState === 0) { console.log('0'); fadeOut('icecream'); }
+		else if (nextState === 1) { console.log('1'); fadeOut('robot'); }
+		else if (nextState === 2) { console.log('2'); fadeOut('character'); }
 		else if (nextState === 3) { fadeOut('house'); }
-		else {
-			fadeIn();
-        }
 	}
 
 }
