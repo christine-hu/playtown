@@ -1,6 +1,7 @@
 var menuState = {
 
 	create: function() {
+		nextState = false;
 
 		// different screens
 		var mainMenu = true;
@@ -102,7 +103,7 @@ var menuState = {
 			// choosing screens
 			if (mainMenu) {
 				if (mainAnim.frame == 0) {
-					game.state.start('map', true, false, control, pStyle);
+					nextState = true;
 				}
 				else if (mainAnim.frame == 1) {
 					textMenu = true;
@@ -236,9 +237,11 @@ var menuState = {
 	}, 
 
 	update: function() {
-		if (black.alpha >= 0.02) {
-			black.alpha -= 0.02;
-		}
+		if (nextState) {
+            fadeOut('map');
+        } else {
+			fadeIn();
+        }
 	},
 
 	shutdown: function() {
