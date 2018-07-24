@@ -1,10 +1,10 @@
 // global variables, default settings
 
-var speed = .5; 
+var speed = 2; 
 var size = '45px';
 var color = 'color';
 var black;
-var fadeOut = false;
+var nextState = false;
 
 function menuScreen(sprite, text, texture, mainScreen, backAnim, doneAnim, mainText, num = 6) {
 	this.sprite = sprite;
@@ -73,6 +73,21 @@ function returnArray(n) {
 		out[i] = i;
 	}
 	return out; 
+}
+
+function fadeOut(nextState) {
+	if (black.alpha < .98) {
+       black.alpha += 0.02;
+    }
+    if (black.alpha >= 0.98) {
+       game.state.start(nextState, true, false, selectedControl);
+    }
+}
+
+function fadeIn() {
+	if (black.alpha >= 0.02) {
+		black.alpha -= 0.02;
+	}
 }
 
 
