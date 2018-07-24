@@ -2,6 +2,7 @@ var mapState = {
 
 
 	create: function() {
+		nextState = false; 
 		var mapSprite;
 		var carrots;
 		var p1;
@@ -16,6 +17,10 @@ var mapState = {
 		carrots = game.add.sprite(86, 600, 'mapCarrots');
 			carrots.animations.add('scroll');
 			carrots.animations.play('scroll', speed, true);
+
+		// fade effect image 
+        black = game.add.sprite(0, 0, 'black');
+
 		// line that controls all the logic :o 
 		control.onUp.add(menuSelection, this);
 
@@ -25,17 +30,31 @@ var mapState = {
 			
 			// starts each location
 			if (carrots.frame == 0) {
-				game.state.start('icecream', true, false, control, pStyle);
+				nextState = 0; 
+				//game.state.start('icecream', true, false, control, pStyle);
 			} else if (carrots.frame == 1) {
-				game.state.start('robot', true, false, control, pStyle);
+				nextState = 1; 
+				//game.state.start('robot', true, false, control, pStyle);
 			} else if (carrots.frame == 2) {
-				game.state.start('character', true, false, control, pStyle);
+				nextState = 2; 
+				//game.state.start('character', true, false, control, pStyle);
 			} else if (carrots.frame == 3) {
-				game.state.start('house', true, false, control, pStyle);
+				nextState = 3;
+				//game.state.start('house', true, false, control, pStyle);
 			} 
 		
 		}
 
+	}, 
+
+	update: function() {
+		if (nextState === 0) { fadeOut('icecream'); }
+		else if (nextState === 1) { fadeOut('robot'); }
+		else if (nextState === 2) { fadeOut('character'); }
+		else if (nextState === 3) { fadeOut('house'); }
+		else {
+			fadeIn();
+        }
 	}
 
 }
