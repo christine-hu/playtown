@@ -1,6 +1,7 @@
 var iceCreamState = {
 
 	create: function() {
+		nextState = false;
 		var backdrop; 
 
 		// menu screens
@@ -72,6 +73,9 @@ var iceCreamState = {
         sprinklesScreen.current = game.add.sprite(545, 220, 'sprinkles', 5);
         fruitScreen.current = game.add.sprite(593, 180, 'fruit', 5);
 
+        // fade effect image 
+        black = game.add.sprite(0, 0, 'black');
+
         // line that controls all the logic!!!! :o
 		control.onUp.add(menuSelection, this);
 
@@ -94,7 +98,7 @@ var iceCreamState = {
 				} else if (mainScreen.sprite.frame === 5) {
 					cookieScreen.display = true;
 				} else if (mainScreen.sprite.frame === 6) {
-					game.state.start('map', true, false, control, pStyle);
+					nextState = true;
 				}
 				mainScreen.display = false;
 			}
@@ -120,5 +124,12 @@ var iceCreamState = {
 			}
 		}
 
+	}, 
+
+	update: function() {
+		if (nextState) { fadeOut('map'); }
+		else {
+			fadeIn();
+        }
 	}
 }
