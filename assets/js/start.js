@@ -96,8 +96,8 @@ var startState = {
             if (key == spaceBar) {
             	if (controlSelected && selectedControl == 1) {
             		selectedControl = 1; 
-	        		game.state.start('menu', true, false, selectedControl);
-	        	}
+	        	fadeOut = true;
+	        }
 
             	if (selectMode && spacePressed) {
             		// yes
@@ -131,7 +131,7 @@ var startState = {
         function showSelection() {
         	if (controlSelected && selectedControl == 2) {
         			selectedControl = 2; 
-	        		game.state.start('menu', true, false, selectedControl);
+	        		fadeOut = true;
 	        	}
         	if (selectMode && mousePressed) {
         		// yes
