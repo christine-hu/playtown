@@ -66,7 +66,7 @@ var startState = {
             if (key == enter) {
 	        	if (controlSelected && selectedControl == 0) {
 	        		selectedControl = 0;
-	        		fadeOut = true;
+	        		nextState = true;
 	        	}
             	if (selectMode && returnPressed) {
             		// yes
@@ -96,8 +96,8 @@ var startState = {
             if (key == spaceBar) {
             	if (controlSelected && selectedControl == 1) {
             		selectedControl = 1; 
-	        	fadeOut = true;
-	        }
+	        		nextState = true;
+	        	}
 
             	if (selectMode && spacePressed) {
             		// yes
@@ -131,7 +131,7 @@ var startState = {
         function showSelection() {
         	if (controlSelected && selectedControl == 2) {
         			selectedControl = 2; 
-	        		fadeOut = true;
+	        		nextState = true;
 	        	}
         	if (selectMode && mousePressed) {
         		// yes
@@ -208,13 +208,8 @@ var startState = {
 	}, 
 
     update: function() {
-        if (fadeOut) {
-            if (black.alpha < .98) {
-                black.alpha += 0.02;
-            }
-            if (black.alpha >= 0.98) {
-                game.state.start('menu', true, false, selectedControl);
-            }
+        if (nextState) {
+            fadeOut('menu');
         }
     },
 
