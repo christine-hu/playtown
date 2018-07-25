@@ -1,6 +1,7 @@
 var characterState = {
 
 	create: function() {
+		nextState = false; 
 		var backdrop;
 		var nose;
 
@@ -205,6 +206,9 @@ var characterState = {
         hairScreen1.current = game.add.sprite(414, 163, hairColor, hairStyle);
         accessoryScreen.current = game.add.sprite(514, 148, 'accessories', 6);
 
+         // fade effect image 
+        black = game.add.sprite(0, 0, 'black');
+
 		// line that controls EVERYTHING!!!! :o
 		control.onUp.add(menuSelection, this);
 
@@ -229,7 +233,7 @@ var characterState = {
 				} else if (mainScreen.sprite.frame === 5) {
 					hairColorScreen.display = true;
 				} else if (mainScreen.sprite.frame === 6) {
-					game.state.start('map', true, false, control, pStyle);
+					nextState = true;
 				}
 				mainScreen.display = false;
 			}
@@ -255,5 +259,12 @@ var characterState = {
 			}
 		}
 
+	}, 
+
+	update: function() {
+		if (nextState) { fadeOut('map'); }
+		else {
+			fadeIn();
+        }
 	}
 }

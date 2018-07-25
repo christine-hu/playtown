@@ -1,7 +1,7 @@
 var robotState = {
 
 	create: function() {
-
+		nextState = false; 
 		var backdrop; 
 
 		// menu screens
@@ -80,6 +80,9 @@ var robotState = {
         designScreen.current = game.add.sprite(580, 330, 'design', 6);
         faceScreen.current = game.add.sprite(597, 233, 'face', 6);
 
+        // fade effect image 
+        black = game.add.sprite(0, 0, 'black');
+
         // line that controls all the logic!!!! :o
 		control.onUp.add(menuSelection, this);
 
@@ -103,7 +106,7 @@ var robotState = {
 				} else if (mainScreen.sprite.frame === 5) {
 					designScreen.display = true;
 				} else if (mainScreen.sprite.frame === 6) {
-					game.state.start('map', true, false, control, pStyle);
+					nextState = true;
 				}
 				mainScreen.display = false;
 			}
@@ -129,5 +132,12 @@ var robotState = {
 			}
 		}
 
+	}, 
+
+	update: function() {
+		if (nextState) { fadeOut('map'); }
+		else {
+			fadeIn();
+        }
 	}
 }
