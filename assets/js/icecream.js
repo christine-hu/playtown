@@ -25,6 +25,13 @@ var iceCreamState = {
 		p1.boundsAlignV = 'middle';
         p1.setTextBounds(100, 40, 700, 70);
 
+        // escaping to previous state
+        escape.onUp.add(prevState, this);
+
+		function prevState() {
+			game.state.start('map');
+		}
+
         // initializing done button
 		doneButtonSprite = game.add.sprite(720, 560, 'doneButton');
         doneButtonSprite.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);

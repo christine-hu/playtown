@@ -21,6 +21,13 @@ var mapState = {
 		// fade effect image 
         black = game.add.sprite(0, 0, 'black');
 
+        // escaping to previous state
+        escape.onUp.add(prevState, this);
+
+		function prevState() {
+			game.state.start('menu');
+		}
+
 		// line that controls all the logic :o 
 		control.onUp.add(menuSelection, this);
 
