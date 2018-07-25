@@ -43,6 +43,13 @@ var characterState = {
 		p1.boundsAlignV = 'middle';
         p1.setTextBounds(100, 35, 700, 65);
 
+        // escaping to previous state
+        escape.onUp.add(prevState, this);
+
+		function prevState() {
+			game.state.start('map');
+		}
+
          // setting up done/back buttons 
         doneButtonSprite = game.add.sprite(720, 560, 'doneButton');
         doneButtonSprite.animations.add('done', [4, 4, 4, 4, 4, 4, 5]);

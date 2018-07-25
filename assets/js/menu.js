@@ -91,6 +91,12 @@ var menuState = {
 			control = game.input;
 		}
 
+		escape.onUp.add(prevState, this);
+
+		function prevState() {
+			game.state.start('start');
+		}
+		
 		// line that controls EVERYTHING!!!! :o
 		control.onUp.add(menuSelection, this);
 

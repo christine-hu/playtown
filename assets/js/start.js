@@ -56,6 +56,7 @@ var startState = {
         black = game.add.sprite(0, 0, 'black');
         black.alpha = 0; 
 
+        escape = game.input.keyboard.addKey(Phaser.Keyboard.ESC);
         enter = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
         spaceBar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
