@@ -8,6 +8,7 @@ var startState = {
 		var titleText;
         var titleStyle;
         var p1;
+        var p2;
         var pStyle;
 
         // sprites
@@ -16,7 +17,7 @@ var startState = {
         var selection;
         var button;
         var returnKey;
-        var spaceBar;
+        var space;
         var spaceBarSprite;
 
         // booleans
@@ -39,14 +40,16 @@ var startState = {
         	boundsAlignV: 'top'
         };
 
-        p1 = game.add.text(0, 0, "Select a control:", pStyle);
-        p1.setTextBounds(100, 240, 700, 220);
+        p1 = game.add.text(0, 0, "Select a control!", pStyle);
+        p2 = game.add.text(0, 0, 'For two (2) switches, press tab.', pStyle);
+        p1.setTextBounds(100, 230, 700, 220);
+        p2.setTextBounds(100, 290, 700, 240);
 
-        keyboard = game.add.sprite(-30, 320, 'keyboard');
+        keyboard = game.add.sprite(-30, 350, 'keyboard');
         keyboard.animations.add('buttons', [0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]);
         keyboard.animations.play('buttons', 5, true);
 
-        mouse = game.add.sprite(695, 320, 'mouse');
+        mouse = game.add.sprite(695, 350, 'mouse');
         mouse.animations.add('click', [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]);
         mouse.animations.play('click', 5, true);
 
@@ -56,9 +59,10 @@ var startState = {
         black = game.add.sprite(0, 0, 'black');
         black.alpha = 0; 
 
+        tab = game.input.keyboard.addKey(Phaser.Keyboard.TAB);
         escape = game.input.keyboard.addKey(Phaser.Keyboard.ESC);
         enter = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
-        spaceBar = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+        space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
 
  		// shows yes/no popup for keyboard keys 
@@ -80,7 +84,7 @@ var startState = {
 		        	}
 	        	}
 	        	if (!selectMode && !returnPressed && !controlSelected)	{
-	                selection = game.add.sprite(550, 310, 'selection');
+	                selection = game.add.sprite(550, 340, 'selection');
 	                selection.animations.add('click', [1, 0]);
 	                keyboard.animations.stop(true, '0');
 	                mouse.animations.stop(true, '0');
@@ -94,7 +98,7 @@ var startState = {
             } 
 
 
-            if (key == spaceBar) {
+            if (key == space) {
             	if (controlSelected && selectedControl == 1) {
             		selectedControl = 1; 
 	        		nextState = true;
@@ -112,7 +116,7 @@ var startState = {
 	        	}
 
 	        	if (!selectMode && !spacePressed && !controlSelected) {
-	            	selection = game.add.sprite(280, 400, 'selection');
+	            	selection = game.add.sprite(280, 430, 'selection');
 	                selection.animations.add('click', [1, 0]);
 	                keyboard.animations.stop(true, '0');
 	                mouse.animations.stop(true, '0');
@@ -146,7 +150,7 @@ var startState = {
 	        	}
 	        }
 	        if (!selectMode && !mousePressed && !controlSelected) {
-	        	selection = game.add.sprite(700, 200, 'selection');
+	        	selection = game.add.sprite(700, 230, 'selection');
 	            selection.animations.add('click', [1, 0]);
 	            keyboard.animations.stop(true, '0');
 	            mouse.animations.stop(true, '0');
@@ -174,6 +178,8 @@ var startState = {
 
     	// moves to screen confirming control 
     	function nextScreen() {
+            p1.setTextBounds(100, 240, 700, 220);
+            p2.destroy();
     		selection.destroy();
     		if (mousePressed) {
     			selectedControl = 2;

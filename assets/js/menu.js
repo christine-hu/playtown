@@ -84,13 +84,14 @@ var menuState = {
 
 	    // determining which control to listen for 
 	    if (selectedControl == 0) { 
-			control = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+			control = enter;
 		} else if (selectedControl == 1) {
-			control = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+			control = space;
 		} else if (selectedControl == 2) {
 			control = game.input;
 		}
 
+		// escape to previous state
 		escape.onUp.add(prevState, this);
 
 		function prevState() {

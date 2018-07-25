@@ -1,11 +1,17 @@
-// global variables, default settings
-
+// default settings
 var speed = 2; 
 var size = '45px';
 var color = 'color';
+
+// input keys 
+var escape; 
+var tab; 
+var enter; 
+var space;
+
+// misc. global variables 
 var black;
 var nextState = false;
-var escape; 
 
 function menuScreen(sprite, text, texture, mainScreen, backAnim, doneAnim, mainText, num = 6) {
 	this.sprite = sprite;
