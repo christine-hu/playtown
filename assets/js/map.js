@@ -15,17 +15,25 @@ var mapState = {
 		game.add.sprite(159, 50, 'title');
 		mapSprite = game.add.sprite(-12, 330, 'map');
 		carrots = game.add.sprite(86, 600, 'mapCarrots');
+		if (!twoSwitches) {
 			carrots.animations.add('scroll');
 			carrots.animations.play('scroll', speed, true);
-
+		}
 		// fade effect image 
         black = game.add.sprite(0, 0, 'black');
 
         // escaping to previous state
         escape.onUp.add(prevState, this);
-
 		function prevState() {
 			game.state.start('menu');
+		}
+
+		// scanning with tab key
+		if (twoSwitches) {
+			tab.onUp.add(scan, this);
+			function scan() {
+				carrots.frame = carrots.frame + 1; 
+			}
 		}
 
 		// line that controls all the logic :o 

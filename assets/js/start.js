@@ -69,12 +69,12 @@ var startState = {
 
         // tab scanning for two switch controls 
         tab.onUp.add(scan, this);
-
         function scan() {
             if (twoSwitchSprite != undefined) {
                 twoSwitchSprite.frame = twoSwitchSprite.frame + 1; 
             }
         }
+        
 
  		// controls keyboard input 
         game.input.keyboard.onUpCallback = function() {
