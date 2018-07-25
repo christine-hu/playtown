@@ -82,12 +82,13 @@ var menuState = {
 		// fade effect image 
         black = game.add.sprite(0, 0, 'black');
 
+
 	    // determining which control to listen for 
-	    if (selectedControl == 0) { 
+	    if (selectedControl === 0) { 
 			control = enter;
-		} else if (selectedControl == 1) {
+		} else if (selectedControl === 1) {
 			control = space;
-		} else if (selectedControl == 2) {
+		} else if (selectedControl === 2) {
 			control = game.input;
 		}
 
