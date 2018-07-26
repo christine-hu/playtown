@@ -32,52 +32,62 @@ var robotState = {
 			game.state.start('map');
 		}
 
+		// tab scanning 
+		if (twoSwitches) {
+			tab.onUp.add(scan, this);
+			function scan() {
+				scanScreen(mainScreen);
+				scanScreen(bodyScreen);
+				scanScreen(faceScreen);
+				scanScreen(antennaScreen);
+				scanScreen(armScreen);
+				scanScreen(legScreen);
+				scanScreen(designScreen);
+			}
+		}
+
         // initializing done button
-		doneButtonSprite = game.add.sprite(720, 560, 'doneButton');
-        doneButtonSprite.animations.add('done', [8, 8, 8, 8, 8, 8, 9]);
-        doneButtonSprite.animations.add('back', [10, 10, 10, 10, 10, 10, 11]);
-        doneAnim = doneButtonSprite.animations.play('done', speed, true);
-        backAnim = doneButtonSprite.animations.getAnimation('back');
+		doneButton = game.add.sprite(720, 560, 'doneButton');
+        doneButton.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
+        doneButton.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);
 
 		// initializing menu screens
-		mainScreen = new menuScreen(game.add.sprite(45, 155, 'robotMenu'));
-			mainScreen.sprite.visible = true;
-			mainScreen.anim.play(speed, true);
-			mainScreen.display = true;
+		mainScreen = new menuScreen(game.add.sprite(45, 155, 'robotMenu'), doneButton);
+		mainScreen.initializeMain();
 
-		bodyScreen = new menuScreen(game.add.sprite(45, 155, 'bodyMenu'), 'Select a body color!', 'body', mainScreen, backAnim, doneAnim, 'Build a robot!');
+		bodyScreen = new menuScreen(game.add.sprite(45, 155, 'bodyMenu'), doneButton, 'Select a body color!', 'body', mainScreen, 'Build a robot!');
 
-		faceScreen = new menuScreen(game.add.sprite(45, 155, 'faceMenu'), 'Select a face!', 'face', mainScreen, backAnim, doneAnim, 'Build a robot!');
+		faceScreen = new menuScreen(game.add.sprite(45, 155, 'faceMenu'), doneButton, 'Select a face!', 'face', mainScreen, 'Build a robot!');
 
-		antennaScreen = new menuScreen(game.add.sprite(45, 155, 'antennaMenu'), 'Select an antenna!', 'antenna', mainScreen, backAnim, doneAnim, 'Build a robot!');
+		antennaScreen = new menuScreen(game.add.sprite(45, 155, 'antennaMenu'), doneButton, 'Select an antenna!', 'antenna', mainScreen, 'Build a robot!');
 
-		armScreen = new menuScreen(game.add.sprite(45, 155, 'armMenu'), 'Select arms!', 'gray', mainScreen, backAnim, doneAnim, 'Build a robot!');
+		armScreen = new menuScreen(game.add.sprite(45, 155, 'armMenu'), doneButton, 'Select arms!', 'gray', mainScreen, 'Build a robot!');
 			armScreen.armColor = 'gray';
 			armScreen.armStyle = 6;
 			armScreen.displaySelection = function() {
-				if (armScreen.anim.frame !== 6) {
-					armScreen.armStyle = armScreen.anim.frame;
+				if (armScreen.sprite.frame !== 6) {
+					armScreen.armStyle = armScreen.sprite.frame;
 					armScreen.current.loadTexture(armScreen.armColor, armScreen.armStyle);
 				} 
 			}
 
-		legScreen = new menuScreen(game.add.sprite(45, 155, 'legMenu'), 'Select a wheel color!', 'leg', mainScreen, backAnim, doneAnim, 'Build a robot!');
+		legScreen = new menuScreen(game.add.sprite(45, 155, 'legMenu'), doneButton, 'Select a wheel color!', 'leg', mainScreen, 'Build a robot!');
 			legScreen.displaySelection = function() {
-				if (legScreen.anim.frame !== 6) {
-					if (legScreen.anim.frame === 0) { armScreen.armColor = 'gray'; }
-					else if (legScreen.anim.frame === 1) { armScreen.armColor = 'purple'; }
-					else if (legScreen.anim.frame === 2) { armScreen.armColor = 'red'; }
-					else if (legScreen.anim.frame === 3) { armScreen.armColor = 'blue'; }
-					else if (legScreen.anim.frame === 4) { armScreen.armColor = 'green'; }
-					else if (legScreen.anim.frame === 5) { armScreen.armColor = 'brown'; }
+				if (legScreen.sprite.frame !== 6) {
+					if (legScreen.sprite.frame === 0) { armScreen.armColor = 'gray'; }
+					else if (legScreen.sprite.frame === 1) { armScreen.armColor = 'purple'; }
+					else if (legScreen.sprite.frame === 2) { armScreen.armColor = 'red'; }
+					else if (legScreen.sprite.frame === 3) { armScreen.armColor = 'blue'; }
+					else if (legScreen.sprite.frame === 4) { armScreen.armColor = 'green'; }
+					else if (legScreen.sprite.frame === 5) { armScreen.armColor = 'brown'; }
 					if (armScreen.armStyle === 6) { armScreen.armStyle = 0; }
-					legScreen.current.loadTexture(legScreen.texture, legScreen.anim.frame);
+					legScreen.current.loadTexture(legScreen.texture, legScreen.sprite.frame);
 					armScreen.current.loadTexture(armScreen.armColor, armScreen.armStyle);
 				} 
 			}
 
 
-		designScreen = new menuScreen(game.add.sprite(45, 155, 'designMenu'), 'Select a design!', 'design', mainScreen, backAnim, doneAnim, 'Build a robot!');
+		designScreen = new menuScreen(game.add.sprite(45, 155, 'designMenu'), doneButton, 'Select a design!', 'design', mainScreen, 'Build a robot!');
 
 		// displaying robot components 
         armScreen.current = game.add.sprite(482, 206, armScreen.armColor, armScreen.armStyle);
