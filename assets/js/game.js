@@ -127,10 +127,10 @@ function scanScreen(screen) {
 	if (this.screen.isDisplayed()) {
 
 		this.screen.sprite.frame = this.screen.sprite.frame + 1; 
-		if (this.screen.sprite.frame > 6) {
+		if (this.screen.sprite.frame > this.screen.numOptions) {
 			this.screen.sprite.frame = 0;
 		}
-		if (this.screen.sprite.frame === 6) {
+		if (this.screen.sprite.frame === this.screen.numOptions) {
 			if (this.screen.isMainScreen) {
 				this.screen.doneButton.frame = 1;
 			} else {
