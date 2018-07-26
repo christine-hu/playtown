@@ -40,6 +40,7 @@ var preloadState = {
       game.load.spritesheet('hairColorMenu', 'assets/img/character/hairColorMenu.png', 328, 455);
 
       game.load.spritesheet('doneButton', 'assets/img/doneButton.png', 83, 75);
+      game.load.spritesheet('doneButton4', 'assets/img/doneButton4.png', 83, 75);
       game.load.image('characterBackground', 'assets/img/character/characterBackground.png', 521, 534);
 
       game.load.spritesheet('skin', 'assets/img/character/skin.png', 202, 265);
