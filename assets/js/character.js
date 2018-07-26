@@ -89,6 +89,9 @@ var characterState = {
 					if (!twoSwitches) {
 						hairScreen1.anim.play(speed, true);
 						hairScreen1.backAnim.play(speed, true);
+					} else {
+						hairScreen1.doneButton.frame = 2; 
+						hairScreen1.sprite.frame = 0; 
 					}
 				}
 			}
@@ -121,7 +124,11 @@ var characterState = {
 					if (!twoSwitches) {
 						hairScreen2.anim.play(speed, true);
 						hairScreen2.backAnim.play(speed, true);
+					} else {
+						hairScreen2.doneButton.frame = 2; 
+						hairScreen2.sprite.frame = 0; 
 					}
+					//console.log(hairScreen2.isDisplayed());
 				}
 			}
 			hairScreen2.controlLogic = function() {
@@ -176,6 +183,9 @@ var characterState = {
 					if (!twoSwitches) {
 						hairScreen3.backAnim.play(speed, true);
 						hairScreen3.anim.play(speed, true);
+					} else {
+						hairScreen3.doneButton.frame = 2; 
+						hairScreen3.sprite.frame = 0; 
 					}
 				}
 			}
@@ -188,7 +198,7 @@ var characterState = {
 						hairScreen3.sprite.visible = false;
 						displayScreen(hairScreen2);
 					} else if (hairScreen3.sprite.frame < 7) {
-						hairStyle = hairScreen3.anim.frame + 11;
+						hairStyle = hairScreen3.sprite.frame + 11;
 						hairScreen1.current.loadTexture(hairColor, hairStyle); 
 					} else if (hairScreen3.sprite.frame === 7) {
 						p1.setText('Design an avatar!', true);

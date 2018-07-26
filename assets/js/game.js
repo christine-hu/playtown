@@ -32,10 +32,10 @@ function menuScreen(sprite, doneButton, text, texture, mainScreen, mainText, num
 	this.initializeMain = function() {
 		this.isMainScreen = true;
 		this.sprite.visible = true;
-			if (!twoSwitches) {
-				this.doneAnim.play(speed, true);
-				this.anim.play(speed, true); 
-			}
+		if (!twoSwitches) {
+			this.doneAnim.play(speed, true);
+			this.anim.play(speed, true); 
+		}
 		this.display = true;
 	}
 
@@ -123,8 +123,8 @@ function fadeIn() {
 
 function scanScreen(screen) {
 	this.screen = screen; 
-	if (this.screen.isDisplayed()) {
-
+	if (this.screen.sprite.visible === true) {
+		// this.screen.isDisplayed() || 
 		this.screen.sprite.frame = this.screen.sprite.frame + 1; 
 		if (this.screen.sprite.frame > this.screen.numOptions) {
 			this.screen.sprite.frame = 0;
@@ -142,8 +142,6 @@ function scanScreen(screen) {
 				this.screen.doneButton.frame = 2; 
 			}
 		}
-
-
 	}
 }
 
