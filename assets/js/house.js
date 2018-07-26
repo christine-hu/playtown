@@ -32,30 +32,40 @@ var houseState = {
 			game.state.start('map');
 		}
 
+		// tab scanning 
+		if (twoSwitches) {
+			tab.onUp.add(scan, this);
+			function scan() {
+				scanScreen(mainScreen);
+				scanScreen(textureScreen);
+				scanScreen(windowsScreen);
+				scanScreen(roofScreen);
+				scanScreen(skyScreen);
+				scanScreen(groundScreen);
+				scanScreen(foliageScreen);
+			}
+		}
+
          // initializing done button
-        doneButtonSprite = game.add.sprite(720, 560, 'doneButton');
-        doneButtonSprite.animations.add('done', [12, 12, 12, 12, 12, 12, 13]);
-        doneButtonSprite.animations.add('back', [14, 14, 14, 14, 14, 14, 15]);
-        doneAnim = doneButtonSprite.animations.play('done', speed, true);
-        backAnim = doneButtonSprite.animations.getAnimation('back');
+        doneButton = game.add.sprite(720, 560, 'doneButton4');
+        doneButton.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
+        doneButton.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);
 
 		// initializing menu screens
-		mainScreen = new menuScreen(game.add.sprite(45, 155, 'houseMenu'));
-			mainScreen.sprite.visible = true;
-			mainScreen.anim.play(speed, true);
-			mainScreen.display = true;
+		mainScreen = new menuScreen(game.add.sprite(45, 155, 'houseMenu'), doneButton);
+		mainScreen.initializeMain();
 
-		textureScreen = new menuScreen(game.add.sprite(45, 155, 'textureMenu'), 'Select a house style!', 'texture', mainScreen, backAnim, doneAnim, 'Design a house!');
+		textureScreen = new menuScreen(game.add.sprite(45, 155, 'textureMenu'), doneButton, 'Select a house style!', 'texture', mainScreen, 'Design a house!');
 
-		windowsScreen = new menuScreen(game.add.sprite(45, 155, 'windowsMenu'), 'Select a window!', 'windows', mainScreen, backAnim, doneAnim, 'Design a house!');
+		windowsScreen = new menuScreen(game.add.sprite(45, 155, 'windowsMenu'), doneButton, 'Select a window!', 'windows', mainScreen, 'Design a house!');
 
-		roofScreen = new menuScreen(game.add.sprite(45, 155, 'roofMenu'), 'Select a roof!', 'roof', mainScreen, backAnim, doneAnim, 'Design a house!');
+		roofScreen = new menuScreen(game.add.sprite(45, 155, 'roofMenu'), doneButton, 'Select a roof!', 'roof', mainScreen, 'Design a house!');
 
-		skyScreen = new menuScreen(game.add.sprite(45, 155, 'skyMenu'), 'Select a sky!', 'sky', mainScreen, backAnim, doneAnim, 'Design a house!');
+		skyScreen = new menuScreen(game.add.sprite(45, 155, 'skyMenu'), doneButton, 'Select a sky!', 'sky', mainScreen, 'Design a house!');
 		
-		groundScreen = new menuScreen(game.add.sprite(45, 155, 'groundMenu'), 'Select a ground color!', 'ground', mainScreen, backAnim, doneAnim, 'Design a house!');
+		groundScreen = new menuScreen(game.add.sprite(45, 155, 'groundMenu'), doneButton, 'Select a ground color!', 'ground', mainScreen, 'Design a house!');
 
-		foliageScreen = new menuScreen(game.add.sprite(45, 155, 'foliageMenu'), 'Select a background!', 'foliage', mainScreen, backAnim, doneAnim, 'Design a house!');
+		foliageScreen = new menuScreen(game.add.sprite(45, 155, 'foliageMenu'), doneButton, 'Select a background!', 'foliage', mainScreen, 'Design a house!');
 
         // displaying house components   
         skyScreen.current = game.add.sprite(410, 155, 'sky', 6);
@@ -65,7 +75,7 @@ var houseState = {
         textureScreen.current = game.add.sprite(495, 285, 'texture', 6);
         windowsScreen.current = game.add.sprite(545, 370, 'windows', 6);
         roofScreen.current = game.add.sprite(496, 245, 'roof', 6);
-        doneButtonSprite.bringToTop();
+        doneButton.bringToTop();
 
         // fade effect image 
         black = game.add.sprite(0, 0, 'black');

@@ -15,6 +15,7 @@ var preloadState = {
       game.load.spritesheet('return', 'assets/img/intro/return.png', 350, 225);
       game.load.spritesheet('selection', 'assets/img/intro/selection.png', 180, 137);
       game.load.spritesheet('spaceBar', 'assets/img/intro/spaceBar.png', 850, 150);
+      game.load.spritesheet('twoSwitch', 'assets/img/intro/twoSwitch.png', 444, 213);
 
       // menu images 
       game.load.spritesheet('mainMenu', 'assets/img/menu/mainMenu.png', 735, 221);
@@ -39,6 +40,7 @@ var preloadState = {
       game.load.spritesheet('hairColorMenu', 'assets/img/character/hairColorMenu.png', 328, 455);
 
       game.load.spritesheet('doneButton', 'assets/img/doneButton.png', 83, 75);
+      game.load.spritesheet('doneButton4', 'assets/img/doneButton4.png', 83, 75);
       game.load.image('characterBackground', 'assets/img/character/characterBackground.png', 521, 534);
 
       game.load.spritesheet('skin', 'assets/img/character/skin.png', 202, 265);
