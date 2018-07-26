@@ -55,7 +55,6 @@ function menuScreen(sprite, doneButton, text, texture, mainScreen, mainText, num
 		}
 	}
 	this.controlLogic = function() {
-		console.log(this.sprite.frame);
 		if (this.selectMode === true) {
 			this.displaySelection();
 			if (this.sprite.frame === this.numOptions) { 
