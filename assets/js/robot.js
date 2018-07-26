@@ -47,7 +47,7 @@ var robotState = {
 		}
 
         // initializing done button
-		doneButton = game.add.sprite(720, 560, 'doneButton');
+		doneButton = game.add.sprite(720, 560, 'doneButton2');
         doneButton.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
         doneButton.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);
 

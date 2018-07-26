@@ -67,7 +67,7 @@ var characterState = {
 		}
 
          // setting up done/back buttons 
-        doneButton = game.add.sprite(720, 560, 'doneButton');
+        doneButton = game.add.sprite(720, 560, 'doneButton3');
         doneButton.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
         doneButton.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);
         doneButton.animations.add('back7', [2, 2, 2, 2, 2, 2, 2, 3]);
