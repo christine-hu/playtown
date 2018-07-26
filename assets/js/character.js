@@ -98,7 +98,6 @@ var characterState = {
 						hairStyle = hairScreen1.sprite.frame;
 						hairScreen1.current.loadTexture(hairColor, hairStyle);
 					} else if (hairScreen1.sprite.frame === 6) {
-						console.log('hello');
 						page1 = false; 
 						page2 = true;
 						hairScreen1.selectMode = false;
@@ -149,7 +148,7 @@ var characterState = {
 	    				mainScreen.sprite.visible = true;
 	    				if (!twoSwitches){
 	    					mainScreen.anim.restart();
-	    					doneAnim.restart();
+	    					hairScreen2.doneAnim.restart();
 	    				} else {
 	    					hairScreen2.doneButton.frame = 0; 
 	    				}
@@ -196,8 +195,8 @@ var characterState = {
 						hairScreen3.sprite.visible = false;
 	    				mainScreen.sprite.visible = true;
 	    				if (!twoSwitches) {
-							mainScreen.sprite.animations.currentAnim.restart();
-	    					doneAnim.restart();
+							mainScreen.anim.restart();
+	    					hairScreen3.doneAnim.restart();
 	    				} else {
 							hairScreen3.doneButton.frame = 0; 
 	    				}
