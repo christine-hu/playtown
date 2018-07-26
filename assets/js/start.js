@@ -29,6 +29,8 @@ var startState = {
         var tabPressed = false; // was the tab key selected?
         var reset = false; // resets selection
         var controlSelected = false; // has the control been selected?
+        control = null;
+        twoSwitches = false; 
 
         game.add.sprite(159, 70, 'title');
 

@@ -60,9 +60,9 @@ var mapState = {
 
 	update: function() {
 		if (nextState === 5) { fadeIn(); }
-		else if (nextState === 0) { console.log('0'); fadeOut('icecream'); }
-		else if (nextState === 1) { console.log('1'); fadeOut('robot'); }
-		else if (nextState === 2) { console.log('2'); fadeOut('character'); }
+		else if (nextState === 0) { fadeOut('icecream'); }
+		else if (nextState === 1) { fadeOut('robot'); }
+		else if (nextState === 2) { fadeOut('character'); }
 		else if (nextState === 3) { fadeOut('house'); }
 	}
 
