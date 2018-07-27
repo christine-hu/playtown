@@ -116,8 +116,16 @@ var iceCreamState = {
 				} else if (mainScreen.sprite.frame === 5) {
 					cookieScreen.display = true;
 				} else if (mainScreen.sprite.frame === 6) { 
-					var image = game.canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
-                    window.location.href=image; 
+					// mainScreen.sprite.visible = false; 
+					// p1.setText('Yummy!', true);
+					// backdrop.x = 190;
+					// cookieScreen.current.x = cookieScreen.current.x - 175;
+					// coneScreen.current.x = coneScreen.current.x - 175;
+					// flavorScreen.current.x = flavorScreen.current.x - 175; 
+					// syrupScreen.current.x = syrupScreen.current.x - 175;
+					// sprinklesScreen.current.x = sprinklesScreen.current.x - 175;
+					// fruitScreen.current.x = fruitScreen.current.x - 175;
+					saveImage();
 					nextState = true;
 				}
 				mainScreen.display = false;
@@ -125,8 +133,6 @@ var iceCreamState = {
 
 			// displaying preference screens
 			if (coneScreen.isDisplayed()) {
-				// var image = game.canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
-    //                 window.location.href=image; 
 				displayScreen(coneScreen);
 			}
 			if (flavorScreen.isDisplayed()) {

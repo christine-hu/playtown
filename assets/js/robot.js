@@ -123,6 +123,7 @@ var robotState = {
 				} else if (mainScreen.sprite.frame === 5) {
 					designScreen.display = true;
 				} else if (mainScreen.sprite.frame === 6) {
+					saveImage();
 					nextState = true;
 				}
 				mainScreen.display = false;

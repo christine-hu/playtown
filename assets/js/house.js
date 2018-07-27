@@ -95,7 +95,7 @@ var houseState = {
 				else if (mainScreen.sprite.frame === 3) { skyScreen.display = true; } 
 				else if (mainScreen.sprite.frame === 4) { groundScreen.display = true; } 
 				else if (mainScreen.sprite.frame === 5) { foliageScreen.display = true; } 
-				else if (mainScreen.sprite.frame === 6) { nextState = true; }
+				else if (mainScreen.sprite.frame === 6) { saveImage(); nextState = true; }
 				mainScreen.display = false;
 			}
 

@@ -145,6 +145,19 @@ function scanScreen(screen) {
 	}
 }
 
+function saveImage() {
+	var img = new Image();
+    img.src = game.canvas.toDataURL();
+    img.onload = function() {
+        var canvas1 = document.createElement('canvas');
+        var ctx1 = canvas1.getContext('2d');
+        canvas1.width = 491;
+        canvas1.height = 532;
+        ctx1.drawImage(img, 380, 118, 491, 532, 0, 0, 491, 532);
+        var out = canvas1.toDataURL("image/png").replace("image/png", "image/octet-stream");
+        window.location.href=out; 
+    }
+}
 
 var game = new Phaser.Game(900, 700, Phaser.CANVAS, 'gameDiv');
 
