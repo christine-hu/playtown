@@ -66,6 +66,7 @@ var iceCreamState = {
 		coneScreen = new menuScreen(game.add.sprite(45, 155, 'coneMenu'), doneButton, 'Select a cone!', 'cone', mainScreen, 'Make some ice cream!');
 			coneScreen.prevCone = null;
 			coneScreen.displaySelection = function() {
+				console.log(coneScreen.prevCone);
 				if (coneScreen.sprite.frame === 0 || coneScreen.sprite.frame === 1) {
 					coneScreen.current.loadTexture('cone', coneScreen.sprite.frame);
 					if (coneScreen.prevCone === 2 || coneScreen.prevCone === 3 || coneScreen.prevCone === 4 || coneScreen.prevCone === 5) {
@@ -77,7 +78,9 @@ var iceCreamState = {
 						coneScreen.current.moveUp();
 					}
 				}
-				coneScreen.prevCone = coneScreen.sprite.frame;
+				if (coneScreen.sprite.frame !== 6) {
+					coneScreen.prevCone = coneScreen.sprite.frame;
+				}
 			}
 
 		// displaying ice cream components
@@ -112,7 +115,9 @@ var iceCreamState = {
 					fruitScreen.display = true;
 				} else if (mainScreen.sprite.frame === 5) {
 					cookieScreen.display = true;
-				} else if (mainScreen.sprite.frame === 6) {
+				} else if (mainScreen.sprite.frame === 6) { 
+					var image = game.canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
+                    window.location.href=image; 
 					nextState = true;
 				}
 				mainScreen.display = false;
@@ -120,6 +125,8 @@ var iceCreamState = {
 
 			// displaying preference screens
 			if (coneScreen.isDisplayed()) {
+				// var image = game.canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
+    //                 window.location.href=image; 
 				displayScreen(coneScreen);
 			}
 			if (flavorScreen.isDisplayed()) {
