@@ -1,5 +1,5 @@
 // default settings
-var speed = .5; 
+var speed = 2; 
 var size = '45px';
 var color = 'color';
 
@@ -91,6 +91,10 @@ function menuScreen(sprite, doneButton, text, texture, mainScreen, mainText, num
 	}
 }
 
+function doneScreen() {
+
+}
+
 function displayScreen(screen) {
 	screen.initialize();
 	screen.controlLogic();
@@ -124,7 +128,6 @@ function fadeIn() {
 function scanScreen(screen) {
 	this.screen = screen; 
 	if (this.screen.sprite.visible === true) {
-		// this.screen.isDisplayed() || 
 		this.screen.sprite.frame = this.screen.sprite.frame + 1; 
 		if (this.screen.sprite.frame > this.screen.numOptions) {
 			this.screen.sprite.frame = 0;
@@ -152,11 +155,16 @@ function saveImage() {
         var canvas1 = document.createElement('canvas');
         var ctx1 = canvas1.getContext('2d');
         canvas1.width = 491;
-        canvas1.height = 532;
-        ctx1.drawImage(img, 380, 118, 491, 532, 0, 0, 491, 532);
+        canvas1.height = 490;
+        ctx1.drawImage(img, 205, 104, 491, 532, 0, 0, 491, 532);
         var out = canvas1.toDataURL("image/png").replace("image/png", "image/octet-stream");
         window.location.href=out; 
     }
+}
+
+function translate(sprite, dx, dy) {
+	sprite.x = sprite.x + dx;
+	sprite.y = sprite.y + dy;
 }
 
 var game = new Phaser.Game(900, 700, Phaser.CANVAS, 'gameDiv');

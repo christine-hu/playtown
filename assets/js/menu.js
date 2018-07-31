@@ -100,7 +100,6 @@ var menuState = {
 		}
 		
 		// controlling scanning 
-		console.log(twoSwitches);
 		if (twoSwitches) {
 			tab.onUp.add(scan, this);
 			function scan() {
