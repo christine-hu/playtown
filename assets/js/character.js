@@ -73,7 +73,7 @@ var characterState = {
         doneButton.animations.add('back7', [2, 2, 2, 2, 2, 2, 2, 3]);
         doneButton.animations.add('back8', [2, 2, 2, 2, 2, 2, 2, 2, 3]);
 
-        button = game.add.sprite(320, 590, 'doneScreen');
+        button = game.add.sprite(320, 590, 'doneScreen3');
 		button.animations.add('scroll');
 		button.visible = false;
 

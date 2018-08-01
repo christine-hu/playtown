@@ -19,6 +19,7 @@ var mapState = {
 			carrots.animations.add('scroll');
 			carrots.animations.play('scroll', speed, true);
 		}
+
 		// fade effect image 
         black = game.add.sprite(0, 0, 'black');
 
@@ -28,7 +29,7 @@ var mapState = {
 			game.state.start('menu');
 		}
 
-		// scanning with tab key
+		// tab scanning 
 		if (twoSwitches) {
 			tab.onUp.add(scan, this);
 			function scan() {
@@ -38,22 +39,12 @@ var mapState = {
 
 		// line that controls all the logic :o 
 		control.onUp.add(menuSelection, this);
-
 		function menuSelection(pointer) {
 			// stops mouseIn & mouseOut events 
 			if (control === game.input && !pointer.withinGame) {return;}
 			
 			// starts each location
-			if (carrots.frame === 0) {
-				nextState = 0; 
-			} else if (carrots.frame === 1) {
-				nextState = 1; 
-			} else if (carrots.frame === 2) {
-				nextState = 2; 
-			} else if (carrots.frame === 3) {
-				nextState = 3;
-			} 
-		
+			nextState = carrots.frame;
 		}
 
 	}, 

@@ -46,7 +46,7 @@ var iceCreamState = {
 			}
 		}
 
-        // initializing done button
+        // initializing buttons
 		doneButton = game.add.sprite(720, 560, 'doneButton');
 		doneButton.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
 		doneButton.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);
@@ -94,8 +94,6 @@ var iceCreamState = {
 
 		doneScreen = new endScreen(screens, button, backdrop);
 		screens[6] = doneScreen;
-		screens[7] = hairScreen2;
-		screens[8] = hairScreen3;
 
 		// displaying ice cream components
         cookieScreen.current = game.add.sprite(630, 170, 'cookie', 5);

@@ -28,35 +28,6 @@ var preloadState = {
       game.load.image('map', 'assets/img/map.png', 926, 390);
       game.load.spritesheet('mapCarrots', 'assets/img/mapCarrots.png', 727, 49);
 
-      // character images 
-      game.load.spritesheet('characterMenu', 'assets/img/character/characterMenu.png', 328, 455);
-      game.load.spritesheet('skinMenu', 'assets/img/character/skinMenu.png', 328, 455);
-      game.load.spritesheet('hairMenu1', 'assets/img/character/hairMenu1.png', 328, 524);
-      game.load.spritesheet('hairMenu2', 'assets/img/character/hairMenu2.png', 328, 593);
-      game.load.spritesheet('hairMenu3', 'assets/img/character/hairMenu3.png', 328, 524);
-      game.load.spritesheet('eyeMenu', 'assets/img/character/eyeMenu.png', 328, 455);
-      game.load.spritesheet('mouthMenu', 'assets/img/character/mouthMenu.png', 328, 455);
-      game.load.spritesheet('accessoryMenu', 'assets/img/character/accessoryMenu.png', 328, 455);
-      game.load.spritesheet('hairColorMenu', 'assets/img/character/hairColorMenu.png', 328, 455);
-
-      game.load.spritesheet('doneButton', 'assets/img/doneButton.png', 83, 75);
-      game.load.spritesheet('doneButton2', 'assets/img/doneButton2.png', 83, 75);
-      game.load.spritesheet('doneButton3', 'assets/img/doneButton3.png', 83, 75);
-      game.load.spritesheet('doneButton4', 'assets/img/doneButton4.png', 83, 75);
-      game.load.image('characterBackground', 'assets/img/character/characterBackground.png', 521, 534);
-
-      game.load.spritesheet('skin', 'assets/img/character/skin.png', 202, 265);
-      game.load.spritesheet('eyes', 'assets/img/character/eyes.png', 140, 46);
-      game.load.image('nose', 'assets/img/character/nose.png', 32, 15);
-      game.load.spritesheet('mouth', 'assets/img/character/mouth.png', 88, 60);
-      game.load.spritesheet('hair', 'assets/img/character/hair.png', 423, 439);
-      game.load.spritesheet('hairBrown', 'assets/img/character/hairBrown.png', 423, 439);
-      game.load.spritesheet('hairBlonde', 'assets/img/character/hairBlonde.png', 423, 439);
-      game.load.spritesheet('hairOrange', 'assets/img/character/hairOrange.png', 423, 439);
-      game.load.spritesheet('hairPink', 'assets/img/character/hairPink.png', 423, 439);
-      game.load.spritesheet('hairBlue', 'assets/img/character/hairBlue.png', 423, 439);
-      game.load.spritesheet('hairExtra', 'assets/img/character/hairExtra.png', 423, 439);
-      game.load.spritesheet('accessories', 'assets/img/character/accessories.png', 216, 308);
 
       // ice cream images
       game.load.image('iceCreamBackground','assets/img/iceCream/iceCreamBackground.png', 521, 534);
@@ -101,6 +72,37 @@ var preloadState = {
       game.load.spritesheet('blue','assets/img/robot/blue.png', 291, 281);
       game.load.spritesheet('brown','assets/img/robot/brown.png', 291, 281);
 
+      // character images 
+      game.load.spritesheet('characterMenu', 'assets/img/character/characterMenu.png', 328, 455);
+      game.load.spritesheet('skinMenu', 'assets/img/character/skinMenu.png', 328, 455);
+      game.load.spritesheet('hairMenu1', 'assets/img/character/hairMenu1.png', 328, 524);
+      game.load.spritesheet('hairMenu2', 'assets/img/character/hairMenu2.png', 328, 593);
+      game.load.spritesheet('hairMenu3', 'assets/img/character/hairMenu3.png', 328, 524);
+      game.load.spritesheet('eyeMenu', 'assets/img/character/eyeMenu.png', 328, 455);
+      game.load.spritesheet('mouthMenu', 'assets/img/character/mouthMenu.png', 328, 455);
+      game.load.spritesheet('accessoryMenu', 'assets/img/character/accessoryMenu.png', 328, 455);
+      game.load.spritesheet('hairColorMenu', 'assets/img/character/hairColorMenu.png', 328, 455);
+      game.load.spritesheet('doneScreen3', 'assets/img/doneScreen3.png', 269, 75);
+
+      game.load.spritesheet('doneButton', 'assets/img/doneButton.png', 83, 75);
+      game.load.spritesheet('doneButton2', 'assets/img/doneButton2.png', 83, 75);
+      game.load.spritesheet('doneButton3', 'assets/img/doneButton3.png', 83, 75);
+      game.load.spritesheet('doneButton4', 'assets/img/doneButton4.png', 83, 75);
+      game.load.image('characterBackground', 'assets/img/character/characterBackground.png', 521, 534);
+
+      game.load.spritesheet('skin', 'assets/img/character/skin.png', 202, 265);
+      game.load.spritesheet('eyes', 'assets/img/character/eyes.png', 140, 46);
+      game.load.image('nose', 'assets/img/character/nose.png', 32, 15);
+      game.load.spritesheet('mouth', 'assets/img/character/mouth.png', 88, 60);
+      game.load.spritesheet('hair', 'assets/img/character/hair.png', 423, 439);
+      game.load.spritesheet('hairBrown', 'assets/img/character/hairBrown.png', 423, 439);
+      game.load.spritesheet('hairBlonde', 'assets/img/character/hairBlonde.png', 423, 439);
+      game.load.spritesheet('hairOrange', 'assets/img/character/hairOrange.png', 423, 439);
+      game.load.spritesheet('hairPink', 'assets/img/character/hairPink.png', 423, 439);
+      game.load.spritesheet('hairBlue', 'assets/img/character/hairBlue.png', 423, 439);
+      game.load.spritesheet('hairExtra', 'assets/img/character/hairExtra.png', 423, 439);
+      game.load.spritesheet('accessories', 'assets/img/character/accessories.png', 216, 308);
+
       // house images
       game.load.image('houseBackground','assets/img/house/houseBackground.png', 521, 534);
       game.load.image('outline','assets/img/house/outline.png', 521, 534);
@@ -111,6 +113,7 @@ var preloadState = {
       game.load.spritesheet('roofMenu','assets/img/house/roofMenu.png', 328, 454);
       game.load.spritesheet('foliageMenu','assets/img/house/foliageMenu.png', 328, 454);
       game.load.spritesheet('windowsMenu','assets/img/house/windowsMenu.png', 328, 454);
+      game.load.spritesheet('doneScreen4', 'assets/img/doneScreen4.png', 269, 75);
 
       game.load.spritesheet('ground','assets/img/house/ground.png', 432, 108);
       game.load.spritesheet('texture','assets/img/house/texture.png', 258, 258);

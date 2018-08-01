@@ -2,6 +2,7 @@ var houseState = {
 
 	create: function() {
 		nextState = false; 
+		var backdrop;
 		var outline;
 
 		// menu screens 
@@ -12,11 +13,11 @@ var houseState = {
 		var skyScreen;
 		var groundScreen;
 		var foliageScreen;
+		var doneScreen;
 
 		// done button
-		var doneButtonSprite;
-		var doneAnim;
-		var backAnim;
+		var doneButton;
+		var button;
 
 		// setting up the state 
 		game.stage.backgroundColor = '#a0e07d';
@@ -27,7 +28,6 @@ var houseState = {
 
         // escaping to previous state
         escape.onUp.add(prevState, this);
-
 		function prevState() {
 			game.state.start('map');
 		}
@@ -37,12 +37,12 @@ var houseState = {
 			tab.onUp.add(scan, this);
 			function scan() {
 				scanScreen(mainScreen);
-				scanScreen(textureScreen);
-				scanScreen(windowsScreen);
-				scanScreen(roofScreen);
-				scanScreen(skyScreen);
-				scanScreen(groundScreen);
-				scanScreen(foliageScreen);
+				for (i = 0; i < screens.length - 1; i++) {
+					scanScreen(screens[i])
+				}
+				if (doneScreen) {
+					button.frame = button.frame + 1; 
+				}
 			}
 		}
 
@@ -50,6 +50,10 @@ var houseState = {
         doneButton = game.add.sprite(720, 560, 'doneButton4');
         doneButton.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
         doneButton.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);
+
+        button = game.add.sprite(320, 590, 'doneScreen4');
+		button.animations.add('scroll');
+		button.visible = false;
 
 		// initializing menu screens
 		mainScreen = new menuScreen(game.add.sprite(45, 155, 'houseMenu'), doneButton);
@@ -66,6 +70,12 @@ var houseState = {
 		groundScreen = new menuScreen(game.add.sprite(45, 155, 'groundMenu'), doneButton, 'Select a ground color!', 'ground', mainScreen, 'Design a house!');
 
 		foliageScreen = new menuScreen(game.add.sprite(45, 155, 'foliageMenu'), doneButton, 'Select a background!', 'foliage', mainScreen, 'Design a house!');
+
+			// screens array 
+		var screens = [textureScreen, windowsScreen, roofScreen, skyScreen, groundScreen, foliageScreen];
+
+		doneScreen = new endScreen(screens, button, backdrop);
+		screens[6] = doneScreen;
 
         // displaying house components   
         skyScreen.current = game.add.sprite(410, 155, 'sky', 6);
@@ -85,46 +95,31 @@ var houseState = {
 
 		function menuSelection(pointer) {
 			// stops mouseIn & mouseOut events 
-			if (control == game.input && !pointer.withinGame) {return;}
+			if (control === game.input && !pointer.withinGame) { 
+				return; 
+			}
 
 			// choosing screens
 			if (mainScreen.isDisplayed()) {
-				if (mainScreen.sprite.frame === 0) { textureScreen.display = true; } 
-				else if (mainScreen.sprite.frame === 1) { roofScreen.display = true; } 
-				else if (mainScreen.sprite.frame === 2) { windowsScreen.display = true; } 
-				else if (mainScreen.sprite.frame === 3) { skyScreen.display = true; } 
-				else if (mainScreen.sprite.frame === 4) { groundScreen.display = true; } 
-				else if (mainScreen.sprite.frame === 5) { foliageScreen.display = true; } 
-				else if (mainScreen.sprite.frame === 6) { saveImage(); nextState = true; }
+				screens[mainScreen.sprite.frame].display = true;
 				mainScreen.display = false;
 			}
 
-			// displaying preference screens
-			if (textureScreen.isDisplayed()) {
-				displayScreen(textureScreen);
-			}
-			if (windowsScreen.isDisplayed()) {
-				displayScreen(windowsScreen);
-			}
-			if (roofScreen.isDisplayed()) {
-				displayScreen(roofScreen);
-			}
-			if (skyScreen.isDisplayed()) {
-				displayScreen(skyScreen);
-			}
-			if (foliageScreen.isDisplayed()) {
-				displayScreen(foliageScreen);
-			}
-			if (groundScreen.isDisplayed()) {
-				displayScreen(groundScreen);
+			// displaying screens
+			for (i = 0; i < screens.length; i++) {
+				if (screens[i].display) {
+					displayScreen(screens[i]);
+					break;
+				}
 			}
 		}
 
 	}, 
 
 	update: function() {
-		if (nextState) { fadeOut('map'); }
-		else {
+		if (nextState) { 
+			fadeOut('map'); 
+		} else {
 			fadeIn();
         }
 	}
