@@ -6,13 +6,17 @@ var iceCreamState = {
 
 		// screens
 		var mainScreen;
+		var doneScreen;
+
+		var coneScreen;
 		var flavorScreen;
 		var syrupScreen;
 		var sprinklesScreen;
 		var fruitScreen;
 		var cookieScreen;
-		var coneScreen;
-		var doneScreen;
+
+		// screens array 
+		var screens;
 
 		// buttons
 		var doneButton;
@@ -25,27 +29,6 @@ var iceCreamState = {
 		p1.boundsAlignV = 'middle';
         p1.setTextBounds(100, 40, 700, 70);
 
-        // escaping to previous state
-        escape.onUp.add(prevState, this);
-
-		function prevState() {
-			game.state.start('map');
-		}
-
-		// tab scanning 
-		if (twoSwitches) {
-			tab.onUp.add(scan, this);
-			function scan() {
-				scanScreen(mainScreen);
-				for (i = 0; i < screens.length - 1; i++) {
-					scanScreen(screens[i])
-				}
-				if (doneScreen) {
-					button.frame = button.frame + 1; 
-				}
-			}
-		}
-
         // initializing buttons
 		doneButton = game.add.sprite(720, 560, 'doneButton');
 		doneButton.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
@@ -57,22 +40,13 @@ var iceCreamState = {
 		
 		// initializing menu screens 
 		mainScreen = new menuScreen(game.add.sprite(45, 155, 'iceCreamMenu'), doneButton);
+		mainScreen = new menuScreen(game.add.sprite(45, 155, 'iceCreamMenu'), doneButton);
 		mainScreen.initializeMain();
+		mainScreen.text = 'Make some ice cream!';
 
-		flavorScreen = new menuScreen(game.add.sprite(45, 155, 'flavorMenu'), doneButton, 'Select a flavor!', 'flavor', mainScreen, 'Make some ice cream!');
-
-		syrupScreen = new menuScreen(game.add.sprite(45, 155, 'syrupMenu'), doneButton, 'Select a syrup!', 'syrup', mainScreen, 'Make some ice cream!');
-
-		sprinklesScreen = new menuScreen(game.add.sprite(45, 155, 'sprinklesMenu'), doneButton, 'Select a topping!', 'sprinkles', mainScreen,  'Make some ice cream!');
-
-		fruitScreen = new menuScreen(game.add.sprite(45, 155, 'fruitMenu'), doneButton, 'Select a fruit topping!', 'fruit', mainScreen, 'Make some ice cream!');
-
-		cookieScreen = new menuScreen(game.add.sprite(45, 155, 'cookieMenu'), doneButton, 'Select another topping!', 'cookie', mainScreen, 'Make some ice cream!');
-
-		coneScreen = new menuScreen(game.add.sprite(45, 155, 'coneMenu'), doneButton, 'Select a cone!', 'cone', mainScreen, 'Make some ice cream!');
+		coneScreen = new menuScreen(game.add.sprite(45, 155, 'coneMenu'), doneButton, 'Select a cone!', 'cone', mainScreen);
 			coneScreen.prevCone = null;
 			coneScreen.displaySelection = function() {
-				console.log(coneScreen.prevCone);
 				if (coneScreen.sprite.frame === 0 || coneScreen.sprite.frame === 1) {
 					coneScreen.current.loadTexture('cone', coneScreen.sprite.frame);
 					if (coneScreen.prevCone === 2 || coneScreen.prevCone === 3 || coneScreen.prevCone === 4 || coneScreen.prevCone === 5) {
@@ -89,9 +63,18 @@ var iceCreamState = {
 				}
 			}
 
-			// screens array 
-		var screens = [coneScreen, flavorScreen, syrupScreen, sprinklesScreen, fruitScreen, cookieScreen];
+		flavorScreen = new menuScreen(game.add.sprite(45, 155, 'flavorMenu'), doneButton, 'Select a flavor!', 'flavor', mainScreen);
 
+		syrupScreen = new menuScreen(game.add.sprite(45, 155, 'syrupMenu'), doneButton, 'Select a syrup!', 'syrup', mainScreen);
+
+		sprinklesScreen = new menuScreen(game.add.sprite(45, 155, 'sprinklesMenu'), doneButton, 'Select a topping!', 'sprinkles', mainScreen);
+
+		fruitScreen = new menuScreen(game.add.sprite(45, 155, 'fruitMenu'), doneButton, 'Select a fruit topping!', 'fruit', mainScreen);
+
+		cookieScreen = new menuScreen(game.add.sprite(45, 155, 'cookieMenu'), doneButton, 'Select another topping!', 'cookie', mainScreen);
+
+		// putting screens into array 
+		screens = [coneScreen, flavorScreen, syrupScreen, sprinklesScreen, fruitScreen, cookieScreen];
 		doneScreen = new endScreen(screens, button, backdrop);
 		screens[6] = doneScreen;
 
@@ -103,12 +86,11 @@ var iceCreamState = {
         sprinklesScreen.current = game.add.sprite(545, 220, 'sprinkles', 5);
         fruitScreen.current = game.add.sprite(593, 180, 'fruit', 5);
 
-        // fade effect image 
+        // fade effect image (above all other sprites)
         black = game.add.sprite(0, 0, 'black');
 
-        // line that controls all the logic!!!! :o
+        // main screen selection
 		control.onUp.add(menuSelection, this);
-
 		function menuSelection(pointer) {
 			// stops mouseIn & mouseOut events 
 			if (control === game.input && !pointer.withinGame) { 
@@ -130,8 +112,28 @@ var iceCreamState = {
 			}
 		}
 
+		// tab scanning 
+		if (twoSwitches) {
+			tab.onUp.add(scan, this);
+			function scan() {
+				scanScreen(mainScreen);
+				for (i = 0; i < screens.length - 1; i++) {
+					scanScreen(screens[i])
+				}
+				if (doneScreen) {
+					button.frame = button.frame + 1; 
+				}
+			}
+		}
+
+		// escape to previous state
+        escape.onUp.add(prevState, this);
+		function prevState() {
+			game.state.start('map');
+		}
 	}, 
 
+	// fade in/out animation
 	update: function() {
 		if (nextState) { 
 			fadeOut('map'); 

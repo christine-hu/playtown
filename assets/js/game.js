@@ -14,7 +14,7 @@ var black; // fade effect images
 var nextState = false; // handles state switches
 var twoSwitches = false; // one or two switches
 
-function menuScreen(sprite, button, text, texture, mainScreen, mainText, num = 6) {
+function menuScreen(sprite, button, text, texture, mainScreen, num = 6) {
 	this.sprite = sprite;
 	this.sprite.visible = false;
 	this.anim = this.sprite.animations.add('scroll', returnArray(num + 1));
@@ -68,7 +68,7 @@ function menuScreen(sprite, button, text, texture, mainScreen, mainText, num = 6
 		}
 	}
 	this.returnToMain = function() {
-		p1.setText(mainText, true);
+		p1.setText(this.mainScreen.text, true);
 		this.sprite.visible = false;
 		this.mainScreen.sprite.visible = true;
 		if (!twoSwitches) {
@@ -151,7 +151,7 @@ function endScreen(screens, button, backdrop) {
 		this.mainScreen.sprite.visible = true;
 		this.mainScreen.button.visible = true;
 		this.mainScreen.display = true;	
-		p1.setText('Make some ice cream!', true);
+		p1.setText(this.mainScreen.text, true);
 
 		if (!twoSwitches) {
 			this.mainScreen.anim.restart();

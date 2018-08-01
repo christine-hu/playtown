@@ -4,20 +4,23 @@ var robotState = {
 		nextState = false; 
 		var backdrop; 
 
-		// menu screens
+		// screens
 		var mainScreen;
+		var doneScreen;
+
 		var bodyScreen;
 		var faceScreen;
 		var antennaScreen;
 		var armScreen;
 		var legScreen;
 		var designScreen;
-		var doneScreen;
 
-		// done button
-		var doneButtonSprite;
-		var doneAnim;
-		var backAnim; 
+		// screens array
+		var screens;
+
+		// buttons
+		var doneButton;
+		var button;
 
 		// setting up the state
 		game.stage.backgroundColor = '#ffae68';
@@ -25,27 +28,6 @@ var robotState = {
 		p1 = game.add.text(0, 0, "Build a robot!", pStyle);
 		p1.boundsAlignV = 'middle';
         p1.setTextBounds(100, 40, 700, 70);
-
-        // escaping to previous state
-        escape.onUp.add(prevState, this);
-
-		function prevState() {
-			game.state.start('map');
-		}
-
-		// tab scanning 
-		if (twoSwitches) {
-			tab.onUp.add(scan, this);
-			function scan() {
-				scanScreen(mainScreen);
-				for (i = 0; i < screens.length - 1; i++) {
-					scanScreen(screens[i])
-				}
-				if (doneScreen) {
-					button.frame = button.frame + 1; 
-				}
-			}
-		}
 
         // initializing buttons
 		doneButton = game.add.sprite(720, 560, 'doneButton2');
@@ -59,14 +41,15 @@ var robotState = {
 		// initializing menu screens
 		mainScreen = new menuScreen(game.add.sprite(45, 155, 'robotMenu'), doneButton);
 		mainScreen.initializeMain();
+		mainScreen.text = 'Build a robot!'
 
-		bodyScreen = new menuScreen(game.add.sprite(45, 155, 'bodyMenu'), doneButton, 'Select a body color!', 'body', mainScreen, 'Build a robot!');
+		bodyScreen = new menuScreen(game.add.sprite(45, 155, 'bodyMenu'), doneButton, 'Select a body color!', 'body', mainScreen);
 
-		faceScreen = new menuScreen(game.add.sprite(45, 155, 'faceMenu'), doneButton, 'Select a face!', 'face', mainScreen, 'Build a robot!');
+		faceScreen = new menuScreen(game.add.sprite(45, 155, 'faceMenu'), doneButton, 'Select a face!', 'face', mainScreen);
 
-		antennaScreen = new menuScreen(game.add.sprite(45, 155, 'antennaMenu'), doneButton, 'Select an antenna!', 'antenna', mainScreen, 'Build a robot!');
+		antennaScreen = new menuScreen(game.add.sprite(45, 155, 'antennaMenu'), doneButton, 'Select an antenna!', 'antenna', mainScreen);
 
-		armScreen = new menuScreen(game.add.sprite(45, 155, 'armMenu'), doneButton, 'Select arms!', 'gray', mainScreen, 'Build a robot!');
+		armScreen = new menuScreen(game.add.sprite(45, 155, 'armMenu'), doneButton, 'Select arms!', 'gray', mainScreen);
 			armScreen.armColor = 'gray';
 			armScreen.armStyle = 6;
 			armScreen.displaySelection = function() {
@@ -76,7 +59,7 @@ var robotState = {
 				} 
 			}
 
-		legScreen = new menuScreen(game.add.sprite(45, 155, 'legMenu'), doneButton, 'Select a wheel color!', 'leg', mainScreen, 'Build a robot!');
+		legScreen = new menuScreen(game.add.sprite(45, 155, 'legMenu'), doneButton, 'Select a wheel color!', 'leg', mainScreen);
 			legScreen.displaySelection = function() {
 				if (legScreen.sprite.frame !== 6) {
 					if (legScreen.sprite.frame === 0) { armScreen.armColor = 'gray'; }
@@ -91,11 +74,10 @@ var robotState = {
 				} 
 			}
 
+		designScreen = new menuScreen(game.add.sprite(45, 155, 'designMenu'), doneButton, 'Select a design!', 'design', mainScreen);
 
-		designScreen = new menuScreen(game.add.sprite(45, 155, 'designMenu'), doneButton, 'Select a design!', 'design', mainScreen, 'Build a robot!');
-
-		var screens = [bodyScreen, armScreen, legScreen, faceScreen, antennaScreen, designScreen];
-
+		// putting screens into array
+		screens = [bodyScreen, armScreen, legScreen, faceScreen, antennaScreen, designScreen];
 		doneScreen = new endScreen(screens, button, backdrop);
 		screens[6] = doneScreen;
 
@@ -107,12 +89,11 @@ var robotState = {
         designScreen.current = game.add.sprite(580, 330, 'design', 6);
         faceScreen.current = game.add.sprite(597, 233, 'face', 6);
 
-        // fade effect image 
+        // fade effect image (above all other sprites)
         black = game.add.sprite(0, 0, 'black');
 
-        // line that controls all the logic!!!! :o
+        // main screen selection
 		control.onUp.add(menuSelection, this);
-
 		function menuSelection(pointer) {
 			// stops mouseIn & mouseOut events 
 			if (control === game.input && !pointer.withinGame) { 
@@ -134,8 +115,28 @@ var robotState = {
 			}
 		}
 
+		// tab scanning 
+		if (twoSwitches) {
+			tab.onUp.add(scan, this);
+			function scan() {
+				scanScreen(mainScreen);
+				for (i = 0; i < screens.length - 1; i++) {
+					scanScreen(screens[i])
+				}
+				if (doneScreen) {
+					button.frame = button.frame + 1; 
+				}
+			}
+		}
+
+		// escape to previous state
+        escape.onUp.add(prevState, this);
+		function prevState() {
+			game.state.start('map');
+		}
 	}, 
 
+	// fade in/out animation
 	update: function() {
 		if (nextState) { 
 			fadeOut('map'); 
