@@ -37,12 +37,9 @@ var iceCreamState = {
 			tab.onUp.add(scan, this);
 			function scan() {
 				scanScreen(mainScreen);
-				scanScreen(coneScreen);
-				scanScreen(flavorScreen);
-				scanScreen(syrupScreen);
-				scanScreen(sprinklesScreen);
-				scanScreen(fruitScreen);
-				scanScreen(cookieScreen);
+				for (i = 0; i < screens.length - 1; i++) {
+					scanScreen(screens[i])
+				}
 				if (doneScreen) {
 					button.frame = button.frame + 1; 
 				}
@@ -57,7 +54,6 @@ var iceCreamState = {
 		button = game.add.sprite(262, 600, 'doneScreen');
 		button.animations.add('scroll');
 		button.visible = false;
-		
 		
 		// initializing menu screens 
 		mainScreen = new menuScreen(game.add.sprite(45, 155, 'iceCreamMenu'), doneButton);
@@ -119,41 +115,25 @@ var iceCreamState = {
 
 			// choosing screens
 			if (mainScreen.isDisplayed()) {
-				console.log(screens[6]);
-				console.log(screens[5]);
 				screens[mainScreen.sprite.frame].display = true;
 				mainScreen.display = false;
 			}
 
-			// displaying preference screens
-			if (doneScreen.display) {
-				displayScreen(doneScreen);
-			}
-			if (coneScreen.isDisplayed()) {
-				displayScreen(coneScreen);
-			}
-			if (flavorScreen.isDisplayed()) {
-				displayScreen(flavorScreen);
-			}
-			if (syrupScreen.isDisplayed()) {
-				displayScreen(syrupScreen);
-			}
-			if (sprinklesScreen.isDisplayed()) {
-				displayScreen(sprinklesScreen);
-			}
-			if (fruitScreen.isDisplayed()) {
-				displayScreen(fruitScreen);
-			}
-			if (cookieScreen.isDisplayed()) {
-				displayScreen(cookieScreen);
+			// displaying screens
+			for (i = 0; i < screens.length; i++) {
+				if (screens[i].display) {
+					displayScreen(screens[i]);
+					break;
+				}
 			}
 		}
 
 	}, 
 
 	update: function() {
-		if (nextState) { fadeOut('map'); }
-		else {
+		if (nextState) { 
+			fadeOut('map'); 
+		} else {
 			fadeIn();
         }
 	}
