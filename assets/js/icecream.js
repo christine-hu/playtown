@@ -12,8 +12,7 @@ var iceCreamState = {
 		var fruitScreen;
 		var cookieScreen;
 		var coneScreen;
-		var doneScreen = false;
-		var selectMode = false;
+		var doneScreen;
 
 		// done button 
 		var doneButton;
@@ -54,6 +53,10 @@ var iceCreamState = {
 		doneButton = game.add.sprite(720, 560, 'doneButton');
 		doneButton.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
 		doneButton.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);
+
+		button = game.add.sprite(262, 600, 'doneScreen');
+		button.animations.add('scroll');
+		button.visible = false;
 		
 		
 		// initializing menu screens 
@@ -90,12 +93,18 @@ var iceCreamState = {
 				}
 			}
 
+			// screens array 
+		var screens = [coneScreen, flavorScreen, syrupScreen, sprinklesScreen, fruitScreen, cookieScreen];
+
+		doneScreen = new endScreen(screens, button, backdrop);
+		screens[6] = doneScreen;
+
 		// displaying ice cream components
         cookieScreen.current = game.add.sprite(630, 170, 'cookie', 5);
         coneScreen.current = game.add.sprite(480, 330, 'cone', 6);
         flavorScreen.current = game.add.sprite(506, 210, 'flavor', 6);
-        syrupScreen.current = game.add.sprite(545, 320, 'syrup', 5);
-        sprinklesScreen.current = game.add.sprite(545, 320, 'sprinkles', 5);
+        syrupScreen.current = game.add.sprite(545, 220, 'syrup', 5);
+        sprinklesScreen.current = game.add.sprite(545, 220, 'sprinkles', 5);
         fruitScreen.current = game.add.sprite(593, 180, 'fruit', 5);
 
         // fade effect image 
@@ -110,91 +119,15 @@ var iceCreamState = {
 
 			// choosing screens
 			if (mainScreen.isDisplayed()) {
-				if (mainScreen.sprite.frame === 0) {
-					coneScreen.display = true;
-				} else if (mainScreen.sprite.frame === 1) {
-					flavorScreen.display = true;
-				} else if (mainScreen.sprite.frame === 2) {
-					syrupScreen.display = true;
-				} else if (mainScreen.sprite.frame === 3) {
-					sprinklesScreen.display = true;
-				} else if (mainScreen.sprite.frame === 4) {
-					fruitScreen.display = true;
-				} else if (mainScreen.sprite.frame === 5) {
-					cookieScreen.display = true;
-				} else if (mainScreen.sprite.frame === 6) { 
-					doneScreen = true;
-					// saveImage();
-					// nextState = true;
-				}
+				console.log(screens[6]);
+				console.log(screens[5]);
+				screens[mainScreen.sprite.frame].display = true;
 				mainScreen.display = false;
 			}
 
 			// displaying preference screens
-			if (doneScreen) {
-				console.log(selectMode);
-				if (!selectMode) {
-					mainScreen.sprite.visible = false; 
-					doneButton.visible = false;
-					button = game.add.sprite(262, 600, 'doneScreen');
-					p1.setText('Yummy!', true);
-
-					if (!twoSwitches) {
-						button.animations.add('scroll');
-						button.animations.play('scroll', speed, true);
-					}
-
-					// shifting components
-					translate(backdrop, -175, -32);
-					translate(cookieScreen.current, -175, -32);
-					translate(coneScreen.current, -175, -32);
-					translate(flavorScreen.current, -175, -32);
-					translate(syrupScreen.current, -175, -32);
-					translate(sprinklesScreen.current, -175, -32);
-					translate(fruitScreen.current, -175, -32);
-
-					black.bringToTop();
-
-				}
-
-					// logic
-					if (selectMode) {
-						if (button.frame === 0) {
-							mainScreen.sprite.frame = 0; 
-							doneButton.frame = 0;
-							mainScreen.sprite.visible = true;
-							doneButton.visible = true;
-							button.visible = false;
-							mainScreen.display = true;	
-							doneScreen = false;
-							selectMode = false;
-							p1.setText('Make some ice cream!', true);
-							translate(backdrop, 175, 32);
-							translate(cookieScreen.current, 175, 32);
-							translate(coneScreen.current, 175, 32);
-							translate(flavorScreen.current, 175, 32);
-							translate(syrupScreen.current, 175, 32);
-							translate(sprinklesScreen.current, 175, 32);
-							translate(fruitScreen.current, 175, 32);
-							if (!twoSwitches) {
-								mainScreen.anim.restart();
-								mainScreen.doneAnim.restart();
-							}
-						}
-						if (button.frame === 1) {
-							saveImage();
-						} 
-						if (button.frame === 2) {
-							nextState = true;
-						}
-
-					}
-
-					if (doneScreen) {
-						selectMode = true;
-					}
-					
-
+			if (doneScreen.display) {
+				displayScreen(doneScreen);
 			}
 			if (coneScreen.isDisplayed()) {
 				displayScreen(coneScreen);
