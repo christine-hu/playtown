@@ -94,6 +94,8 @@ var iceCreamState = {
 
 		doneScreen = new endScreen(screens, button, backdrop);
 		screens[6] = doneScreen;
+		screens[7] = hairScreen2;
+		screens[8] = hairScreen3;
 
 		// displaying ice cream components
         cookieScreen.current = game.add.sprite(630, 170, 'cookie', 5);

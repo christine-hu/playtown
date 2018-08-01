@@ -232,7 +232,9 @@ function translate(sprite, dx, dy) {
 function translateGroup(screens, dx, dy) {
 	this.screens = screens;
 	for (i = 0; i < this.screens.length - 1; i++) {
-		translate(this.screens[i].current, dx, dy);
+		if (this.screens[i].current !== undefined) {
+			translate(this.screens[i].current, dx, dy);
+		}
 	}
 }
 

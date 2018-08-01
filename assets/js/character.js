@@ -55,14 +55,14 @@ var characterState = {
 			tab.onUp.add(scan, this);
 			function scan() {
 				scanScreen(mainScreen);
-				scanScreen(skinScreen);
-				scanScreen(hairScreen1);
+				for (i = 0; i < screens.length - 1; i++) {
+					scanScreen(screens[i])
+				}
 				scanScreen(hairScreen2);
 				scanScreen(hairScreen3);
-				scanScreen(eyeScreen);
-				scanScreen(mouthScreen);
-				scanScreen(accessoryScreen);
-				scanScreen(hairColorScreen);
+				if (doneScreen) {
+					button.frame = button.frame + 1; 
+				}
 			}
 		}
 
@@ -73,6 +73,10 @@ var characterState = {
         doneButton.animations.add('back7', [2, 2, 2, 2, 2, 2, 2, 3]);
         doneButton.animations.add('back8', [2, 2, 2, 2, 2, 2, 2, 2, 3]);
 
+        button = game.add.sprite(320, 590, 'doneScreen');
+		button.animations.add('scroll');
+		button.visible = false;
+
         // initializing menu screens 
 		mainScreen = new menuScreen(game.add.sprite(45, 155, 'characterMenu'), doneButton);
 		mainScreen.initializeMain();
@@ -80,7 +84,7 @@ var characterState = {
 		skinScreen = new menuScreen(game.add.sprite(45, 155, 'skinMenu'), doneButton, 'Select a skin color!', 'skin', mainScreen, 'Design an avatar!');
 
 		hairScreen1 = new menuScreen(game.add.sprite(45, 158, 'hairMenu1'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 'Design an avatar!', 7);
-		hairScreen1.backAnim = hairScreen1.doneButton.animations.getAnimation('back7');
+		hairScreen1.backAnim = hairScreen1.button.animations.getAnimation('back7');
 			hairScreen1.initialize = function() {
 				if (!hairScreen1.selectMode && page1) {
 					p1.setText(hairScreen1.text, true);
@@ -90,7 +94,7 @@ var characterState = {
 						hairScreen1.anim.play(speed, true);
 						hairScreen1.backAnim.play(speed, true);
 					} else {
-						hairScreen1.doneButton.frame = 2; 
+						hairScreen1.button.frame = 2; 
 						hairScreen1.sprite.frame = 0; 
 					}
 				}
@@ -116,7 +120,7 @@ var characterState = {
 			}
 
 		hairScreen2 = new menuScreen(game.add.sprite(45, 85, 'hairMenu2'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 'Design an avatar!', 8);
-		hairScreen2.backAnim = hairScreen2.doneButton.animations.getAnimation('back8');
+		hairScreen2.backAnim = hairScreen2.button.animations.getAnimation('back8');
 			hairScreen2.initialize = function() {
 				if (!hairScreen2.selectMode && !page3 && !page1) {
 					hairScreen2.mainScreen.sprite.visible = false;
@@ -125,7 +129,7 @@ var characterState = {
 						hairScreen2.anim.play(speed, true);
 						hairScreen2.backAnim.play(speed, true);
 					} else {
-						hairScreen2.doneButton.frame = 2; 
+						hairScreen2.button.frame = 2; 
 						hairScreen2.sprite.frame = 0; 
 					}
 					//console.log(hairScreen2.isDisplayed());
@@ -157,7 +161,7 @@ var characterState = {
 	    					mainScreen.anim.restart();
 	    					hairScreen2.doneAnim.restart();
 	    				} else {
-	    					hairScreen2.doneButton.frame = 0; 
+	    					hairScreen2.button.frame = 0; 
 	    				}
 	    				page1 = true;
 	    				page2 = false;
@@ -175,7 +179,7 @@ var characterState = {
 			}
 
 		hairScreen3 = new menuScreen(game.add.sprite(45, 85, 'hairMenu3'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 'Design an avatar!', 7);
-		hairScreen3.backAnim = hairScreen3.doneButton.animations.getAnimation('back7');
+		hairScreen3.backAnim = hairScreen3.button.animations.getAnimation('back7');
 			hairScreen3.initalize = function() {
 				if (!hairScreen3.selectMode && page3) {
 					hairScreen3.mainScreen.sprite.visible = false;
@@ -184,7 +188,7 @@ var characterState = {
 						hairScreen3.backAnim.play(speed, true);
 						hairScreen3.anim.play(speed, true);
 					} else {
-						hairScreen3.doneButton.frame = 2; 
+						hairScreen3.button.frame = 2; 
 						hairScreen3.sprite.frame = 0; 
 					}
 				}
@@ -208,7 +212,7 @@ var characterState = {
 							mainScreen.anim.restart();
 	    					hairScreen3.doneAnim.restart();
 	    				} else {
-							hairScreen3.doneButton.frame = 0; 
+							hairScreen3.button.frame = 0; 
 	    				}
 	    				page3 = false;
 	    				page1 = true;
@@ -225,13 +229,13 @@ var characterState = {
 			}
 
 		eyeScreen = new menuScreen(game.add.sprite(45, 155, 'eyeMenu'), doneButton, 'Select eyes!', 'eyes', mainScreen, 'Design an avatar!', 7);
-		eyeScreen.backAnim = eyeScreen.doneButton.animations.getAnimation('back7');
+		eyeScreen.backAnim = eyeScreen.button.animations.getAnimation('back7');
 
 		mouthScreen = new menuScreen(game.add.sprite(45, 155, 'mouthMenu'), doneButton, 'Select a mouth!', 'mouth', mainScreen, 'Design an avatar!', 8);
-		mouthScreen.backAnim = mouthScreen.doneButton.animations.getAnimation('back8');
+		mouthScreen.backAnim = mouthScreen.button.animations.getAnimation('back8');
 
 		accessoryScreen = new menuScreen(game.add.sprite(45, 155, 'accessoryMenu'), doneButton, 'Select an accessory!', 'accessories', mainScreen, 'Design an avatar!', 7);
-		accessoryScreen.backAnim = accessoryScreen.doneButton.animations.getAnimation('back7');
+		accessoryScreen.backAnim = accessoryScreen.button.animations.getAnimation('back7');
 
 		hairColorScreen = new menuScreen(game.add.sprite(45, 155, 'hairColorMenu'), doneButton, 'Select a hair color!', 'hair', mainScreen, 'Design an avatar!');
 			hairColorScreen.displaySelection = function() {
@@ -244,6 +248,10 @@ var characterState = {
 				hairScreen1.current.loadTexture(hairColor, hairStyle);
 			}
 
+		var screens = [skinScreen, hairScreen1, eyeScreen, mouthScreen, accessoryScreen, hairColorScreen];
+
+		doneScreen = new endScreen(screens, button, backdrop);
+		screens[6] = doneScreen;
 
         // rendering the avatar
         skinScreen.current = game.add.sprite (525, 238, 'skin', 6);
@@ -259,51 +267,24 @@ var characterState = {
 		// line that controls EVERYTHING!!!! :o
 		control.onUp.add(menuSelection, this);
 
-		// function that controls everything 
 		function menuSelection(pointer) {
 			// stops mouseIn & mouseOut events 
-			if (control == game.input && !pointer.withinGame) {return;}
+			if (control === game.input && !pointer.withinGame) { 
+				return; 
+			}
 
 			// choosing screens
 			if (mainScreen.isDisplayed()) {
-				if (mainScreen.sprite.frame === 0) {
-					skinScreen.display = true;
-				}
-				else if (mainScreen.sprite.frame === 1) {
-					hairScreen1.display = true;
-				} else if (mainScreen.sprite.frame === 2) {
-					eyeScreen.display = true;
-				} else if (mainScreen.sprite.frame === 3) {
-					mouthScreen.display = true;
-				} else if (mainScreen.sprite.frame === 4) {
-					accessoryScreen.display = true;
-				} else if (mainScreen.sprite.frame === 5) {
-					hairColorScreen.display = true;
-				} else if (mainScreen.sprite.frame === 6) {
-					saveImage();
-					nextState = true;
-				}
+				screens[mainScreen.sprite.frame].display = true;
 				mainScreen.display = false;
 			}
 
-			// displaying preference screens
-			if (skinScreen.isDisplayed()) {
-				displayScreen(skinScreen);
-			}
-			if (hairScreen1.isDisplayed()) {
-				displayScreen(hairScreen1);
-			}
-			if (eyeScreen.isDisplayed()) {
-				displayScreen(eyeScreen);
-			}
-			if (hairColorScreen.isDisplayed()) {
-				displayScreen(hairColorScreen);
-			}
-			if (mouthScreen.isDisplayed()) {
-				displayScreen(mouthScreen);
-			}
-			if (accessoryScreen.isDisplayed()) {
-				displayScreen(accessoryScreen);
+			// displaying screens
+			for (i = 0; i < screens.length; i++) {
+				if (screens[i].display) {
+					displayScreen(screens[i]);
+					break;
+				}
 			}
 		}
 
