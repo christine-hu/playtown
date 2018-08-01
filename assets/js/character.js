@@ -5,8 +5,17 @@ var characterState = {
 		var backdrop;
 		var nose;
 
-		// menu screens
+		// hair variables
+		var hairColor = 'hair';
+		var hairStyle = 8;
+		var page1 = true;
+		var page2 = false;
+		var page3 = false;
+
+		// screens
 		var mainScreen;
+		var doneScreen;
+
 		var skinScreen;
 		var eyeScreen;
 		var mouthScreen;
@@ -16,71 +25,41 @@ var characterState = {
 		var hairScreen2;
 		var hairScreen3;
 
-		// done button
-		var doneButtonSprite;
-		var doneAnim;
-		var backAnim;
+		// screens array
+		var screens;
 
-		// components of avatar
-		var hair;
-		var face;
-		var eyes;
-		var nose; 
-		var mouth;
-		var accessory; 
-		var hairStyle = 8;
-		var hairColor = 'hair';
-
-		// hair variables 		
-		var page1 = true;
-		var page2 = false;
-		var page3 = false;
+		// buttons
+		var doneButton;
+		var button
 
 		// setting up the state
 		game.stage.backgroundColor = '#faff77';
 		backdrop = game.add.sprite(365, 112, 'characterBackground');
-		p1 = game.add.text(0, 0, "Design a character!", pStyle);
+		p1 = game.add.text(0, 0, "Create an avatar!", pStyle);
 		p1.boundsAlignV = 'middle';
         p1.setTextBounds(100, 35, 700, 65);
 
-        // escaping to previous state
-        escape.onUp.add(prevState, this);
-
-		function prevState() {
-			game.state.start('map');
-		}
-
-		// tab scanning 
-		if (twoSwitches) {
-			tab.onUp.add(scan, this);
-			function scan() {
-				scanScreen(mainScreen);
-				scanScreen(skinScreen);
-				scanScreen(hairScreen1);
-				scanScreen(hairScreen2);
-				scanScreen(hairScreen3);
-				scanScreen(eyeScreen);
-				scanScreen(mouthScreen);
-				scanScreen(accessoryScreen);
-				scanScreen(hairColorScreen);
-			}
-		}
-
-         // setting up done/back buttons 
+        // initializing buttons
         doneButton = game.add.sprite(720, 560, 'doneButton3');
         doneButton.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
         doneButton.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);
         doneButton.animations.add('back7', [2, 2, 2, 2, 2, 2, 2, 3]);
         doneButton.animations.add('back8', [2, 2, 2, 2, 2, 2, 2, 2, 3]);
 
+        button = game.add.sprite(320, 590, 'doneScreen3');
+		button.animations.add('scroll');
+		button.visible = false;
+
         // initializing menu screens 
 		mainScreen = new menuScreen(game.add.sprite(45, 155, 'characterMenu'), doneButton);
 		mainScreen.initializeMain();
+		mainScreen.text = 'Create an avatar!'
+		mainScreen.endText = 'Nice job!'
 
-		skinScreen = new menuScreen(game.add.sprite(45, 155, 'skinMenu'), doneButton, 'Select a skin color!', 'skin', mainScreen, 'Design an avatar!');
+		skinScreen = new menuScreen(game.add.sprite(45, 155, 'skinMenu'), doneButton, 'Select a skin color!', 'skin', mainScreen);
 
-		hairScreen1 = new menuScreen(game.add.sprite(45, 158, 'hairMenu1'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 'Design an avatar!', 7);
-		hairScreen1.backAnim = hairScreen1.doneButton.animations.getAnimation('back7');
+		hairScreen1 = new menuScreen(game.add.sprite(45, 158, 'hairMenu1'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 7);
+		hairScreen1.backAnim = hairScreen1.button.animations.getAnimation('back7');
 			hairScreen1.initialize = function() {
 				if (!hairScreen1.selectMode && page1) {
 					p1.setText(hairScreen1.text, true);
@@ -90,7 +69,7 @@ var characterState = {
 						hairScreen1.anim.play(speed, true);
 						hairScreen1.backAnim.play(speed, true);
 					} else {
-						hairScreen1.doneButton.frame = 2; 
+						hairScreen1.button.frame = 2; 
 						hairScreen1.sprite.frame = 0; 
 					}
 				}
@@ -106,7 +85,9 @@ var characterState = {
 						hairScreen1.selectMode = false;
 						hairScreen1.sprite.visible = false;
 						displayScreen(hairScreen2);
-					} else if (hairScreen1.sprite.frame === 7) { hairScreen1.returnToMain(); }
+					} else if (hairScreen1.sprite.frame === 7) { 
+						hairScreen1.returnToMain(); 
+					}
 				}	
 			}
 			hairScreen1.selectModeOn = function() {
@@ -115,8 +96,8 @@ var characterState = {
 				}
 			}
 
-		hairScreen2 = new menuScreen(game.add.sprite(45, 85, 'hairMenu2'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 'Design an avatar!', 8);
-		hairScreen2.backAnim = hairScreen2.doneButton.animations.getAnimation('back8');
+		hairScreen2 = new menuScreen(game.add.sprite(45, 85, 'hairMenu2'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 8);
+		hairScreen2.backAnim = hairScreen2.button.animations.getAnimation('back8');
 			hairScreen2.initialize = function() {
 				if (!hairScreen2.selectMode && !page3 && !page1) {
 					hairScreen2.mainScreen.sprite.visible = false;
@@ -125,10 +106,9 @@ var characterState = {
 						hairScreen2.anim.play(speed, true);
 						hairScreen2.backAnim.play(speed, true);
 					} else {
-						hairScreen2.doneButton.frame = 2; 
+						hairScreen2.button.frame = 2; 
 						hairScreen2.sprite.frame = 0; 
 					}
-					//console.log(hairScreen2.isDisplayed());
 				}
 			}
 			hairScreen2.controlLogic = function() {
@@ -150,14 +130,14 @@ var characterState = {
 						displayScreen(hairScreen3);
 					} 
 					else if (hairScreen2.sprite.frame === 8) {
-						p1.setText('Design an avatar!', true);
+						p1.setText('Create an avatar!', true);
 						hairScreen2.sprite.visible = false;
 	    				mainScreen.sprite.visible = true;
 	    				if (!twoSwitches){
 	    					mainScreen.anim.restart();
 	    					hairScreen2.doneAnim.restart();
 	    				} else {
-	    					hairScreen2.doneButton.frame = 0; 
+	    					hairScreen2.button.frame = 0; 
 	    				}
 	    				page1 = true;
 	    				page2 = false;
@@ -174,8 +154,8 @@ var characterState = {
 				}
 			}
 
-		hairScreen3 = new menuScreen(game.add.sprite(45, 85, 'hairMenu3'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 'Design an avatar!', 7);
-		hairScreen3.backAnim = hairScreen3.doneButton.animations.getAnimation('back7');
+		hairScreen3 = new menuScreen(game.add.sprite(45, 85, 'hairMenu3'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 7);
+		hairScreen3.backAnim = hairScreen3.button.animations.getAnimation('back7');
 			hairScreen3.initalize = function() {
 				if (!hairScreen3.selectMode && page3) {
 					hairScreen3.mainScreen.sprite.visible = false;
@@ -184,7 +164,7 @@ var characterState = {
 						hairScreen3.backAnim.play(speed, true);
 						hairScreen3.anim.play(speed, true);
 					} else {
-						hairScreen3.doneButton.frame = 2; 
+						hairScreen3.button.frame = 2; 
 						hairScreen3.sprite.frame = 0; 
 					}
 				}
@@ -201,14 +181,14 @@ var characterState = {
 						hairStyle = hairScreen3.sprite.frame + 11;
 						hairScreen1.current.loadTexture(hairColor, hairStyle); 
 					} else if (hairScreen3.sprite.frame === 7) {
-						p1.setText('Design an avatar!', true);
+						p1.setText('Create an avatar!', true);
 						hairScreen3.sprite.visible = false;
 	    				mainScreen.sprite.visible = true;
 	    				if (!twoSwitches) {
 							mainScreen.anim.restart();
 	    					hairScreen3.doneAnim.restart();
 	    				} else {
-							hairScreen3.doneButton.frame = 0; 
+							hairScreen3.button.frame = 0; 
 	    				}
 	    				page3 = false;
 	    				page1 = true;
@@ -224,16 +204,16 @@ var characterState = {
 				}
 			}
 
-		eyeScreen = new menuScreen(game.add.sprite(45, 155, 'eyeMenu'), doneButton, 'Select eyes!', 'eyes', mainScreen, 'Design an avatar!', 7);
-		eyeScreen.backAnim = eyeScreen.doneButton.animations.getAnimation('back7');
+		eyeScreen = new menuScreen(game.add.sprite(45, 155, 'eyeMenu'), doneButton, 'Select eyes!', 'eyes', mainScreen, 7);
+		eyeScreen.backAnim = eyeScreen.button.animations.getAnimation('back7');
 
-		mouthScreen = new menuScreen(game.add.sprite(45, 155, 'mouthMenu'), doneButton, 'Select a mouth!', 'mouth', mainScreen, 'Design an avatar!', 8);
-		mouthScreen.backAnim = mouthScreen.doneButton.animations.getAnimation('back8');
+		mouthScreen = new menuScreen(game.add.sprite(45, 155, 'mouthMenu'), doneButton, 'Select a mouth!', 'mouth', mainScreen, 8);
+		mouthScreen.backAnim = mouthScreen.button.animations.getAnimation('back8');
 
-		accessoryScreen = new menuScreen(game.add.sprite(45, 155, 'accessoryMenu'), doneButton, 'Select an accessory!', 'accessories', mainScreen, 'Design an avatar!', 7);
-		accessoryScreen.backAnim = accessoryScreen.doneButton.animations.getAnimation('back7');
+		accessoryScreen = new menuScreen(game.add.sprite(45, 155, 'accessoryMenu'), doneButton, 'Select an accessory!', 'accessories', mainScreen, 7);
+		accessoryScreen.backAnim = accessoryScreen.button.animations.getAnimation('back7');
 
-		hairColorScreen = new menuScreen(game.add.sprite(45, 155, 'hairColorMenu'), doneButton, 'Select a hair color!', 'hair', mainScreen, 'Design an avatar!');
+		hairColorScreen = new menuScreen(game.add.sprite(45, 155, 'hairColorMenu'), doneButton, 'Select a hair color!', 'hair', mainScreen);
 			hairColorScreen.displaySelection = function() {
 				if (hairColorScreen.sprite.frame === 0) { hairColor = 'hair'; } 
 				else if (hairColorScreen.sprite.frame === 1) { hairColor = 'hairBrown'; } 
@@ -244,70 +224,70 @@ var characterState = {
 				hairScreen1.current.loadTexture(hairColor, hairStyle);
 			}
 
+		// putting screens into array
+		screens = [skinScreen, hairScreen1, eyeScreen, mouthScreen, accessoryScreen, hairColorScreen];
+		doneScreen = new endScreen(screens, button, backdrop);
+		screens[6] = doneScreen;
 
-        // rendering the avatar
+        // displaying avatar components
         skinScreen.current = game.add.sprite (525, 238, 'skin', 6);
         eyeScreen.current = game.add.sprite(557, 348, 'eyes');
         nose = game.add.sprite(610, 408, 'nose');
+        	screens[7] = nose; // for translateGroup()
         mouthScreen.current = game.add.sprite(591, 423, 'mouth');
         hairScreen1.current = game.add.sprite(414, 163, hairColor, hairStyle);
         accessoryScreen.current = game.add.sprite(514, 148, 'accessories', 6);
 
-         // fade effect image 
+        // fade effect image (above all other sprites)
         black = game.add.sprite(0, 0, 'black');
 
-		// line that controls EVERYTHING!!!! :o
+		// main screen selection
 		control.onUp.add(menuSelection, this);
-
-		// function that controls everything 
 		function menuSelection(pointer) {
 			// stops mouseIn & mouseOut events 
-			if (control == game.input && !pointer.withinGame) {return;}
+			if (control === game.input && !pointer.withinGame) { 
+				return; 
+			}
 
 			// choosing screens
 			if (mainScreen.isDisplayed()) {
-				if (mainScreen.sprite.frame === 0) {
-					skinScreen.display = true;
-				}
-				else if (mainScreen.sprite.frame === 1) {
-					hairScreen1.display = true;
-				} else if (mainScreen.sprite.frame === 2) {
-					eyeScreen.display = true;
-				} else if (mainScreen.sprite.frame === 3) {
-					mouthScreen.display = true;
-				} else if (mainScreen.sprite.frame === 4) {
-					accessoryScreen.display = true;
-				} else if (mainScreen.sprite.frame === 5) {
-					hairColorScreen.display = true;
-				} else if (mainScreen.sprite.frame === 6) {
-					nextState = true;
-				}
+				screens[mainScreen.sprite.frame].display = true;
 				mainScreen.display = false;
 			}
 
-			// displaying preference screens
-			if (skinScreen.isDisplayed()) {
-				displayScreen(skinScreen);
-			}
-			if (hairScreen1.isDisplayed()) {
-				displayScreen(hairScreen1);
-			}
-			if (eyeScreen.isDisplayed()) {
-				displayScreen(eyeScreen);
-			}
-			if (hairColorScreen.isDisplayed()) {
-				displayScreen(hairColorScreen);
-			}
-			if (mouthScreen.isDisplayed()) {
-				displayScreen(mouthScreen);
-			}
-			if (accessoryScreen.isDisplayed()) {
-				displayScreen(accessoryScreen);
+			// displaying screens
+			for (i = 0; i < screens.length; i++) {
+				if (screens[i].display) {
+					displayScreen(screens[i]);
+					break;
+				}
 			}
 		}
 
+		// tab scanning 
+		if (twoSwitches) {
+			tab.onUp.add(scan, this);
+			function scan() {
+				scanScreen(mainScreen);
+				for (i = 0; i < screens.length - 2; i++) {
+					scanScreen(screens[i])
+				}
+				scanScreen(hairScreen2);
+				scanScreen(hairScreen3);
+				if (doneScreen) {
+					button.frame = button.frame + 1; 
+				}
+			}
+		}
+
+		// escape to previous state
+        escape.onUp.add(prevState, this);
+		function prevState() {
+			game.state.start('map');
+		}
 	}, 
 
+	// fade in/out animation
 	update: function() {
 		if (nextState) { fadeOut('map'); }
 		else {

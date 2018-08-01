@@ -82,6 +82,7 @@ var startState = {
         game.input.keyboard.onUpCallback = function() {
         	var key = game.input.keyboard.lastKey;
             if (key === enter) {
+
 	        	if (controlSelected && selectedControl === 0) {
 	        		selectedControl = 0;
 	        		nextState = true;
@@ -152,7 +153,6 @@ var startState = {
             if (key === tab) {
                 if (controlSelected && selectedControl === 3) {
                     selectedControl = 3;
-                    //nextState = true;
                 }
                 if (selectMode && tabPressed) {
                     // yes

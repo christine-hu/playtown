@@ -1,5 +1,5 @@
 // default settings
-var speed = .5; 
+var speed = 2; 
 var size = '45px';
 var color = 'color';
 
@@ -10,11 +10,11 @@ var enter;
 var space;
 
 // misc. global variables 
-var black;
-var nextState = false;
-var twoSwitches = false; 
+var black; // fade effect images
+var nextState = false; // handles state switches
+var twoSwitches = false; // one or two switches
 
-function menuScreen(sprite, doneButton, text, texture, mainScreen, mainText, num = 6) {
+function menuScreen(sprite, button, text, texture, mainScreen, num = 6) {
 	this.sprite = sprite;
 	this.sprite.visible = false;
 	this.anim = this.sprite.animations.add('scroll', returnArray(num + 1));
@@ -24,9 +24,9 @@ function menuScreen(sprite, doneButton, text, texture, mainScreen, mainText, num
 	this.texture = texture;
 	this.mainScreen = mainScreen;
 	this.numOptions = num;
-	this.doneButton = doneButton;
-	this.doneAnim = this.doneButton.animations.getAnimation('done');
-	this.backAnim = this.doneButton.animations.getAnimation('back');
+	this.button = button;
+	this.doneAnim = this.button.animations.getAnimation('done');
+	this.backAnim = this.button.animations.getAnimation('back');
 	this.isMainScreen = false;
 
 	this.initializeMain = function() {
@@ -49,7 +49,7 @@ function menuScreen(sprite, doneButton, text, texture, mainScreen, mainText, num
 				this.anim.play(speed, true);
 				this.backAnim.play(speed, true);
 			} else {
-				this.doneButton.frame = 2; 
+				this.button.frame = 2; 
 				this.sprite.frame = 0; 
 			}
 		}
@@ -68,14 +68,14 @@ function menuScreen(sprite, doneButton, text, texture, mainScreen, mainText, num
 		}
 	}
 	this.returnToMain = function() {
-		p1.setText(mainText, true);
+		p1.setText(this.mainScreen.text, true);
 		this.sprite.visible = false;
 		this.mainScreen.sprite.visible = true;
 		if (!twoSwitches) {
 			this.mainScreen.anim.restart();
 			this.doneAnim.restart();
 		} else {
-			this.doneButton.frame = 0; 
+			this.button.frame = 0; 
 		}
 		this.selectMode = false;
 		this.display = false;
@@ -91,19 +91,114 @@ function menuScreen(sprite, doneButton, text, texture, mainScreen, mainText, num
 	}
 }
 
+function endScreen(screens, button, backdrop) {
+	this.selectMode = false;
+	this.display = false;
+	this.mainScreen = screens[0].mainScreen;
+	this.button = button;
+	this.screens = screens;
+	this.backdrop = backdrop;
+
+	this.initialize = function() {
+		if (!this.selectMode) {
+			this.mainScreen.sprite.visible = false; 
+			this.mainScreen.button.visible = false;
+			this.button.visible = true;
+			p1.setText(this.mainScreen.endText, true);
+
+			if (!twoSwitches) {
+				this.button.animations.play('scroll', speed, true);
+			}
+
+			// shifting components
+			translate(this.backdrop, -175, -32);
+			translateGroup(this.screens, -175, -32);
+
+			// fade effect image to top 
+			black.bringToTop();
+		}
+	}
+
+	this.controlLogic = function() {
+		if (this.selectMode) {
+			if (this.button.frame === 0) {
+				this.returnToMain();			}
+			if (this.button.frame === 1) {
+				saveImage();
+			} 
+			if (this.button.frame === 2) {
+				nextState = true;
+			}
+
+		}
+	}
+
+	this.selectModeOn = function() {
+		if (this.display) {
+			this.selectMode = true;
+		}
+	}
+
+	this.returnToMain = function() {
+		// hide sprites + reset booleans
+		this.button.visible = false;
+		this.display = false;
+		this.selectMode = false;
+
+		// display main screen
+		this.mainScreen.sprite.frame = 0; 
+		this.mainScreen.button.frame = 0;
+		this.mainScreen.sprite.visible = true;
+		this.mainScreen.button.visible = true;
+		this.mainScreen.display = true;	
+		p1.setText(this.mainScreen.text, true);
+
+		if (!twoSwitches) {
+			this.mainScreen.anim.restart();
+			this.mainScreen.doneAnim.restart();
+		}
+
+		// shift backdrop + components
+		translate(this.backdrop, 175, 32);
+		translateGroup(this.screens, 175, 32);
+	}
+}
+
 function displayScreen(screen) {
 	screen.initialize();
 	screen.controlLogic();
 	screen.selectModeOn();
 }
 
-function returnArray(n) {
-	var i;
-	var out =[]; 
-	for (i = 0; i < n; i++) {
-		out[i] = i;
+// tab scanning
+function scanScreen(screen) {
+	this.screen = screen; 
+	if (this.screen.sprite.visible === true) {
+		this.screen.sprite.frame = this.screen.sprite.frame + 1; 
+		if (this.screen.sprite.frame > this.screen.numOptions) {
+			this.screen.sprite.frame = 0;
+		}
+		if (this.screen.sprite.frame === this.screen.numOptions) {
+			if (this.screen.isMainScreen) {
+				this.screen.button.frame = 1;
+			} else {
+				this.screen.button.frame = 3;
+			}
+		} else {
+			if (this.screen.isMainScreen) {
+				this.screen.button.frame = 0;
+			} else {
+				this.screen.button.frame = 2; 
+			}
+		}
 	}
-	return out; 
+}
+
+// fade in/out animations
+function fadeIn() {
+	if (black.alpha >= 0.02) {
+		black.alpha -= 0.02;
+	}
 }
 
 function fadeOut(nextState) {
@@ -115,36 +210,49 @@ function fadeOut(nextState) {
     }
 }
 
-function fadeIn() {
-	if (black.alpha >= 0.02) {
-		black.alpha -= 0.02;
+// saves image of creation to device 
+function saveImage() {
+	var img = new Image();
+    img.src = game.canvas.toDataURL();
+    img.onload = function() {
+        var canvas1 = document.createElement('canvas');
+        var ctx1 = canvas1.getContext('2d');
+        canvas1.width = 491;
+        canvas1.height = 490;
+        ctx1.drawImage(img, 205, 104, 491, 532, 0, 0, 491, 532);
+        var out = canvas1.toDataURL("image/png").replace("image/png", "image/octet-stream");
+        window.location.href=out; 
+    }
+}
+
+// helper functions
+function translate(sprite, dx, dy) {
+	this.sprite = sprite;
+
+	this.sprite.x = this.sprite.x + dx;
+	this.sprite.y = this.sprite.y + dy;
+}
+
+function translateGroup(screens, dx, dy) {
+	this.screens = screens;
+	for (i = 0; i < this.screens.length - 1; i++) {
+		if (this.screens[i].current !== undefined) {
+			translate(this.screens[i].current, dx, dy);
+		}
+	}
+	if (this.screens[7] !== undefined) {
+		translate(this.screens[7], dx, dy);
 	}
 }
 
-function scanScreen(screen) {
-	this.screen = screen; 
-	if (this.screen.sprite.visible === true) {
-		// this.screen.isDisplayed() || 
-		this.screen.sprite.frame = this.screen.sprite.frame + 1; 
-		if (this.screen.sprite.frame > this.screen.numOptions) {
-			this.screen.sprite.frame = 0;
-		}
-		if (this.screen.sprite.frame === this.screen.numOptions) {
-			if (this.screen.isMainScreen) {
-				this.screen.doneButton.frame = 1;
-			} else {
-				this.screen.doneButton.frame = 3;
-			}
-		} else {
-			if (this.screen.isMainScreen) {
-				this.screen.doneButton.frame = 0;
-			} else {
-				this.screen.doneButton.frame = 2; 
-			}
-		}
+function returnArray(n) {
+	var i;
+	var out =[]; 
+	for (i = 0; i < n; i++) {
+		out[i] = i;
 	}
+	return out; 
 }
-
 
 var game = new Phaser.Game(900, 700, Phaser.CANVAS, 'gameDiv');
 

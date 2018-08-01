@@ -100,26 +100,29 @@ var menuState = {
 		}
 		
 		// controlling scanning 
-		tab.onUp.add(scan, this);
-		function scan() {
-			if (mainMenu) {
-				mainMenuSprite.frame = mainMenuSprite.frame + 1; 
-			} else if (textMenu) {
-				textMenuSprite.frame = textMenuSprite.frame + 1; 
-				if (textMenuSprite.frame === 3) {
-					backButtonSprite.frame = 1;
-				} else {
-					backButtonSprite.frame = 0; 
-				}
-			} else if (speedMenu) {
-				speedMenuSprite.frame = speedMenuSprite.frame + 1; 
-				if (speedMenuSprite.frame === 3) {
-					backButtonSprite.frame = 1;
-				} else {
-					backButtonSprite.frame = 0; 
+		if (twoSwitches) {
+			tab.onUp.add(scan, this);
+			function scan() {
+				if (mainMenu) {
+					mainMenuSprite.frame = mainMenuSprite.frame + 1; 
+				} else if (textMenu) {
+					textMenuSprite.frame = textMenuSprite.frame + 1; 
+					if (textMenuSprite.frame === 3) {
+						backButtonSprite.frame = 1;
+					} else {
+						backButtonSprite.frame = 0; 
+					}
+				} else if (speedMenu) {
+					speedMenuSprite.frame = speedMenuSprite.frame + 1; 
+					if (speedMenuSprite.frame === 3) {
+						backButtonSprite.frame = 1;
+					} else {
+						backButtonSprite.frame = 0; 
+					}
 				}
 			}
 		}
+		
 
 		// line that controls EVERYTHING!!!! :o
 		control.onUp.add(menuSelection, this);
