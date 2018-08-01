@@ -67,7 +67,7 @@ var preloadState = {
       game.load.spritesheet('sprinklesMenu','assets/img/iceCream/sprinklesMenu.png', 328, 455);
       game.load.spritesheet('fruitMenu','assets/img/iceCream/fruitMenu.png', 328, 455);
       game.load.spritesheet('cookieMenu','assets/img/iceCream/cookieMenu.png', 328, 455);
-      game.load.spritesheet('doneScreen', 'assets/img/doneScreen.png', 385, 75);
+      game.load.spritesheet('doneScreen', 'assets/img/doneScreen.png', 269, 75);
 
       game.load.spritesheet('flavor', 'assets/img/iceCream/flavor.png', 236, 177);
       game.load.spritesheet('cone', 'assets/img/iceCream/cone.png', 289, 242);
@@ -86,6 +86,7 @@ var preloadState = {
       game.load.spritesheet('armMenu','assets/img/robot/armMenu.png', 328, 455);
       game.load.spritesheet('faceMenu','assets/img/robot/faceMenu.png', 328, 455);
       game.load.spritesheet('antennaMenu','assets/img/robot/antennaMenu.png', 328, 455);
+      game.load.spritesheet('doneScreen2', 'assets/img/doneScreen2.png', 269, 75);
 
       game.load.spritesheet('body','assets/img/robot/body.png', 215, 312);
       game.load.spritesheet('design','assets/img/robot/design.png', 97, 92);

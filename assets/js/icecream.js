@@ -4,7 +4,7 @@ var iceCreamState = {
 		nextState = false;
 		var backdrop; 
 
-		// menu screens
+		// screens
 		var mainScreen;
 		var flavorScreen;
 		var syrupScreen;
@@ -14,7 +14,7 @@ var iceCreamState = {
 		var coneScreen;
 		var doneScreen;
 
-		// done button 
+		// buttons
 		var doneButton;
 		var button;
 
@@ -51,7 +51,7 @@ var iceCreamState = {
 		doneButton.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
 		doneButton.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);
 
-		button = game.add.sprite(262, 600, 'doneScreen');
+		button = game.add.sprite(320, 590, 'doneScreen');
 		button.animations.add('scroll');
 		button.visible = false;
 		
@@ -111,7 +111,9 @@ var iceCreamState = {
 
 		function menuSelection(pointer) {
 			// stops mouseIn & mouseOut events 
-			if (control === game.input && !pointer.withinGame) { return; }
+			if (control === game.input && !pointer.withinGame) { 
+				return; 
+			}
 
 			// choosing screens
 			if (mainScreen.isDisplayed()) {

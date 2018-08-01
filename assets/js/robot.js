@@ -12,6 +12,7 @@ var robotState = {
 		var armScreen;
 		var legScreen;
 		var designScreen;
+		var doneScreen;
 
 		// done button
 		var doneButtonSprite;
@@ -37,12 +38,12 @@ var robotState = {
 			tab.onUp.add(scan, this);
 			function scan() {
 				scanScreen(mainScreen);
-				scanScreen(bodyScreen);
-				scanScreen(faceScreen);
-				scanScreen(antennaScreen);
-				scanScreen(armScreen);
-				scanScreen(legScreen);
-				scanScreen(designScreen);
+				for (i = 0; i < screens.length - 1; i++) {
+					scanScreen(screens[i])
+				}
+				if (doneScreen) {
+					button.frame = button.frame + 1; 
+				}
 			}
 		}
 
@@ -50,6 +51,10 @@ var robotState = {
 		doneButton = game.add.sprite(720, 560, 'doneButton2');
         doneButton.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
         doneButton.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);
+
+        button = game.add.sprite(320, 590, 'doneScreen2');
+		button.animations.add('scroll');
+		button.visible = false;
 
 		// initializing menu screens
 		mainScreen = new menuScreen(game.add.sprite(45, 155, 'robotMenu'), doneButton);
@@ -89,6 +94,11 @@ var robotState = {
 
 		designScreen = new menuScreen(game.add.sprite(45, 155, 'designMenu'), doneButton, 'Select a design!', 'design', mainScreen, 'Build a robot!');
 
+		var screens = [bodyScreen, armScreen, legScreen, faceScreen, antennaScreen, designScreen];
+
+		doneScreen = new endScreen(screens, button, backdrop);
+		screens[6] = doneScreen;
+
 		// displaying robot components 
         armScreen.current = game.add.sprite(482, 206, armScreen.armColor, armScreen.armStyle);
         antennaScreen.current = game.add.sprite(569, 170, 'antenna', 6);
@@ -104,57 +114,32 @@ var robotState = {
 		control.onUp.add(menuSelection, this);
 
 		function menuSelection(pointer) {
-
 			// stops mouseIn & mouseOut events 
-			if (control === game.input && !pointer.withinGame) { return; }
+			if (control === game.input && !pointer.withinGame) { 
+				return; 
+			}
 
 			// choosing screens
 			if (mainScreen.isDisplayed()) {
-				if (mainScreen.sprite.frame === 0) {
-					bodyScreen.display = true;
-				} else if (mainScreen.sprite.frame === 1) {
-					armScreen.display = true;
-				} else if (mainScreen.sprite.frame === 2) {
-					legScreen.display = true;
-				} else if (mainScreen.sprite.frame === 3) {
-					faceScreen.display = true;
-				} else if (mainScreen.sprite.frame === 4) {
-					antennaScreen.display = true;
-				} else if (mainScreen.sprite.frame === 5) {
-					designScreen.display = true;
-				} else if (mainScreen.sprite.frame === 6) {
-					saveImage();
-					nextState = true;
-				}
+				screens[mainScreen.sprite.frame].display = true;
 				mainScreen.display = false;
 			}
 
-			// displaying preference screens
-			if (bodyScreen.isDisplayed()) {
-				displayScreen(bodyScreen);
-			}
-			if (armScreen.isDisplayed()) {
-				displayScreen(armScreen);
-			}
-			if (legScreen.isDisplayed()) {
-				displayScreen(legScreen);
-			}
-			if (faceScreen.isDisplayed()) {
-				displayScreen(faceScreen);
-			}
-			if (antennaScreen.isDisplayed()) {
-				displayScreen(antennaScreen);
-			}
-			if (designScreen.isDisplayed()) {
-				displayScreen(designScreen);
+			// displaying screens
+			for (i = 0; i < screens.length; i++) {
+				if (screens[i].display) {
+					displayScreen(screens[i]);
+					break;
+				}
 			}
 		}
 
 	}, 
 
 	update: function() {
-		if (nextState) { fadeOut('map'); }
-		else {
+		if (nextState) { 
+			fadeOut('map'); 
+		} else {
 			fadeIn();
         }
 	}
