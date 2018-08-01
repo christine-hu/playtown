@@ -55,7 +55,7 @@ var characterState = {
 			tab.onUp.add(scan, this);
 			function scan() {
 				scanScreen(mainScreen);
-				for (i = 0; i < screens.length - 1; i++) {
+				for (i = 0; i < screens.length - 2; i++) {
 					scanScreen(screens[i])
 				}
 				scanScreen(hairScreen2);
@@ -253,10 +253,12 @@ var characterState = {
 		doneScreen = new endScreen(screens, button, backdrop);
 		screens[6] = doneScreen;
 
+
         // rendering the avatar
         skinScreen.current = game.add.sprite (525, 238, 'skin', 6);
         eyeScreen.current = game.add.sprite(557, 348, 'eyes');
         nose = game.add.sprite(610, 408, 'nose');
+        	screens[7] = nose; 
         mouthScreen.current = game.add.sprite(591, 423, 'mouth');
         hairScreen1.current = game.add.sprite(414, 163, hairColor, hairStyle);
         accessoryScreen.current = game.add.sprite(514, 148, 'accessories', 6);

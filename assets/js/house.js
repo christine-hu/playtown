@@ -37,7 +37,7 @@ var houseState = {
 			tab.onUp.add(scan, this);
 			function scan() {
 				scanScreen(mainScreen);
-				for (i = 0; i < screens.length - 1; i++) {
+				for (i = 0; i < screens.length - 2; i++) {
 					scanScreen(screens[i])
 				}
 				if (doneScreen) {
@@ -82,6 +82,7 @@ var houseState = {
         groundScreen.current = game.add.sprite(410, 490, 'ground', 6);
         foliageScreen.current = game.add.sprite(407, 272, 'foliage', 5);
         outline = game.add.sprite(405, 153, 'outline', 0);
+        	screens[7] = outline;
         textureScreen.current = game.add.sprite(495, 285, 'texture', 6);
         windowsScreen.current = game.add.sprite(545, 370, 'windows', 6);
         roofScreen.current = game.add.sprite(496, 245, 'roof', 6);

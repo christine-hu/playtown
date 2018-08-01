@@ -236,6 +236,9 @@ function translateGroup(screens, dx, dy) {
 			translate(this.screens[i].current, dx, dy);
 		}
 	}
+	if (this.screens[7] !== undefined) {
+		translate(this.screens[7], dx, dy);
+	}
 }
 
 function returnArray(n) {
