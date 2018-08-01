@@ -104,7 +104,7 @@ function endScreen(screens, button, backdrop) {
 			this.mainScreen.sprite.visible = false; 
 			this.mainScreen.button.visible = false;
 			this.button.visible = true;
-			p1.setText('Yummy!', true);
+			p1.setText(this.mainScreen.endText, true);
 
 			if (!twoSwitches) {
 				this.button.animations.play('scroll', speed, true);
@@ -170,21 +170,7 @@ function displayScreen(screen) {
 	screen.selectModeOn();
 }
 
-function fadeIn() {
-	if (black.alpha >= 0.02) {
-		black.alpha -= 0.02;
-	}
-}
-
-function fadeOut(nextState) {
-	if (black.alpha < .98) {
-       black.alpha += 0.02;
-    }
-    if (black.alpha >= 0.98) {
-       game.state.start(nextState, true, false, selectedControl);
-    }
-}
-
+// tab scanning
 function scanScreen(screen) {
 	this.screen = screen; 
 	if (this.screen.sprite.visible === true) {
@@ -208,6 +194,23 @@ function scanScreen(screen) {
 	}
 }
 
+// fade in/out animations
+function fadeIn() {
+	if (black.alpha >= 0.02) {
+		black.alpha -= 0.02;
+	}
+}
+
+function fadeOut(nextState) {
+	if (black.alpha < .98) {
+       black.alpha += 0.02;
+    }
+    if (black.alpha >= 0.98) {
+       game.state.start(nextState, true, false, selectedControl);
+    }
+}
+
+// saves image of creation to device 
 function saveImage() {
 	var img = new Image();
     img.src = game.canvas.toDataURL();
@@ -222,6 +225,7 @@ function saveImage() {
     }
 }
 
+// helper functions
 function translate(sprite, dx, dy) {
 	this.sprite = sprite;
 

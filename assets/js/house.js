@@ -43,6 +43,7 @@ var houseState = {
 		mainScreen = new menuScreen(game.add.sprite(45, 155, 'houseMenu'), doneButton);
 		mainScreen.initializeMain();
 		mainScreen.text = 'Design a house!'
+		mainScreen.endText = 'Wow!'
 
 		textureScreen = new menuScreen(game.add.sprite(45, 155, 'textureMenu'), doneButton, 'Select a house style!', 'texture', mainScreen);
 

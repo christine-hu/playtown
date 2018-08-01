@@ -54,6 +54,7 @@ var characterState = {
 		mainScreen = new menuScreen(game.add.sprite(45, 155, 'characterMenu'), doneButton);
 		mainScreen.initializeMain();
 		mainScreen.text = 'Create an avatar!'
+		mainScreen.endText = 'Nice job!'
 
 		skinScreen = new menuScreen(game.add.sprite(45, 155, 'skinMenu'), doneButton, 'Select a skin color!', 'skin', mainScreen);
 

@@ -42,6 +42,7 @@ var robotState = {
 		mainScreen = new menuScreen(game.add.sprite(45, 155, 'robotMenu'), doneButton);
 		mainScreen.initializeMain();
 		mainScreen.text = 'Build a robot!'
+		mainScreen.endText = 'Awesome!'
 
 		bodyScreen = new menuScreen(game.add.sprite(45, 155, 'bodyMenu'), doneButton, 'Select a body color!', 'body', mainScreen);
 

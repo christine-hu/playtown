@@ -40,9 +40,9 @@ var iceCreamState = {
 		
 		// initializing menu screens 
 		mainScreen = new menuScreen(game.add.sprite(45, 155, 'iceCreamMenu'), doneButton);
-		mainScreen = new menuScreen(game.add.sprite(45, 155, 'iceCreamMenu'), doneButton);
 		mainScreen.initializeMain();
 		mainScreen.text = 'Make some ice cream!';
+		mainScreen.endText = 'Yummy!';
 
 		coneScreen = new menuScreen(game.add.sprite(45, 155, 'coneMenu'), doneButton, 'Select a cone!', 'cone', mainScreen);
 			coneScreen.prevCone = null;
