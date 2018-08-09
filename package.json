@@ -25,9 +25,7 @@
   },
   "homepage": "https://github.com/christine-hu/playtown#readme",
   "dependencies": {
-    "phaser-ce": "^2.11.0",
-    "phaser-state-transition": "^2.5.1",
-    "typeface-jua": "0.0.58",
-    "typeface-londrina-solid": "0.0.54"
+    "file-saver": "^1.3.8",
+    "phaser-ce": "^2.11.0"
   }
 }
