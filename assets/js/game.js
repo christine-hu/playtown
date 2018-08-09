@@ -1,3 +1,4 @@
+
 // default settings
 var speed = 2; 
 var size = '45px';
@@ -211,7 +212,7 @@ function fadeOut(nextState) {
 }
 
 // saves image of creation to device 
-function saveImage() {
+function saveImage(name) {
 	var img = new Image();
     img.src = game.canvas.toDataURL();
     img.onload = function() {
@@ -220,8 +221,9 @@ function saveImage() {
         canvas1.width = 491;
         canvas1.height = 490;
         ctx1.drawImage(img, 205, 104, 491, 532, 0, 0, 491, 532);
-        var out = canvas1.toDataURL("image/png").replace("image/png", "image/octet-stream");
-        window.location.href=out; 
+        canvas1.toBlob(function(blob) {
+		    saveAs(blob, 'creation.png');
+		});
     }
 }
 
