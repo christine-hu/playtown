@@ -30,7 +30,7 @@ var houseState = {
 		p1.boundsAlignV = 'middle';
         p1.setTextBounds(100, 40, 700, 70);
 
-         // initializing done button
+         // initializing buttons
         doneButton = game.add.sprite(720, 560, 'doneButton4');
         doneButton.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
         doneButton.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);
@@ -47,9 +47,9 @@ var houseState = {
 
 		textureScreen = new menuScreen(game.add.sprite(45, 155, 'textureMenu'), doneButton, 'Select a house style!', 'texture', mainScreen);
 
-		windowsScreen = new menuScreen(game.add.sprite(45, 155, 'windowsMenu'), doneButton, 'Select a window!', 'windows', mainScreen);
-
 		roofScreen = new menuScreen(game.add.sprite(45, 155, 'roofMenu'), doneButton, 'Select a roof!', 'roof', mainScreen);
+
+		windowsScreen = new menuScreen(game.add.sprite(45, 155, 'windowsMenu'), doneButton, 'Select a window!', 'windows', mainScreen);
 
 		skyScreen = new menuScreen(game.add.sprite(45, 155, 'skyMenu'), doneButton, 'Select a sky!', 'sky', mainScreen);
 		
@@ -58,7 +58,7 @@ var houseState = {
 		foliageScreen = new menuScreen(game.add.sprite(45, 155, 'foliageMenu'), doneButton, 'Select a background!', 'foliage', mainScreen);
 
 		// putting screens into array
-		screens = [textureScreen, windowsScreen, roofScreen, skyScreen, groundScreen, foliageScreen];
+		screens = [textureScreen, roofScreen, windowsScreen, skyScreen, groundScreen, foliageScreen];
 		doneScreen = new endScreen(screens, button, backdrop);
 		screens[6] = doneScreen;
 

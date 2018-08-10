@@ -230,7 +230,7 @@ var characterState = {
 		screens[6] = doneScreen;
 
         // displaying avatar components
-        skinScreen.current = game.add.sprite (525, 238, 'skin', 6);
+        skinScreen.current = game.add.sprite (507, 213, 'skin', 6);
         eyeScreen.current = game.add.sprite(557, 348, 'eyes');
         nose = game.add.sprite(610, 408, 'nose');
         	screens[7] = nose; // for translateGroup()

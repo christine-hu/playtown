@@ -246,9 +246,9 @@ var menuState = {
 						speedSelection = 0; 
 	    			}
 	    			if (speedMenuSprite.frame == 1) {
-	    				speedAnim.delay = 2000;
-						backButtonAnim.delay = 2000;
-						mainAnim.delay = 2000;
+	    				speedAnim.delay = 3000;
+						backButtonAnim.delay = 3000;
+						mainAnim.delay = 3000;
 						speed = 0.5;
 						speedSelection = 1;
 	    			}

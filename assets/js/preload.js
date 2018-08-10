@@ -88,7 +88,7 @@ var preloadState = {
       game.load.spritesheet('hairColorMenu', 'assets/img/character/hairColorMenu.png', 328, 455);
       game.load.spritesheet('doneScreen3', 'assets/img/character/doneScreen3.png', 269, 75);
 
-      game.load.spritesheet('skin', 'assets/img/character/skin.png', 202, 265);
+      game.load.spritesheet('skin', 'assets/img/character/skin.png', 237, 312);
       game.load.spritesheet('eyes', 'assets/img/character/eyes.png', 140, 46);
       game.load.image('nose', 'assets/img/character/nose.png', 32, 15);
       game.load.spritesheet('mouth', 'assets/img/character/mouth.png', 88, 60);
@@ -98,7 +98,6 @@ var preloadState = {
       game.load.spritesheet('hairOrange', 'assets/img/character/hairOrange.png', 423, 439);
       game.load.spritesheet('hairPink', 'assets/img/character/hairPink.png', 423, 439);
       game.load.spritesheet('hairBlue', 'assets/img/character/hairBlue.png', 423, 439);
-      game.load.spritesheet('hairExtra', 'assets/img/character/hairExtra.png', 423, 439);
       game.load.spritesheet('accessories', 'assets/img/character/accessories.png', 216, 308);
 
       game.load.spritesheet('doneButton3', 'assets/img/character/doneButton3.png', 83, 75);
