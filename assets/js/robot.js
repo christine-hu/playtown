@@ -33,6 +33,7 @@ var robotState = {
 		doneButton = game.add.sprite(720, 560, 'doneButton2');
         doneButton.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
         doneButton.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);
+<<<<<<< HEAD
 
         button = game.add.sprite(320, 590, 'doneScreen2');
 		button.animations.add('scroll');
@@ -45,6 +46,28 @@ var robotState = {
 		mainScreen.endText = 'Awesome!'
 
 		bodyScreen = new menuScreen(game.add.sprite(45, 155, 'bodyMenu'), doneButton, 'Select a body color!', 'body', mainScreen);
+=======
+
+        button = game.add.sprite(320, 590, 'doneScreen2');
+		button.animations.add('scroll');
+		button.visible = false;
+
+		// initializing menu screens
+		mainScreen = new menuScreen(game.add.sprite(45, 155, 'robotMenu'), doneButton);
+		mainScreen.initializeMain();
+		mainScreen.text = 'Build a robot!'
+		mainScreen.endText = 'Awesome!'
+
+		bodyScreen = new menuScreen(game.add.sprite(45, 155, 'bodyMenu'), doneButton, 'Select a body color!', 'body', mainScreen);
+		bodyScreen.displaySelection = function() {
+			if (bodyScreen.sprite.frame !== 6) {
+				bodyScreen.current.loadTexture(bodyScreen.texture, bodyScreen.sprite.frame);
+			}
+			if (faceScreen.current.frame == 6) {
+				faceScreen.current.loadTexture(faceScreen.texture, 3);
+			}
+		}
+>>>>>>> gh-pages
 
 		faceScreen = new menuScreen(game.add.sprite(45, 155, 'faceMenu'), doneButton, 'Select a face!', 'face', mainScreen);
 

@@ -58,7 +58,7 @@ var menuState = {
         };
 
         // text 
-        p1 = game.add.text(0, 0, "", pStyle);
+        p1 = game.add.text(0, 0, "Play or set preferences!", pStyle);
         p1.setTextBounds(100, 185, 700, 165);
 	
 		// title
@@ -199,7 +199,7 @@ var menuState = {
     				textMenuSprite.visible = false;
     				backButtonSprite.visible = false;
     				carrots.visible = false;
-    				p1.visible = false;
+    				p1.setText("Play or set preferences!", true);
     				mainMenuSprite.visible = true;
     				if (!twoSwitches) { 
     					mainMenuSprite.animations.currentAnim.restart();
@@ -246,9 +246,15 @@ var menuState = {
 						speedSelection = 0; 
 	    			}
 	    			if (speedMenuSprite.frame == 1) {
+<<<<<<< HEAD
 	    				speedAnim.delay = 2000;
 						backButtonAnim.delay = 2000;
 						mainAnim.delay = 2000;
+=======
+	    				speedAnim.delay = 3000;
+						backButtonAnim.delay = 3000;
+						mainAnim.delay = 3000;
+>>>>>>> gh-pages
 						speed = 0.5;
 						speedSelection = 1;
 	    			}
@@ -264,7 +270,7 @@ var menuState = {
     			if (backButtonSprite.frame == 1) {
     				speedMenuSprite.visible = false;
     				backButtonSprite.visible = false;
-    				p1.visible = false;
+    				p1.setText("Play or set preferences!", true);
     				carrots.visible = false;
     				mainMenuSprite.visible = true;
     				if (!twoSwitches) {
