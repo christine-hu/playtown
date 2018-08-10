@@ -17,7 +17,7 @@ On the technical side, the game is being built with:
 
 # User Tips
 
-### Press the escape key at any point in the game to return to the previous screen: ###
+Press the escape key at any point in the game to return to the previous screen: 
   * Location escapes to map
   * Map escapes to main menu
   * Main menu escapes to control selection
