@@ -58,7 +58,7 @@ var characterState = {
 
 		skinScreen = new menuScreen(game.add.sprite(45, 155, 'skinMenu'), doneButton, 'Select a skin color!', 'skin', mainScreen);
 
-		hairScreen1 = new menuScreen(game.add.sprite(45, 158, 'hairMenu1'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 7);
+		hairScreen1 = new menuScreen(game.add.sprite(45, 155, 'hairMenu1'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 7);
 		hairScreen1.backAnim = hairScreen1.button.animations.getAnimation('back7');
 			hairScreen1.initialize = function() {
 				if (!hairScreen1.selectMode && page1) {
@@ -96,7 +96,7 @@ var characterState = {
 				}
 			}
 
-		hairScreen2 = new menuScreen(game.add.sprite(45, 85, 'hairMenu2'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 8);
+		hairScreen2 = new menuScreen(game.add.sprite(45, 86, 'hairMenu2'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 8);
 		hairScreen2.backAnim = hairScreen2.button.animations.getAnimation('back8');
 			hairScreen2.initialize = function() {
 				if (!hairScreen2.selectMode && !page3 && !page1) {
@@ -154,7 +154,7 @@ var characterState = {
 				}
 			}
 
-		hairScreen3 = new menuScreen(game.add.sprite(45, 85, 'hairMenu3'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 7);
+		hairScreen3 = new menuScreen(game.add.sprite(45, 86, 'hairMenu3'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 7);
 		hairScreen3.backAnim = hairScreen3.button.animations.getAnimation('back7');
 			hairScreen3.initalize = function() {
 				if (!hairScreen3.selectMode && page3) {

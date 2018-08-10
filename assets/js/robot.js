@@ -45,6 +45,14 @@ var robotState = {
 		mainScreen.endText = 'Awesome!'
 
 		bodyScreen = new menuScreen(game.add.sprite(45, 155, 'bodyMenu'), doneButton, 'Select a body color!', 'body', mainScreen);
+		bodyScreen.displaySelection = function() {
+			if (bodyScreen.sprite.frame !== 6) {
+				bodyScreen.current.loadTexture(bodyScreen.texture, bodyScreen.sprite.frame);
+			}
+			if (faceScreen.current.frame == 6) {
+				faceScreen.current.loadTexture(faceScreen.texture, 3);
+			}
+		}
 
 		faceScreen = new menuScreen(game.add.sprite(45, 155, 'faceMenu'), doneButton, 'Select a face!', 'face', mainScreen);
 
