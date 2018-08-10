@@ -1,4 +1,4 @@
-This game was developed as a [Google Summer of Code](https://summerofcode.withgoogle.com/) project under the [Inclusive Design Institute](https://inclusivedesign.ca/). Play the game [here](https://christine-hu.github.io/playtown/)!
+This game was developed as a [Google Summer of Code](https://summerofcode.withgoogle.com/) project under the [Inclusive Design Institute](https://inclusivedesign.ca/). Blog posts detailing the work process can be found [here](http://blog.christinehu.org/search/label/gsoc), and you can play the game [here](https://christine-hu.github.io/playtown/)!
 
 # Playtown!
 
