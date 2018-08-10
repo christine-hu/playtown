@@ -15,6 +15,13 @@ On the technical side, the game is being built with:
 - HTML, JavaScript, & CSS (Using the [Phaser](http://phaser.io/) game engine)
 - [Assembly](http://assemblyapp.co/), [InkScape](https://inkscape.org/en/), & [TexturePacker](https://www.codeandweb.com/texturepacker) (Sprite creation)
 
+# User Tips
+
+### Press the escape key at any point in the game to return to the previous screen! ###
+  * Location escapes to map
+  * Map escapes to main menu
+  * Main menu escapes to control selection
+
 # Running Locally
 To run the game locally, complete the following steps: 
 
