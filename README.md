@@ -1,4 +1,4 @@
-*This game is being developed as a [Google Summer of Code](https://summerofcode.withgoogle.com/) 2018 project under the [Inclusive Design Institute](https://inclusivedesign.ca/); the final game will not be completed until August 15th. In the meantime, the incomplete game will be hosted at https://christine-hu.github.io/playtown/.
+*This game was developed as a [Google Summer of Code](https://summerofcode.withgoogle.com/) project under the [Inclusive Design Institute](https://inclusivedesign.ca/). Play the game at https://christine-hu.github.io/playtown/!
 
 # Playtown!
 
