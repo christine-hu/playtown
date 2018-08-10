@@ -234,7 +234,7 @@ var characterState = {
         eyeScreen.current = game.add.sprite(557, 348, 'eyes');
         nose = game.add.sprite(610, 408, 'nose');
         	screens[7] = nose; // for translateGroup()
-        mouthScreen.current = game.add.sprite(591, 423, 'mouth');
+        mouthScreen.current = game.add.sprite(592, 423, 'mouth');
         hairScreen1.current = game.add.sprite(414, 163, hairColor, hairStyle);
         accessoryScreen.current = game.add.sprite(514, 148, 'accessories', 6);
 
