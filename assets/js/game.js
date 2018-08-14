@@ -1,13 +1,7 @@
 
 // default settings
-<<<<<<< HEAD
-var speed = 2; 
-var size = '45px';
-var color = 'color';
-=======
 var speed = .33; 
 var size = '45px';
->>>>>>> gh-pages
 
 // input keys 
 var escape; 
