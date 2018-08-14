@@ -28,18 +28,14 @@ var houseState = {
 		backdrop = game.add.sprite(365, 112, 'houseBackground');
 		p1 = game.add.text(0, 0, "Design a house!", pStyle);
 		p1.boundsAlignV = 'middle';
-        p1.setTextBounds(100, 40, 700, 70);
+        	p1.setTextBounds(100, 40, 700, 70);
 
-<<<<<<< HEAD
-         // initializing done button
-=======
-         // initializing buttons
->>>>>>> gh-pages
-        doneButton = game.add.sprite(720, 560, 'doneButton4');
-        doneButton.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
-        doneButton.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);
+		// initializing buttons
+		doneButton = game.add.sprite(720, 560, 'doneButton4');
+		doneButton.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
+		doneButton.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);
 
-        button = game.add.sprite(320, 590, 'doneScreen4');
+        	button = game.add.sprite(320, 590, 'doneScreen4');
 		button.animations.add('scroll');
 		button.visible = false;
 
@@ -51,15 +47,9 @@ var houseState = {
 
 		textureScreen = new menuScreen(game.add.sprite(45, 155, 'textureMenu'), doneButton, 'Select a house style!', 'texture', mainScreen);
 
-<<<<<<< HEAD
-		windowsScreen = new menuScreen(game.add.sprite(45, 155, 'windowsMenu'), doneButton, 'Select a window!', 'windows', mainScreen);
-
-		roofScreen = new menuScreen(game.add.sprite(45, 155, 'roofMenu'), doneButton, 'Select a roof!', 'roof', mainScreen);
-=======
 		roofScreen = new menuScreen(game.add.sprite(45, 155, 'roofMenu'), doneButton, 'Select a roof!', 'roof', mainScreen);
 
 		windowsScreen = new menuScreen(game.add.sprite(45, 155, 'windowsMenu'), doneButton, 'Select a window!', 'windows', mainScreen);
->>>>>>> gh-pages
 
 		skyScreen = new menuScreen(game.add.sprite(45, 155, 'skyMenu'), doneButton, 'Select a sky!', 'sky', mainScreen);
 		
@@ -68,29 +58,25 @@ var houseState = {
 		foliageScreen = new menuScreen(game.add.sprite(45, 155, 'foliageMenu'), doneButton, 'Select a background!', 'foliage', mainScreen);
 
 		// putting screens into array
-<<<<<<< HEAD
-		screens = [textureScreen, windowsScreen, roofScreen, skyScreen, groundScreen, foliageScreen];
-=======
 		screens = [textureScreen, roofScreen, windowsScreen, skyScreen, groundScreen, foliageScreen];
->>>>>>> gh-pages
 		doneScreen = new endScreen(screens, button, backdrop);
 		screens[6] = doneScreen;
 
-        // displaying house components   
-        skyScreen.current = game.add.sprite(410, 155, 'sky', 6);
-        groundScreen.current = game.add.sprite(410, 490, 'ground', 6);
-        foliageScreen.current = game.add.sprite(407, 272, 'foliage', 5);
-        outline = game.add.sprite(405, 153, 'outline', 0);
-        	screens[7] = outline; // for translateGroup()
-        textureScreen.current = game.add.sprite(495, 285, 'texture', 6);
-        windowsScreen.current = game.add.sprite(545, 370, 'windows', 6);
-        roofScreen.current = game.add.sprite(496, 245, 'roof', 6);
-        doneButton.bringToTop();
+		// displaying house components   
+		skyScreen.current = game.add.sprite(410, 155, 'sky', 6);
+		groundScreen.current = game.add.sprite(410, 490, 'ground', 6);
+		foliageScreen.current = game.add.sprite(407, 272, 'foliage', 5);
+		outline = game.add.sprite(405, 153, 'outline', 0);
+			screens[7] = outline; // for translateGroup()
+		textureScreen.current = game.add.sprite(495, 285, 'texture', 6);
+		windowsScreen.current = game.add.sprite(545, 370, 'windows', 6);
+		roofScreen.current = game.add.sprite(496, 245, 'roof', 6);
+		doneButton.bringToTop();
 
-        // fade effect image (above all other sprites)
-        black = game.add.sprite(0, 0, 'black');
+		// fade effect image (above all other sprites)
+		black = game.add.sprite(0, 0, 'black');
 
-        // main screen selection
+        	// main screen selection
 		control.onUp.add(menuSelection, this);
 		function menuSelection(pointer) {
 			// stops mouseIn & mouseOut events 
@@ -128,7 +114,7 @@ var houseState = {
 		}
 
 		// escape to previous state
-        escape.onUp.add(prevState, this);
+        	escape.onUp.add(prevState, this);
 		function prevState() {
 			game.state.start('map');
 		}
