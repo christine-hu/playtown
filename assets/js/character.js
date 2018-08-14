@@ -50,7 +50,7 @@ var characterState = {
 			button.animations.add('scroll');
 			button.visible = false;
 
-        // initializing menu screens 
+        	// initializing menu screens 
 		mainScreen = new menuScreen(game.add.sprite(45, 155, 'characterMenu'), doneButton);
 		mainScreen.initializeMain();
 		mainScreen.text = 'Create an avatar!'
