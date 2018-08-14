@@ -37,18 +37,18 @@ var characterState = {
 		backdrop = game.add.sprite(365, 112, 'characterBackground');
 		p1 = game.add.text(0, 0, "Create an avatar!", pStyle);
 		p1.boundsAlignV = 'middle';
-        p1.setTextBounds(100, 35, 700, 65);
+        	p1.setTextBounds(100, 35, 700, 65);
 
-        // initializing buttons
-        doneButton = game.add.sprite(720, 560, 'doneButton3');
-        doneButton.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
-        doneButton.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);
-        doneButton.animations.add('back7', [2, 2, 2, 2, 2, 2, 2, 3]);
-        doneButton.animations.add('back8', [2, 2, 2, 2, 2, 2, 2, 2, 3]);
+		// initializing buttons
+		doneButton = game.add.sprite(720, 560, 'doneButton3');
+		doneButton.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
+		doneButton.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);
+		doneButton.animations.add('back7', [2, 2, 2, 2, 2, 2, 2, 3]);
+		doneButton.animations.add('back8', [2, 2, 2, 2, 2, 2, 2, 2, 3]);
 
-        button = game.add.sprite(320, 590, 'doneScreen3');
-		button.animations.add('scroll');
-		button.visible = false;
+		button = game.add.sprite(320, 590, 'doneScreen3');
+			button.animations.add('scroll');
+			button.visible = false;
 
         // initializing menu screens 
 		mainScreen = new menuScreen(game.add.sprite(45, 155, 'characterMenu'), doneButton);
@@ -229,17 +229,17 @@ var characterState = {
 		doneScreen = new endScreen(screens, button, backdrop);
 		screens[6] = doneScreen;
 
-        // displaying avatar components
-        skinScreen.current = game.add.sprite (507, 213, 'skin', 6);
-        eyeScreen.current = game.add.sprite(557, 348, 'eyes');
-        nose = game.add.sprite(610, 408, 'nose');
-        	screens[7] = nose; // for translateGroup()
-        mouthScreen.current = game.add.sprite(592, 423, 'mouth');
-        hairScreen1.current = game.add.sprite(414, 163, hairColor, hairStyle);
-        accessoryScreen.current = game.add.sprite(514, 148, 'accessories', 6);
+		// displaying avatar components
+		skinScreen.current = game.add.sprite (507, 213, 'skin', 6);
+		eyeScreen.current = game.add.sprite(557, 348, 'eyes');
+		nose = game.add.sprite(610, 408, 'nose');
+			screens[7] = nose; // for translateGroup()
+		mouthScreen.current = game.add.sprite(592, 423, 'mouth');
+		hairScreen1.current = game.add.sprite(414, 163, hairColor, hairStyle);
+		accessoryScreen.current = game.add.sprite(514, 148, 'accessories', 6);
 
-        // fade effect image (above all other sprites)
-        black = game.add.sprite(0, 0, 'black');
+		// fade effect image (above all other sprites)
+		black = game.add.sprite(0, 0, 'black');
 
 		// main screen selection
 		control.onUp.add(menuSelection, this);
@@ -281,17 +281,17 @@ var characterState = {
 		}
 
 		// escape to previous state
-        escape.onUp.add(prevState, this);
-		function prevState() {
-			game.state.start('map');
-		}
-	}, 
+		escape.onUp.add(prevState, this);
+			function prevState() {
+				game.state.start('map');
+			}
+		}, 
 
-	// fade in/out animation
-	update: function() {
-		if (nextState) { fadeOut('map'); }
-		else {
-			fadeIn();
-        }
+		// fade in/out animation
+		update: function() {
+			if (nextState) { fadeOut('map'); }
+			else {
+				fadeIn();
+		}
 	}
 }
