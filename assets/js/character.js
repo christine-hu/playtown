@@ -58,11 +58,7 @@ var characterState = {
 
 		skinScreen = new menuScreen(game.add.sprite(45, 155, 'skinMenu'), doneButton, 'Select a skin color!', 'skin', mainScreen);
 
-<<<<<<< HEAD
-		hairScreen1 = new menuScreen(game.add.sprite(45, 158, 'hairMenu1'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 7);
-=======
 		hairScreen1 = new menuScreen(game.add.sprite(45, 155, 'hairMenu1'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 7);
->>>>>>> gh-pages
 		hairScreen1.backAnim = hairScreen1.button.animations.getAnimation('back7');
 			hairScreen1.initialize = function() {
 				if (!hairScreen1.selectMode && page1) {
@@ -100,11 +96,7 @@ var characterState = {
 				}
 			}
 
-<<<<<<< HEAD
-		hairScreen2 = new menuScreen(game.add.sprite(45, 85, 'hairMenu2'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 8);
-=======
 		hairScreen2 = new menuScreen(game.add.sprite(45, 86, 'hairMenu2'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 8);
->>>>>>> gh-pages
 		hairScreen2.backAnim = hairScreen2.button.animations.getAnimation('back8');
 			hairScreen2.initialize = function() {
 				if (!hairScreen2.selectMode && !page3 && !page1) {
@@ -161,12 +153,8 @@ var characterState = {
 					hairScreen2.selectMode = true;
 				}
 			}
-
-<<<<<<< HEAD
-		hairScreen3 = new menuScreen(game.add.sprite(45, 85, 'hairMenu3'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 7);
-=======
+        
 		hairScreen3 = new menuScreen(game.add.sprite(45, 86, 'hairMenu3'), doneButton, 'Select a hairstyle!', 'hair', mainScreen, 7);
->>>>>>> gh-pages
 		hairScreen3.backAnim = hairScreen3.button.animations.getAnimation('back7');
 			hairScreen3.initalize = function() {
 				if (!hairScreen3.selectMode && page3) {
@@ -242,19 +230,11 @@ var characterState = {
 		screens[6] = doneScreen;
 
         // displaying avatar components
-<<<<<<< HEAD
-        skinScreen.current = game.add.sprite (525, 238, 'skin', 6);
-        eyeScreen.current = game.add.sprite(557, 348, 'eyes');
-        nose = game.add.sprite(610, 408, 'nose');
-        	screens[7] = nose; // for translateGroup()
-        mouthScreen.current = game.add.sprite(591, 423, 'mouth');
-=======
         skinScreen.current = game.add.sprite (507, 213, 'skin', 6);
         eyeScreen.current = game.add.sprite(557, 348, 'eyes');
         nose = game.add.sprite(610, 408, 'nose');
         	screens[7] = nose; // for translateGroup()
         mouthScreen.current = game.add.sprite(592, 423, 'mouth');
->>>>>>> gh-pages
         hairScreen1.current = game.add.sprite(414, 163, hairColor, hairStyle);
         accessoryScreen.current = game.add.sprite(514, 148, 'accessories', 6);
 
