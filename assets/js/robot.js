@@ -27,28 +27,14 @@ var robotState = {
 		backdrop = game.add.sprite(365, 112, 'robotBackground');
 		p1 = game.add.text(0, 0, "Build a robot!", pStyle);
 		p1.boundsAlignV = 'middle';
-        p1.setTextBounds(100, 40, 700, 70);
+        	p1.setTextBounds(100, 40, 700, 70);
 
-        // initializing buttons
+        	// initializing buttons
 		doneButton = game.add.sprite(720, 560, 'doneButton2');
-        doneButton.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
-        doneButton.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);
-<<<<<<< HEAD
+        	doneButton.animations.add('done', [0, 0, 0, 0, 0, 0, 1]);
+        	doneButton.animations.add('back', [2, 2, 2, 2, 2, 2, 3]);
 
-        button = game.add.sprite(320, 590, 'doneScreen2');
-		button.animations.add('scroll');
-		button.visible = false;
-
-		// initializing menu screens
-		mainScreen = new menuScreen(game.add.sprite(45, 155, 'robotMenu'), doneButton);
-		mainScreen.initializeMain();
-		mainScreen.text = 'Build a robot!'
-		mainScreen.endText = 'Awesome!'
-
-		bodyScreen = new menuScreen(game.add.sprite(45, 155, 'bodyMenu'), doneButton, 'Select a body color!', 'body', mainScreen);
-=======
-
-        button = game.add.sprite(320, 590, 'doneScreen2');
+        	button = game.add.sprite(320, 590, 'doneScreen2');
 		button.animations.add('scroll');
 		button.visible = false;
 
@@ -67,7 +53,6 @@ var robotState = {
 				faceScreen.current.loadTexture(faceScreen.texture, 3);
 			}
 		}
->>>>>>> gh-pages
 
 		faceScreen = new menuScreen(game.add.sprite(45, 155, 'faceMenu'), doneButton, 'Select a face!', 'face', mainScreen);
 
@@ -106,17 +91,17 @@ var robotState = {
 		screens[6] = doneScreen;
 
 		// displaying robot components 
-        armScreen.current = game.add.sprite(482, 206, armScreen.armColor, armScreen.armStyle);
-        antennaScreen.current = game.add.sprite(569, 170, 'antenna', 6);
-        bodyScreen.current = game.add.sprite(520, 200, 'body', 6);
-        legScreen.current = game.add.sprite(504, 460, 'leg', 6);
-        designScreen.current = game.add.sprite(580, 330, 'design', 6);
-        faceScreen.current = game.add.sprite(597, 233, 'face', 6);
+		armScreen.current = game.add.sprite(482, 206, armScreen.armColor, armScreen.armStyle);
+		antennaScreen.current = game.add.sprite(569, 170, 'antenna', 6);
+		bodyScreen.current = game.add.sprite(520, 200, 'body', 6);
+		legScreen.current = game.add.sprite(504, 460, 'leg', 6);
+		designScreen.current = game.add.sprite(580, 330, 'design', 6);
+		faceScreen.current = game.add.sprite(597, 233, 'face', 6);
 
-        // fade effect image (above all other sprites)
-        black = game.add.sprite(0, 0, 'black');
+		// fade effect image (above all other sprites)
+		black = game.add.sprite(0, 0, 'black');
 
-        // main screen selection
+        	// main screen selection
 		control.onUp.add(menuSelection, this);
 		function menuSelection(pointer) {
 			// stops mouseIn & mouseOut events 
@@ -154,7 +139,7 @@ var robotState = {
 		}
 
 		// escape to previous state
-        escape.onUp.add(prevState, this);
+       		escape.onUp.add(prevState, this);
 		function prevState() {
 			game.state.start('map');
 		}
@@ -166,6 +151,6 @@ var robotState = {
 			fadeOut('map'); 
 		} else {
 			fadeIn();
-        }
+        	}
 	}
 }
